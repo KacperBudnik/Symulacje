@@ -52,6 +52,11 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Budnik - preambuła
+\newcommand{\indep}{\perp \!\!\! \perp}
+%\usepackage{titlesec}
+%\titleclass{\subsubsection}{straight}[\subsection]
+%\newcounter{\subsubsection}[subsubsection]
+%\renewcommand{\thesubsubsection}{{\hspace{-2mm}}\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
 
 
 
@@ -119,7 +124,26 @@
 
 	
 	\section{Metoda akceptacji i odrzucenia\textsuperscript{\cite{A-O}} - Budnik}
-
+	\subsection{Opis}
+	Metoda akceptacji i odrzucenia służy do generowania zmiennej losowej \textbf{X} przy użyciu innych zmiennych. By móc wykorzystać tą metodę muszą być spełnione:
+	\begin{itemize}[leftmargin=10mm]
+		\item Potrafimy efektywnie generować inną zmienną losową \textbf{Y}
+		\item Zmienne \textbf{X} oraz \textbf{Y} muszą być skupione na tym samym zbiorze
+		\item Potrafimy wyznaczyć stałą $c$ taką że $\dfrac{\mathbb{P}(X=i)}{\mathbb{P}(Y=i)}\leqslant c$ dla każdego $i$
+	\end{itemize}
+	Jeśli są spełnione powyższe założenia możemy użyć poniższego algorytmu do generowania zmiennej \textbf{X}.
+	\subsubsection{Algorytm}
+	\begin{enumerate}[leftmargin=10mm]
+		\item Generuj jedną realizację \textbf{Y}
+		\item Generuj U\textasciitilde U(0,1), $\textbf{U}\boldsymbol{\indep} \textbf{Y}$
+		\item Jeśli $\textbf{U}\leqslant\frac{p_\textbf{Y}}{cq_\textbf{Y}}$ zwróć \textbf{X}=\textbf{Y}, w przeciwnym wróć do 1.
+	\end{enumerate}
+	Prawdopodobieństwo że zmienna zostanie zaakceptowana wynosi
+	$$\mathbb{P}(\text{'wartość zaakceptowana'})=\frac{1}{c}$$
+	zatem by algorytm był wydajny stała $c$ powinna być jak najmniejsza. Średnia liczba powtórzeń algorytmu wynosi $c$.
+	\textbf{To było dyskretne, jeszcze potrzebne ciągłe}
+	
+	\subsection{Przykład}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%3
