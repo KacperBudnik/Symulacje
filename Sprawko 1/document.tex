@@ -115,8 +115,29 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%1
 	
 	\section{Metoda odwrotnej dystrybuanty - Malec}
-	\subsection{Teoria}
-	\subsection{Algorytm}
+	\subsection{Opis}
+	\noindent Metoda ta polega na generowaniu zmiennej losowej $X$ generując zmienną $U$ z rozkładu jednostajnego oraz nakładając na nią funkcję odwrotną dystrybuanty.
+	\subsubsection{Algorytm dla rozkładów dyskretnych}
+	\noindent Załóżmy, że rozkład $X$ ma postać $\mathrm{P}(X = x_i) = p_\mathrm{i}$, \ $i = 1, 2,\dots $.
+	\begin{enumerate}
+		\item Generuj $U \sim U(0, 1)$.
+		\item Wyznacz $j \in \mathbb{N} $ takie, że $ \sum\limits_{i=1}^{j-1} p_i < U \leq \sum\limits_{i=1}^{j} p_i $.
+		\item Zwróć $ X = x_i $.
+	\end{enumerate}
+	\subsubsection{Algorytm dla rozkładów ciągłych}
+	\noindent Załóżmy, że $X$ ma dystrybuantę $F(x)$.
+	\begin{enumerate}
+		\item[a)] Jeśli dystrybuanta jest ściśle rosnąca:
+		\begin{enumerate}
+			\item[1.] Generuj $U \sim U(0, 1)$.
+			\item[2.] Zwróć $ X = F_X^{-1}(U) $.
+		\end{enumerate}
+		\item[b)] Jeśli dystrybuanta nie jest ściśle rosnąca:
+		\begin{enumerate}
+			\item[1.] Generuj $U \sim U(0, 1)$.
+			\item[2.] Zwróć $ X = \tilde{F}_X^{-1}(U) $, gdzie $ \tilde{F}_X^{-1}(y) = \mathrm{inf}\{x \in \mathbb{R}: F_X(x) \geq y\} $.
+		\end{enumerate}
+	\end{enumerate}
 	\subsection{Przykład}
 
 
