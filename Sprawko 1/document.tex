@@ -121,7 +121,7 @@
 	\noindent Załóżmy, że rozkład $X$ ma postać $\mathrm{P}(X = x_i) = p_\mathrm{i}$, \ $i = 1, 2,\dots $.
 	\begin{enumerate}
 		\item Generuj $U \sim \mathcal{U}(0, 1)$.
-		\item Wyznacz $j \in \mathbb{N} $ takie, że $ \sum\limits_{i=1}^{j-1} p_i < U \leq \sum\limits_{i=1}^{j} p_i $.
+		\item Wyznacz $j \in \mathbb{N} $ takie, że $ \sum\limits_{i=1}^{j-1} p_i < U \leqslant \sum\limits_{i=1}^{j} p_i $.
 		\item Zwróć $ X = x_i $.
 	\end{enumerate}
 	\subsubsection{Algorytm dla rozkładów ciągłych}
@@ -135,7 +135,7 @@
 		\item[b)] Jeśli dystrybuanta nie jest ściśle rosnąca:
 		\begin{enumerate}
 			\item[1.] Generuj $U \sim \mathcal{U}(0, 1)$.
-			\item[2.] Zwróć $ X = \tilde{F}_X^{-1}(U) $, gdzie $ \tilde{F}_X^{-1}(y) = \mathrm{inf}\{x \in \mathbb{R}: F_X(x) \geq y\} $.
+			\item[2.] Zwróć $ X = \tilde{F}_X^{-1}(U) $, gdzie $ \tilde{F}_X^{-1}(y) = \mathrm{inf}\{x \in \mathbb{R}: F_X(x) \geqslant y\} $.
 		\end{enumerate}
 	\end{enumerate}
 	\subsection{Przykłady}
@@ -145,11 +145,13 @@
 	Dystrybuanta rozkładu Cauchy'ego ma postać
 	$$ F(x) = \frac{1}{\pi} \arctan{\left(\frac{x - \mu}{\sigma}\right)} + \frac{1}{2}. $$
 	Za pomocą elementarnych przekształceń jesteśmy w stanie otrzymać funkcję odwrotną
-	$$ F^{-1}(y) = $$
-	Zatem algorytm generowania $ X \sim \mathcal{C}(\mu, \sigma) $ będzie wyglądał następująco:
+	$$ F^{-1}(y) = \sigma \tan \left(\pi \left(y - \frac{1}{2}\right) \right) + \mu. $$
+	Zatem, żeby wygenerować $X$, należy najpierw wygenerować $U \sim \mathcal{U}(0, 1) $ i zwrócić $F^{-1}(U)$. Możemy to jednak lekko uprościć. Niech $ Z \sim \mathcal{U}\left(-\frac{\pi}{2}, \frac{\pi}{2}\right) $. Wtedy
+	$$ Z \buildrel{d}\over{=} \pi \left(U - \frac{1}{2}\right). $$
+	Ostatecznie algorytm będzie wyglądał następująco:
 	\begin{enumerate}
-		\item Generuj $U \sim \mathcal{U}(0, 1)$.
-		\item Zwróć $ X = $.
+		\item Generuj $Z \sim \mathcal{U}\left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$.
+		\item Zwróć $ X = \sigma \tan(Z) + \mu $.
 	\end{enumerate}
 
 
