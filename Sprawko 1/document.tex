@@ -161,8 +161,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
 
 	
-	\section{Metoda akceptacji i odrzucenia\textsuperscript{\cite{A-O}} - Budnik}
-	\subsection{Opis}
+	\section{Metoda akceptacji i odrzucenia\textsuperscript{\cite{AO - dyskretny}} - Budnik}
+	\subsection{Opis metody dla przypadku dyskretnego\textsuperscript{\cite{AO - dyskretny}}}
 	Metoda akceptacji i odrzucenia służy do generowania zmiennej losowej \textbf{X} przy użyciu innych zmiennych. By móc wykorzystać tą metodę muszą być spełnione:
 	\begin{itemize}[leftmargin=10mm]
 		\item Potrafimy efektywnie generować inną zmienną losową \textbf{Y}
@@ -173,14 +173,31 @@
 	\subsubsection{Algorytm}
 	\begin{enumerate}[leftmargin=10mm]
 		\item Generuj jedną realizację \textbf{Y}
-		\item Generuj U\textasciitilde U(0,1), $\textbf{U}\boldsymbol{\indep} \textbf{Y}$
+		\item Generuj U\textasciitilde U(0,1) $\sim \mathcal{U}(0,1)$, $\textbf{U}\boldsymbol{\indep} \textbf{Y}$
 		\item Jeśli $\textbf{U}\leqslant\frac{p_\textbf{Y}}{cq_\textbf{Y}}$ zwróć \textbf{X}=\textbf{Y}, w przeciwnym wróć do 1.
 	\end{enumerate}
-	Prawdopodobieństwo że zmienna zostanie zaakceptowana wynosi
-	$$\mathbb{P}(\text{'wartość zaakceptowana'})=\frac{1}{c}$$
-	zatem by algorytm był wydajny stała $c$ powinna być jak najmniejsza. Średnia liczba powtórzeń algorytmu wynosi $c$.
-	\textbf{To było dyskretne, jeszcze potrzebne ciągłe}
 	
+	
+	\subsection{Opis metody dla przypadku ciągłego\textsuperscript{\cite{AO - ciagly}}}
+	Metoda akceptacji i odrzucenia służy do generowania zmiennej losowej \textbf{X} o gęstości $f(x)$ przy użyciu innych zmiennych. By móc wykorzystać tą metodę muszą być spełnione:
+	\begin{itemize}[leftmargin=10mm]
+		\item Potrafimy efektywnie generować inną zmienną losową \textbf{Y} o gęstości $g(x)$
+		\item Zmienne \textbf{X} oraz \textbf{Y} muszą być skupione na tym samym zbiorze
+		\item Potrafimy wyznaczyć stałą $c$ taką że $\sup\dfrac{f(x)}{g(x)}\leqslant c$ dla każdego $x$, gdzie $g(x)\neq0$ (więc również $f(x)\neq0$)
+	\end{itemize}
+	\subsubsection{Algorytm}
+	\begin{enumerate}[leftmargin=10mm]
+		\item Generuj jedną realizację \textbf{Y}
+		\item Generuj U$\sim \mathcal{U}(0,1)$, $\textbf{U}\boldsymbol{\indep} \textbf{Y}$
+		\item Jeśli $\textbf{U}\leqslant\dfrac{f(Y)}{cg(Y)}$ zwróć \textbf{X}=\textbf{Y}, w przeciwnym wróć do 1.
+	\end{enumerate}
+
+	\subsection{cos}
+	W obu przypadkach, ciągłym i dyskretnym, prawdopodobieństwo, że zmienna zostanie zaakceptowana wynosi $\frac{1}{c}$. Średnia liczba powtórzeń algorytmu wynosi $c$, zatem stałą tę powinniśmy dobierać jak najmniejszą spełniającą wymagane kryteria.
+%		Prawdopodobieństwo że zmienna zostanie zaakceptowana wynosi
+%	$$\mathbb{P}(\text{'wartość zaakceptowana'})=\frac{1}{c}$$
+%	zatem by algorytm był wydajny stała $c$ powinna być jak najmniejsza. Średnia liczba powtórzeń algorytmu wynosi $c$.
+
 	\subsection{Przykład}
 
 
@@ -217,8 +234,11 @@
 	
 	
 	\begin{thebibliography}{1}
-		\bibitem{A-O}
+		\bibitem{AO - dyskretny}
 		\url{https://youtu.be/NFmbgbyj5M0?t=1323}
+		
+		\bibitem{AO - ciagly}
+		TBA
 
 	\end{thebibliography}
 	
