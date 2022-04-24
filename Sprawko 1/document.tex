@@ -8,8 +8,8 @@
 
 \usepackage[margin=20mm, left=30mm]{geometry}
 
-\usepackage{newtxtext}
-\usepackage{newtxmath}
+%\usepackage{newtxtext}
+%\usepackage{newtxmath}
 \usepackage{amsmath}
 \usepackage{bm}
 \usepackage{mathtools}
@@ -44,7 +44,7 @@
 \newcommand{\dd}{\text{d}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Malec - preambuła
-
+\usepackage{amssymb, amsfonts}
 
 
 
@@ -135,7 +135,7 @@
 		\item[b)] Jeśli dystrybuanta nie jest ściśle rosnąca:
 		\begin{enumerate}
 			\item[1.] Generuj $U \sim \mathcal{U}(0, 1)$.
-			\item[2.] Zwróć $ X = \tilde{F}_X^{-1}(U) $, gdzie $ \tilde{F}_X^{-1}(y) = \mathrm{inf}\{x \in \mathbb{R}: F_X(x) \geqslant y\} $.
+			\item[2.] Zwróć $ X = \widetilde{F}_X^{-1}(U) $, gdzie $ \widetilde{F}_X^{-1}(y) = \mathrm{inf}\{x \in \mathbb{R}: F_X(x) \geqslant y\} $.
 		\end{enumerate}
 	\end{enumerate}
 	\subsection{Przykłady}
