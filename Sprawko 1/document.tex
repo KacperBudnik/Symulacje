@@ -153,6 +153,9 @@
 		\item Generuj $Z \sim \mathcal{U}\left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$.
 		\item Zwróć $ X = \sigma \tan(Z) + \mu $.
 	\end{enumerate}
+	Aby przetestować powyższy algorytm, generujemy wektor 1000 realizacji zmiennej $X$, a następnie porównujemy dystrybuantę empiryczną tej próbki z dystrybuantą teoretyczną oraz tworzymy histogram i porównujemy go z gęstością.
+	%\includegraphics[scale=1]{plot3.png}
+	Jak możemy zauważyć dystrybuanty empiryczna i teoretyczna są do siebie zbliżone. To samo możemy powiedzieć o krzywej gęstości, której kształt jest podobny do histogramu próby.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
@@ -184,6 +187,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%3
 	
 	\section{Metoda splotowa - Malec}
+	\subsection{Opis}
+	\noindent Metoda ta pozwala wygenerować pewną zmienną losową $X$, przy pomocy innych zmiennych, które potrafimy efektywnie generować, i zsumowaniu ich. Załóżmy, że
+	$$ X \buildrel{d} \over{=} Y_1 + Y_2 + \dots + Y_n, $$
+	gdzie $Y_i$ to zmienne losowe niezależne. Wtedy algorytm wygląda następująco:
+	\begin{enumerate}
+		\item Generuj $ Y_1, Y_2, \dots, Y_n $.
+		\item Zwróć $ X = Y_1 + Y_2 + \dots + Y_n $.
+	\end{enumerate}
+	\subsection{Przykłady}
+	\subsubsection{Dyskretny - }
+	\subsubsection{Ciągły - }
 	
 	\section{Metoda kompozycji - Malec}
 
