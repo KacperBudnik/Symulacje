@@ -34,7 +34,6 @@
 \usepackage{enumitem}
 \usepackage{float}
 \usepackage{longtable}
-\let\alpha\alphaup
 \usepackage{graphicx}
 \usepackage{rotating}
 \usepackage{subcaption}
@@ -119,7 +118,7 @@
 	\noindent Metoda ta polega na generowaniu zmiennej losowej $X$ generując zmienną $U$ z rozkładu jednostajnego oraz nakładając na nią funkcję odwrotną dystrybuanty.
 	\subsubsection{Algorytm dla rozkładów dyskretnych}
 	\noindent Załóżmy, że rozkład $X$ ma postać $\mathrm{P}(X = x_i) = p_\mathrm{i}$, \ $i = 1, 2,\dots $.
-	\begin{enumerate}
+	\begin{enumerate}[leftmargin=10mm]
 		\item Generuj $U \sim \mathcal{U}(0, 1)$.
 		\item Wyznacz $j \in \mathbb{N} $ takie, że $ \sum\limits_{i=1}^{j-1} p_i < U \leqslant \sum\limits_{i=1}^{j} p_i $.
 		\item Zwróć $ X = x_i $.
@@ -167,7 +166,7 @@
 	\begin{itemize}[leftmargin=10mm]
 		\item Potrafimy efektywnie generować inną zmienną losową \textbf{Y}
 		\item Zmienne \textbf{X} oraz \textbf{Y} muszą być skupione na tym samym zbiorze
-		\item Potrafimy wyznaczyć stałą $c$ taką że $\dfrac{\mathbb{P}(X=i)}{\mathbb{P}(Y=i)}\leqslant c$ dla każdego $i$
+		\item Potrafimy wyznaczyć stałą $c$ taką że $\dfrac{\mathrm{P}(X=i)}{\mathrm{P}(Y=i)}\leqslant c$ dla każdego $i$
 	\end{itemize}
 	Jeśli są spełnione powyższe założenia możemy użyć poniższego algorytmu do generowania zmiennej \textbf{X}.
 	\subsubsection{Algorytm}
