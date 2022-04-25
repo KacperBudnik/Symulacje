@@ -138,7 +138,7 @@
 		\end{enumerate}
 	\end{enumerate}
 	\subsection{Przykłady}
-	\subsubsection{Dyskretny - chuj}
+	\subsubsection{Dyskretny - rozkład dwupunktowy}
 	\subsubsection{Ciągły - rozkład Cauchy'ego}
 	\noindent Chcemy wygenerować $ X \sim \mathcal{C}(\mu, \sigma) $. 
 	Dystrybuanta rozkładu Cauchy'ego ma postać
@@ -148,7 +148,7 @@
 	Zatem, żeby wygenerować $X$, należy najpierw wygenerować $U \sim \mathcal{U}(0, 1) $ i zwrócić $F^{-1}(U)$. Możemy to jednak lekko uprościć. Niech $ Z \sim \mathcal{U}\left(-\frac{\pi}{2}, \frac{\pi}{2}\right) $. Wtedy
 	$$ Z \buildrel{d}\over{=} \pi \left(U - \frac{1}{2}\right). $$
 	Ostatecznie algorytm będzie wyglądał następująco:
-	\begin{enumerate}
+	\begin{enumerate}[leftmargin=10mm]
 		\item Generuj $Z \sim \mathcal{U}\left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$.
 		\item Zwróć $ X = \sigma \tan(Z) + \mu $.
 	\end{enumerate}
@@ -213,7 +213,14 @@
 	\end{enumerate}
 	\subsection{Przykłady}
 	\subsubsection{Dyskretny - }
-	\subsubsection{Ciągły - }
+	\subsubsection{Ciągły - rozkład chi-kwadrat}
+	\noindent Niech $ X \sim \mathcal{X}^2(n) $ oraz niech $Y_1, Y_2, \dots, Y_n$ będzie ciągiem niezależnych zmiennych losowych o rozkładzie normalnym standardowym. Wtedy
+	$$ X \buildrel{d} \over{=} Y_1 + Y_2 + \dots + Y_n $$
+	Stąd otrzymujemy algorytm:
+	\begin{enumerate}[leftmargin=10mm]
+		\item Generuj $ Y_1, Y_2, \dots, Y_n $, gdzie $Y_i \sim \mathcal{N}(0, 1) $.
+		\item Zwróć $ X = Y_1 + Y_2 + \dots + Y_n $.
+	\end{enumerate}
 	
 	\section{Metoda kompozycji - Malec}
 
