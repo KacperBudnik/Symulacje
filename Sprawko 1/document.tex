@@ -33,10 +33,10 @@
 
 \usepackage{enumitem}
 \usepackage{float}
-\usepackage{longtable}
+%\usepackage{longtable}
 \usepackage{graphicx}
-\usepackage{rotating}
-\usepackage{subcaption}
+%\usepackage{rotating}
+%\usepackage{subcaption}
 
 \newcommand{\code}[1]{\texttt{#1}}
 
@@ -56,8 +56,8 @@
 %\titleclass{\subsubsection}{straight}[\subsection]
 %\newcounter{\subsubsection}[subsubsection]
 %\renewcommand{\thesubsubsection}{{\hspace{-2mm}}\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
-
-
+%\usepackage{unicode-math}
+%\usepackage{dutchcal}
 
 
 
@@ -162,42 +162,85 @@
 	
 	\section{Metoda akceptacji i odrzucenia\textsuperscript{\cite{AO - dyskretny}} - Budnik}
 	\subsection{Opis metody dla przypadku dyskretnego\textsuperscript{\cite{AO - dyskretny}}}
-	Metoda akceptacji i odrzucenia służy do generowania zmiennej losowej \textbf{X} przy użyciu innych zmiennych. By móc wykorzystać tą metodę muszą być spełnione:
+	Metoda akceptacji i odrzucenia służy do generowania zmiennej losowej $X$ przy użyciu innych zmiennych. By móc wykorzystać tą metodę muszą być spełnione:
 	\begin{itemize}[leftmargin=10mm]
-		\item Potrafimy efektywnie generować inną zmienną losową \textbf{Y}
-		\item Zmienne \textbf{X} oraz \textbf{Y} muszą być skupione na tym samym zbiorze
-		\item Potrafimy wyznaczyć stałą $c$ taką że $\dfrac{\mathrm{P}(X=i)}{\mathrm{P}(Y=i)}\leqslant c$ dla każdego $i$
+		\item Potrafimy efektywnie generować inną zmienną losową $Y$
+		\item Zmienne $X$ oraz $Y$ muszą być skupione na tym samym zbiorze
+		\item Potrafimy wyznaczyć stałą $c$ taką że $\dfrac{\mathrm{P}(X=i)}{\mathrm{P}(Y=i)}=\dfrac{p_Y}{q_Y}\leqslant c$ dla każdego $i$
 	\end{itemize}
-	Jeśli są spełnione powyższe założenia możemy użyć poniższego algorytmu do generowania zmiennej \textbf{X}.
+	Jeśli są spełnione powyższe założenia możemy użyć poniższego algorytmu do generowania zmiennej $X$.
 	\subsubsection{Algorytm}
 	\begin{enumerate}[leftmargin=10mm]
-		\item Generuj jedną realizację \textbf{Y}
-		\item Generuj U\textasciitilde U(0,1) $\sim \mathcal{U}(0,1)$, $\textbf{U}\boldsymbol{\indep} \textbf{Y}$
-		\item Jeśli $\textbf{U}\leqslant\frac{p_\textbf{Y}}{cq_\textbf{Y}}$ zwróć \textbf{X}=\textbf{Y}, w przeciwnym wróć do 1.
+		\item Generuj jedną realizację $Y$
+		\item Generuj $U\sim \mathcal{U}(0,1)$, $U\indep X$
+		\item Jeśli $U\leqslant\frac{p_Y}{cq_Y}$ zwróć $X=Y$, w przeciwnym wróć do 1.
 	\end{enumerate}
 	
 	
 	\subsection{Opis metody dla przypadku ciągłego\textsuperscript{\cite{AO - ciagly}}}
-	Metoda akceptacji i odrzucenia służy do generowania zmiennej losowej \textbf{X} o gęstości $f(x)$ przy użyciu innych zmiennych. By móc wykorzystać tą metodę muszą być spełnione:
+	Metoda akceptacji i odrzucenia służy do generowania zmiennej losowej $X$ o gęstości $f(x)$ przy użyciu innych zmiennych. By móc wykorzystać tą metodę muszą być spełnione:
 	\begin{itemize}[leftmargin=10mm]
-		\item Potrafimy efektywnie generować inną zmienną losową \textbf{Y} o gęstości $g(x)$
-		\item Zmienne \textbf{X} oraz \textbf{Y} muszą być skupione na tym samym zbiorze
+		\item Potrafimy efektywnie generować inną zmienną losową $Y$ o gęstości $g(x)$
+		\item Zmienne $X$ oraz $Y$ muszą być skupione na tym samym zbiorze
 		\item Potrafimy wyznaczyć stałą $c$ taką że $\sup\dfrac{f(x)}{g(x)}\leqslant c$ dla każdego $x$, gdzie $g(x)\neq0$ (więc również $f(x)\neq0$)
 	\end{itemize}
 	\subsubsection{Algorytm}
 	\begin{enumerate}[leftmargin=10mm]
-		\item Generuj jedną realizację \textbf{Y}
-		\item Generuj U$\sim \mathcal{U}(0,1)$, $\textbf{U}\boldsymbol{\indep} \textbf{Y}$
-		\item Jeśli $\textbf{U}\leqslant\dfrac{f(Y)}{cg(Y)}$ zwróć \textbf{X}=\textbf{Y}, w przeciwnym wróć do 1.
+		\item Generuj jedną realizację $Y$
+		\item Generuj $U\sim \mathcal{U}(0,1)$, $U\indep Y$
+		\item Jeśli $U\leqslant\dfrac{f(Y)}{cg(Y)}$ zwróć $X=Y$, w przeciwnym wróć do 1.
 	\end{enumerate}
 
-	\subsection{cos}
-	W obu przypadkach, ciągłym i dyskretnym, prawdopodobieństwo, że zmienna zostanie zaakceptowana wynosi $\frac{1}{c}$. Średnia liczba powtórzeń algorytmu wynosi $c$, zatem stałą tę powinniśmy dobierać jak najmniejszą spełniającą wymagane kryteria.
+	\subsection{Szybkość algorytmu}
+	W obu przypadkach, ciągłym i dyskretnym, prawdopodobieństwo, że zmienna zostanie zaakceptowana wynosi $\frac{1}{c}$.\\
+%	Średnia liczba powtórzeń algorytmu wynosi $c$, zatem stałą tę powinniśmy dobierać jak najmniejszą spełniającą wymagane kryteria.
+	Liczba iteracji algorytmu potrzebnych do wygenerowania zmiennej ma rozkład $\mathbb{Geom}(\frac{1}{c})$, zatem średnia liczba iteracji potrzebna do wygenerowania tej zmiennej to $c$. Z tego powodu stałą tą powinniśmy dobrać jak najmniejszą możliwą. Najoptymalniej wybrać $c=\max\frac{p_Y}{q_Y}$ w przypadku dyskretnym oraz $c=\sup\frac{f(x)}{g(x)}$ dla przypadku ciągłego.
 %		Prawdopodobieństwo że zmienna zostanie zaakceptowana wynosi
 %	$$\mathbb{P}(\text{'wartość zaakceptowana'})=\frac{1}{c}$$
 %	zatem by algorytm był wydajny stała $c$ powinna być jak najmniejsza. Średnia liczba powtórzeń algorytmu wynosi $c$.
 
-	\subsection{Przykład}
+	\subsection{Przykłady}
+	
+	\subsubsection{Dyskretny}
+	\textbf{Zamieniłbym kolejność z metodą splotową, bo chcę się do niej odwołać}
+	Niech $X$ ma następujący rozkład
+	\begin{equation}
+		\mathrm{P}(X=i)=\begin{cases}
+			0.1, \quad\text{dla $i=-2$}\\
+			0.2, \quad\text{dla $i=-1$}\\
+			0.5, \quad\text{dla $i=\phantom{-}0$}\\
+			0.2, \quad\text{dla $i=\phantom{-}1$}\\
+%			0.1, \phantom{0}\quad\text{dla $i=\phantom{-}1$}
+		\end{cases}
+	\end{equation}
+	Możemy zauważyć, że nasza zmienna ma rozkład skupiony na wym samym zbiorze co $Y=Z-2$, gdzie $Z\sim\mathcal{B}(n=4,p)$. Zmienną $Z$ potrafimy już efektywnie generować przy pomocy metody splotowej. Ale są szybsze sposoby i ten podobny do tego wykonywaliśmy już na zajęciach, ale wszystkie są takie same.
+ 
+ 	\subsubsection{Ciągły}
+ 	Chcemy wygenerować zmienną $X$ o gęstości $f(x)= \sin(x)\cdot2^{\cos(x)}\boldmath 1_{(0,\frac{\pi}{2})}$. Użyjemy do tego zmiennej $Y\sim\mathcal{U}(0,\frac{\pi}{2})$ o funkcji gęstości $g(x)=\frac{2}{\pi}\boldmath 1_{(0,\frac{\pi}{2})}$. Zaczniemy od wyliczenia stałej $c$.
+ 	\begin{equation}
+ 		c=\sup\limits_{x\in(0,\frac{\pi}{2})}\frac{f(x)}{g(x)}=\sup\limits_{x\in(0,\frac{\pi}{2})}\sin(x)\cdot2^{\cos(x)}\cdot\frac{\pi}{2}\approx1.2249\leqslant \frac{5}{4}
+ 	\end{equation}
+ 	Teraz wystarczy się stosować do powyższego algorytmu, czyli
+	\begin{enumerate}[leftmargin=10mm]
+		\item Generuj $Y\sim \frac{\pi}{2}\mathcal{U}(0,1)$
+		\item Generuj $U\sim \mathcal{U}(0,1)$, $U\indep Y$
+		\item Jeśli $U\leqslant\sin(Y)\cdot2^{\cos(Y)}\cdot\dfrac{2\pi}{5}$ zwróć $X=Y$, w przeciwnym wróć do 1.
+	\end{enumerate}	
+ 
+%	\begin{equation}
+%		c=\sup\limits_{x\in\mathbb R^+}\frac{f(x)}{g(x)}=\sup\limits_{x\in\mathbb R^+}\frac{\sin(x)}{x^2}\cdot\exp(x)
+%	\end{equation}
+ 	
+
+
+
+
+
+
+
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%3
@@ -244,7 +287,10 @@
 		\url{https://youtu.be/NFmbgbyj5M0?t=1323}
 		
 		\bibitem{AO - ciagly}
-		TBA
+		\url{https://youtu.be/SpPS0CnhvrE?t=37}
+		
+		\bibitem{splot}
+		\url{https://youtu.be/SpPS0CnhvrE?t=4081}
 
 	\end{thebibliography}
 	
