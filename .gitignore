@@ -4,3 +4,13 @@
 *.log
 *.pdf
 
+Sprawko 1/document.pdf
+Sprawko 1/document.aux
+Sprawko 1/document.aux
+
+Sprawko*1/*
+**/Sprawko 1/*
+Sprawko\ 1/*
+**/Sprawko\ 1/*
+/Sprawko\ 1/*
+*/Sprawko\ 1/*
