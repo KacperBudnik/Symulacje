@@ -278,8 +278,45 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%4
 	
 	\section{Metoda Boxa-Mullera\textsuperscript{\cite{box-kox}} - Budnik}
+	\subsection{Opis}
+	
+	
+	
+	\subsubsection{Algorytm}
+	\begin{enumerate}[leftmargin=10mm]
+		\item Generuj zmienne $U_1, U_2$ - iid, $U_1\sim\mathcal{U}(0,1)$
+		\item Zwróć:
+		\begin{equation}
+			\begin{split}
+				X=\sqrt{-2\ln(U_1)}\cos\left(2\pi U_2\right)\\
+				Y=\sqrt{-2\ln(U_1)}\sin\left(2\pi U_2\right)
+			\end{split}
+		\end{equation}
+	\end{enumerate}
+	
+	
 	
 	\section{Metoda biegunowa\textsuperscript{\cite{polar}} - Budink}
+	\subsection{Opis}
+
+
+
+	\subsubsection{Algorytm}
+	\begin{enumerate}[leftmargin=10mm]
+		\item Generuj zmienne $V_1, V_2$ - iid, $V_1\sim\mathcal{U}(-1,1)$
+		\item Wyznacz $R^2=V_1^2+V_2^2$
+		\item Jeżeli $R^2\ge 1$ wróć do 1.
+		\item Zwróć
+		\begin{equation}
+			\begin{split}
+				X=\sqrt{\frac{-2\ln R^2}{R^2}}V_1\\
+				Y=\sqrt{\frac{-2\ln R^2}{R^2}}V_2
+			\end{split}
+		\end{equation}
+	\end{enumerate}
+	
+	\subsection{Szybkość algorytmu}
+	Liczba powtórzeń tego algorytmu potrzebna do wygenerowania zmiennej losowej wynosi $\frac{4}{\pi}\approx1.25$.
 
 
 
