@@ -267,11 +267,18 @@
 
 	\subsection{Przykłady}
 	
-	\subsubsection{Dyskretny - rozkład Bernoulliego}
+	\subsubsection{Dyskretny - rozkład dwumianowy}
+	\noindent Niech $ X \sim \mathcal{B}(n, p) $ oraz niech $Y_1, Y_2, \dots, Y_n$ będzie ciągiem niezależnych zmiennych losowych będących wynikami prób Bernoulliego z prawdopodobieństwem sukcesu $p$. Wtedy
+	$$ X \buildrel{d} \over{=} Y_1 + Y_2 + \dots + Y_n. $$
+	Stąd mamy algorytm:
+	\begin{enumerate}[leftmargin=10mm]
+		\item Generuj $ Y_1, Y_2, \dots, Y_n $, gdzie $Y_i \sim \mathcal{B}(1, p) $.
+		\item Zwróć $ X = Y_1 + Y_2 + \dots + Y_n $.
+	\end{enumerate}
 	
 	\subsubsection{Ciągły - rozkład chi-kwadrat}
 	\noindent Niech $ X \sim \mathcal{X}^2(n) $ oraz niech $Y_1, Y_2, \dots, Y_n$ będzie ciągiem niezależnych zmiennych losowych o rozkładzie normalnym standardowym. Wtedy
-	$$ X \buildrel{d} \over{=} Y_1 + Y_2 + \dots + Y_n $$
+	$$ X \buildrel{d} \over{=} Y_1^2 + Y_2^2 + \dots + Y_n^2. $$
 	Stąd otrzymujemy algorytm:
 	\begin{enumerate}[leftmargin=10mm]
 		\item Generuj $ Y_1, Y_2, \dots, Y_n $, gdzie $Y_i \sim \mathcal{N}(0, 1) $.
