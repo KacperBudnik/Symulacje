@@ -294,7 +294,25 @@
 		\item Zwróć $ X = Y_1^2 + Y_2^2 + \dots + Y_n^2 $.
 	\end{enumerate}
 	
+	
+	
+	
+	
 	\section{Metoda kompozycji - Malec}
+	
+	\subsection{Opis}
+	\noindent Metoda ta służy do generowania wyłącznie ciągłych rozkładów. Załóżmy, że zmienna losowa $X$, którą chcemy symulować, ma dystrybuantę postaci
+	$$ F(x) = \sum_{i=1}^n p_i F_i(x), $$
+	gdzie $p_i > 0$, \ $\sum\limits_{i=1}^n p_i = 1$ oraz $F_i$ to dystrybuanty pewnych zmiennych losowych $Y_i$. Jeżeli zmienne $Y_i$ mają gęstość, to równoważne będzie założenie, że gęstość zmiennej $X$ ma postać
+	$$ f(x) = \sum_{i=1}^n p_i f_i(x), $$
+	gdzie $f$ są gęstościami zmiennych $Y_i$. Do wygenerowania $X$ może posłużyć poniższy algorytm:
+	\begin{enumerate}
+		\item Generuj zmienną losową $I$ o rozkładzie $\mathrm{P}(I = i) = p_i$.
+		\item Generuj $Y_I$.
+		\item Zwróć $X = Y_I$.
+	\end{enumerate}
+
+	\subsection{Przykład}
 
 
 
