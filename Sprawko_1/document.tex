@@ -233,10 +233,10 @@
 		\item Generuj $U\sim \mathcal{U}(0,1)$, $U\indep Y$
 		\item Jeśli $U\leqslant\sin(Y)\cdot2^{\cos(Y)}\cdot\dfrac{3\pi\ln(2)}{8}$ zwróć $X=Y$, w przeciwnym wróć do 1.
 	\end{enumerate}	
-	Stosując się do powyższego algorytmu wygenerowaliśmy próbę rozmiaru $n=10^6$. By sprawdzić, czy nasza metoda jest poprawna na poniższych wykresach porównaliśmy gęstość rozkładu z histogramem wygenerowanej próby oraz dystrybuanty: empiryczną z teoretyczną. 
+%	Stosując się do powyższego algorytmu wygenerowaliśmy próbę rozmiaru $n=10^6$. By sprawdzić, czy nasza metoda jest poprawna na poniższych wykresach porównaliśmy gęstość rozkładu z histogramem wygenerowanej próby oraz dystrybuanty: empiryczną z teoretyczną. 
  	
 
-	\begin{figure}[H]\caption{Sprawdzenie poprawności metody Akceptacji-Odrzucenie przy pomocy wykresów}\label{fig:AO_con}
+	\begin{figure}[H]\caption{Sprawdzenie poprawności metody Akceptacji-Odrzucenie dla próby o rozmiarze $n=1000$}\label{fig:AO_con}
 		\includegraphics[width=\columnwidth]{fig/fig_AO_con.png}
 	\end{figure}
 	
@@ -342,7 +342,10 @@
 	\end{enumerate}
 	Algorytm ten generuje od razu dwie próby z rozkładu normalnego standardowego. By wygenerować zmienną z rozkładu $\mathcal{N}(\mu,\sigma^2)$ wystarczy wcześniej wygenerowane zmienne pomnożyć przez $\sigma$ po czym dodać do nich $\mu$.
 	\subsection{Przykłady}
-	TBA
+	
+	\begin{figure}[H]\caption{Sprawdzenie poprawności metody Boxa-M\"ullera dla próby o rozmiarze $n=1000$}\label{fig:BM}
+		\includegraphics[width=\columnwidth]{fig/fig_BM.png}
+	\end{figure}
 	
 	
 	
@@ -375,8 +378,13 @@
 	Do wygenerowania dwóch prób rozkładu normalnego korzystając z tego algorytmu potrzebne jest powtórzenie go średnio $\frac{4}{\pi}\approx1.25$ razy. Pomimo, że algorytm będzie czasem wykonywany wielokrotnie, to poprzez pozbycie się funkcji trygonometrycznych czas rzeczywisty wygenerowania danej próby będzie krótszy niż w poprzedniej metodzie, co pokażemy później.
 	
 	\subsection{Przykłady}
-%	Liczba powtórzeń tego algorytmu potrzebna do wygenerowania zmiennej losowej wynosi $\frac{4}{\pi}\approx1.25$.
 
+	\begin{figure}[H]\caption{Sprawdzenie poprawności metody biegunowej dla próby o rozmiarze $n=1000$}\label{fig:pol}
+		\includegraphics[width=\columnwidth]{fig/fig_pol.png}
+	\end{figure}
+
+	\section{Porównanie metod generowania rozkładu normalnego}
+	Dwie ostatnie metody jakie pokazaliśmy dotyczą generowania tego samego rozkładu, dlatego ważne wydaje się, by porównać czas ich działania.
 
 
 	
