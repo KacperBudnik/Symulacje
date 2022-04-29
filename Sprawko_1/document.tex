@@ -223,14 +223,16 @@
 	\subsubsection{Dyskretny - rozkład Poissona}
 	\noindent Celem jest wygenerowanie $X \sim \mathcal{P}oiss(\lambda)$, \ $\lambda > 0$. Przypomnijmy jak wygląda rozkład \mbox{Poissona}:
 	$$ p_i = \mathrm{P}(X = i) = \mathrm{e}^{-\lambda} \frac{\lambda^i}{i!}. $$
+	Zdefiniujmy
+	$$ s_j = \sum\limits_{i=0}^{j} p_i. $$
 	Algorytm będzie więc polegał na generowaniu $U \sim \mathcal{U}(0, 1)$ i wyznaczaniu $j \in \mathbb{N} $ takiego, że 
-	$$ \sum\limits_{i=1}^{j-1} p_i < U \leqslant \sum\limits_{i=1}^{j} p_i. $$
-	To znaczy, że musimy sprawdzać kolejne przedziały $ \left( \sum\limits_{i=1}^{j-1} p_i, \sum\limits_{i=1}^{j} p_i \right] $, czy wpada do nich $U$. W przypadku, gdy $\lambda$, czyli średnia wartość rozkładu zmiennej $X$, jest duża, przechodzenie przez wszystkie przedziały może zajmować sporo czasu. Żeby skrócić czas wykonania, możemy zacząć sprawdzanie od przedziału $ \left( \sum\limits_{i=1}^{\lceil \lambda \rceil -1} p_i, \sum\limits_{i=1}^{\lceil \lambda \rceil} p_i \right] $. Następnie, jeśli $U$ jest mniejsze, to sprawdzamy przedziały na lewo, jeśli większe to na prawo. Dodatkowo zauważmy, że
+	$$ s_{j -1} < U \leqslant s_j. $$
+	To znaczy, że musimy sprawdzać kolejne przedziały $(s_{j-1}, s_j)$, czy wpada do nich $U$. W przypadku, gdy $\lambda$, czyli średnia wartość rozkładu zmiennej $X$, jest duża, przechodzenie przez wszystkie przedziały może zajmować sporo czasu. Rozpatrzmy właśnie taki przypadek. Żeby skrócić czas wykonania, możemy zacząć sprawdzanie od przedziału $ (s_{\lceil \lambda \rceil -1}, s_{\lceil \lambda \rceil}) $. Następnie, jeśli $U$ jest mniejsze, to sprawdzamy przedziały na lewo, jeśli większe to na prawo. Dodatkowo zauważmy, że
 	$$ p_{i + 1} = p_i \cdot \frac{\lambda}{i + 1}, $$
 	Stąd kolejne $p_i$ otrzymamy domnażając $\frac{\lambda}{i + 1}$. Algorytm:
 	\begin{enumerate}[leftmargin=10mm]
-		\item Oblicz wartości $p_i$ dla $i = 0, 1, \dots, \lceil\lambda\rceil$.
-		\item Zdefiniuj $j = \lceil \lambda \rceil$, \ $p = p_{\lceil\lambda\rceil}$, \ $F = p$.
+		\item Oblicz wartości $p_i$ oraz $s_i$ dla $i = 0, 1, \dots, \lceil\lambda\rceil$.
+		\item Zdefiniuj $j = \lceil \lambda \rceil$, \ $p = p_{\lceil\lambda\rceil}$, \ $F = s_{\lceil\lambda\rceil}$.
 		\item Generuj $U \sim \mathcal{U}(0, 1)$.
 	\end{enumerate}
 	
@@ -367,7 +369,7 @@
 	\noindent Metoda ta pozwala wygenerować pewną zmienną losową $X$, przy pomocy innych zmiennych, które potrafimy efektywnie generować, i zsumowaniu ich. Załóżmy, że
 	$$ X \buildrel{d} \over{=} Y_1 + Y_2 + \dots + Y_n, $$
 	gdzie $Y_i$ to zmienne losowe niezależne. Wtedy algorytm wygląda następująco:
-	\begin{enumerate}
+	\begin{enumerate}[leftmargin=10mm]
 		\item Generuj $ Y_1, Y_2, \dots, Y_n $.
 		\item Zwróć $ X = Y_1 + Y_2 + \dots + Y_n $.
 	\end{enumerate}
