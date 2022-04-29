@@ -179,7 +179,7 @@
 	\subsubsection{Algorytm}
 	\begin{enumerate}[leftmargin=10mm]
 		\item Generuj jedną realizację $Y$
-		\item Generuj $U\sim \mathcal{U}(0,1)$, $U\indep X$
+		\item Generuj $U\sim \mathcal{U}(0,1)$, $U\indep Y$
 		\item Jeśli $U\leqslant\frac{p_Y}{cq_Y}$ zwróć $X=Y$, w przeciwnym wróć do 1.
 	\end{enumerate}
 	
@@ -209,7 +209,6 @@
 	\subsection{Przykłady}
 	
 	\subsubsection{Dyskretny}
-	\textbf{Zamieniłbym kolejność z metodą splotową, bo chcę się do niej odwołać}
 	Niech $X$ ma następujący rozkład
 	\begin{equation}
 		\mathrm{P}(X=i)=\begin{cases}
@@ -220,14 +219,25 @@
 %			0.1, \phantom{0}\quad\text{dla $i=\phantom{-}1$}
 		\end{cases}
 	\end{equation}
-	Możemy zauważyć, że nasza zmienna ma rozkład skupiony na wym samym zbiorze co $Y=Z-2$, gdzie $Z\sim\mathcal{B}(n=4,p)$. Zmienną $Z$ potrafimy już efektywnie generować przy pomocy metody splotowej. Ale są szybsze sposoby i ten podobny do tego wykonywaliśmy już na zajęciach, ale wszystkie są takie same.
+	Do generowania tej zmiennej potrzebujemy zmienną, która jest skupiona na tym samym zbiorze. Najprostszym pomysłem jest wykorzystanie zmiennej z rozkładu jednostajnego dyskretnego $Y\sim\mathcal{DU}(-2,-1,0,1)$. Prawdopodobieństwo, że $Y$ przyjmie daną wartość stale wynosi $\frac{1}{4}$, zatem łatwo wyliczyć stałą $c=4\max_i\mathrm{P}(X=i)=4\cdot0.5=2$. Znając tą stałą wystarczy zastosować dany algorytm
+	\begin{enumerate}[leftmargin=10mm]
+		\item Generuj jedną realizację $Y\sim\lfloor4\cdot\mathcal{U}(0,1)\rfloor-2$
+		\item Generuj $U\sim \mathcal{U}(0,1)$, $U\indep Y$
+		\item Jeśli $U\leqslant2p_Y$ zwróć $X=Y$, w przeciwnym wróć do 1.
+	\end{enumerate}
+	\begin{figure}[H]\caption{Sprawdzenie poprawności metody Akceptacji-Odrzucenie dla próby o rozmiarze $n=100$}\label{fig:AO_dysk}
+		\includegraphics[width=\columnwidth]{fig/fig_AO_dysk.png}
+	\end{figure}
+	
+	
+%	Możemy zauważyć, że nasza zmienna ma rozkład skupiony na wym samym zbiorze co $Y=Z-2$, gdzie $Z\sim\mathcal{B}(n=4,p)$. Zmienną $Z$ potrafimy już efektywnie generować przy pomocy metody splotowej. Ale są szybsze sposoby i ten podobny do tego wykonywaliśmy już na zajęciach, ale wszystkie są takie same.
  
  	\subsubsection{Ciągły}
  	Chcemy wygenerować zmienną $X$ o gęstości $f(x)= \ln(2)\cdot\sin(x)\cdot2^{\cos(x)}\boldmath 1_{(0,\frac{\pi}{2})}$. Użyjemy do tego zmiennej $Y\sim\mathcal{U}(0,\frac{\pi}{2})$ o funkcji gęstości $g(x)=\frac{2}{\pi}\boldmath 1_{(0,\frac{\pi}{2})}$. Zaczniemy od wyliczenia stałej $c$.
  	\begin{equation}
  		c=\sup\limits_{x\in(0,\frac{\pi}{2})}\frac{f(x)}{g(x)}=\sup\limits_{x\in(0,\frac{\pi}{2})}\sin(x)\cdot2^{\cos(x)}\cdot\frac{\pi\ln(2)}{2}\approx \frac{4}{3}
  	\end{equation}
- 	Teraz wystarczy się stosować do powyższego algorytmu, czyli
+ 	Teraz wystarczy się stosować do następującego algorytmu, czyli
 	\begin{enumerate}[leftmargin=10mm]
 		\item Generuj $Y\sim \frac{\pi}{2}\mathcal{U}(0,1)$
 		\item Generuj $U\sim \mathcal{U}(0,1)$, $U\indep Y$
@@ -351,7 +361,7 @@
 	
 	\section{Metoda biegunowa\textsuperscript{\cite{polar}} - Budink}
 	\subsection{Opis}
-	Jak wspomnieliśmy poprzednio rozkład normalny jest najważniejszym rozkładem prawdopodobieństwa. Z tego powodu jest on bardzo często wykorzystywany, ważne jest by generowanie próby trwało jak najkrócej. Niestety w metodzie Boxa-M{\"u}llera wyznaczanie pojawiają się funkcje $\sin$ oraz $\cos$. Wyznaczenie ich wartości jest stosunkowo czasochłonne dla procesora, dlatego była poszukiwana metoda, w która nie zawiera tych funkcji. Przekształcając \autoref{eq:B-M} można pokazać, że jeśli wektor $(V_1, V_2)$ ma rozkład jednostajny na kole jednostkowym to zmienne
+	Jak wspomnieliśmy poprzednio rozkład normalny jest najważniejszym rozkładem prawdopodobieństwa. Z tego powodu jest on bardzo często wykorzystywany, ważne jest by generowanie próby trwało jak najkrócej. Niestety w metodzie Boxa-M{\"u}llera wyznaczanie pojawiają się funkcje $\sin$ oraz $\cos$. Wyznaczenie ich wartości jest stosunkowo czasochłonne dla procesora, dlatego była poszukiwana metoda, w która nie zawiera tych funkcji. Przekształcając wzór wykorzystywany w metodzie Boxa-M\"ullera można pokazać, że jeśli wektor $(V_1, V_2)$ ma rozkład jednostajny na kole jednostkowym to zmienne
 	\begin{equation}
 		\begin{split}
 			X=\sqrt{\frac{-2\ln R^2}{R^2}}V_1\\
@@ -384,8 +394,23 @@
 	\end{figure}
 
 	\section{Porównanie metod generowania rozkładu normalnego}
-	Dwie ostatnie metody jakie pokazaliśmy dotyczą generowania tego samego rozkładu, dlatego ważne wydaje się, by porównać czas ich działania.
-
+	Dwie ostatnie metody jakie pokazaliśmy dotyczą generowania tego samego rozkładu, dlatego ważne wydaje się, by porównać czas ich działania. Wykonaliśmy pomiary czasu generowania różnych wielkości prób (o wielkości $N$) dla metody Boxa-M\"ullera (B-M) oraz metody biegunowej. Dodatkowo policzyliśmy stosunek czasu potrzebnego do wygenerowania próby metodą biegunową do czasu B-M.
+	\begin{table}[H]\caption{Czas wykonania danych metod dla danych wartości czasowych}\label{tab:time}
+		\begin{tabularx}{\textwidth}{|Z{6mm}|Y|Z{19mm}|Y|p{5mm}|Z{6mm}|Y|Z{19mm}|Y|}
+			\cline{1-4}\cline{6-9}
+			$N$      & B-M &Biegunowa&stosunek& $\vphantom{\dfrac{1}{1}}$ & $N$      & B-M     &Biegunowa& stosunek \\ \cline{1-4}\cline{6-9}
+			$2^{13}$ & 0.003 & 0.002 & 0.667 & $\vphantom{\dfrac{1}{1}}$ & $2^{22}$ & 0.113   & 0.052   & 0.46     \\ \cline{1-4}\cline{6-9}
+			$2^{14}$ & 0.005 & 0.004 & 0.800 & $\vphantom{\dfrac{1}{1}}$ & $2^{23}$ & 0.371   & 0.226   & 0.609    \\ \cline{1-4}\cline{6-9}
+			$2^{15}$ & 0.009 & 0.009 & 1.000 & $\vphantom{\dfrac{1}{1}}$ & $2^{24}$ & 0.741   & 0.522   & 0.704    \\ \cline{1-4}\cline{6-9}
+			$2^{16}$ & 0.019 & 0.013 & 0.684 & $\vphantom{\dfrac{1}{1}}$ & $2^{25}$ & 1.180   & 1.199   & 1.016    \\ \cline{1-4}\cline{6-9}
+			$2^{17}$ & 0.030 & 0.019 & 0.633 & $\vphantom{\dfrac{1}{1}}$ & $2^{26}$ & 2.121   & 1.571   & 0.741    \\ \cline{1-4}\cline{6-9}
+			$2^{18}$ & 0.019 & 0.003 & 0.158 & $\vphantom{\dfrac{1}{1}}$ & $2^{27}$ & 3.996   & 2.863   & 0.716    \\ \cline{1-4}\cline{6-9}
+			$2^{19}$ & 0.013 & 0.013 & 1.000 & $\vphantom{\dfrac{1}{1}}$ & $2^{28}$ & 7.643   & 4.244   & 0.555    \\ \cline{1-4}\cline{6-9}
+			$2^{20}$ & 0.028 & 0.015 & 0.536 & $\vphantom{\dfrac{1}{1}}$ & $2^{29}$ & 38.264  & 9.015   & 0.236    \\ \cline{1-4}\cline{6-9}
+			$2^{21}$ & 0.056 & 0.028 & 0.500 & $\vphantom{\dfrac{1}{1}}$ & $2^{30}$ & 308.305 & 125.324 & 0.406    \\ \cline{1-4}\cline{6-9}
+		\end{tabularx}
+	\end{table}
+	\textbf{Rośnie wykładniczo, trzeba powtórzyć kilkukrotnie dla danej wielkości $N$}
 
 	
 	\section{Zakończenie - Początek}
