@@ -144,7 +144,13 @@
 
 	\subsection{Przykłady}
 	
-	\subsubsection{Dyskretny - rozkład geometryczny}
+	\subsubsection{Dyskretny - rozkład Poissona}
+	\noindent Celem jest wygenerowanie $X \sim \mathcal{Poiss}(\lambda)$. Przypomnijmy jak wygląda rozkład Poisson:
+	$$ p_i = \mathrm{P}(X = i) = \mathrm{e}^{-\lambda} \frac{\lambda^i}{i!}. $$
+	Algorytm będzie więc polegał na generowaniu $U \sim \mathcal{U}(0, 1)$ i wyznaczaniu $j \in \mathbb{N} $ takiego, że 
+	$$ \sum\limits_{i=1}^{j-1} p_i < U \leqslant \sum\limits_{i=1}^{j} p_i. $$
+	Zauważmy, że
+	$$ p_{i + 1} = p_i \cdot \frac{\lambda}{i + 1}. $$
 	
 	\subsubsection{Ciągły - rozkład Cauchy'ego}
 	\noindent Chcemy wygenerować $ X \sim \mathcal{C}(\mu, \sigma) $. 
