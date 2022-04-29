@@ -144,7 +144,7 @@
 	W opisie przedstawiliśmy informacje ogólne,\\
 	Które z wykładami zdecydowanie mają części wspólne.\\
 	Szczególnie algorytm do generowania zmiennych potrzebny\\
-	Ponieważ przedstawiony została w nam sposób chwalebny.\\
+	Ponieważ przedstawiony został nam w sposób chwalebny.\\
 	\\
 %	Jeśli się dało wszystko na dwa przypadki rozbielone\\
 %	Dyskretny i ciągły, mimo, że pisanie ich było mozolne.\\
@@ -221,12 +221,18 @@
 	\subsection{Przykłady}
 	
 	\subsubsection{Dyskretny - rozkład Poissona}
-	\noindent Celem jest wygenerowanie $X \sim \mathcal{Poiss}(\lambda)$, $\lambda > 0$. Przypomnijmy jak wygląda rozkład Poisson:
+	\noindent Celem jest wygenerowanie $X \sim \mathcal{P}oiss(\lambda)$, \ $\lambda > 0$. Przypomnijmy jak wygląda rozkład \mbox{Poissona}:
 	$$ p_i = \mathrm{P}(X = i) = \mathrm{e}^{-\lambda} \frac{\lambda^i}{i!}. $$
 	Algorytm będzie więc polegał na generowaniu $U \sim \mathcal{U}(0, 1)$ i wyznaczaniu $j \in \mathbb{N} $ takiego, że 
 	$$ \sum\limits_{i=1}^{j-1} p_i < U \leqslant \sum\limits_{i=1}^{j} p_i. $$
-	To znaczy, że musimy sprawdzać kolejne przedziały $ \left( \sum\limits_{i=1}^{j-1} p_i, \sum\limits_{i=1}^{j} p_i \right] $, czy wpada do nich $U$. Żeby skrócić czas wykonania, możemy zacząć sprawdzanie od  Zauważmy, że
-	$$ p_{i + 1} = p_i \cdot \frac{\lambda}{i + 1}. $$
+	To znaczy, że musimy sprawdzać kolejne przedziały $ \left( \sum\limits_{i=1}^{j-1} p_i, \sum\limits_{i=1}^{j} p_i \right] $, czy wpada do nich $U$. W przypadku, gdy $\lambda$, czyli średnia wartość rozkładu zmiennej $X$, jest duża, przechodzenie przez wszystkie przedziały może zajmować sporo czasu. Żeby skrócić czas wykonania, możemy zacząć sprawdzanie od przedziału $ \left( \sum\limits_{i=1}^{\lceil \lambda \rceil -1} p_i, \sum\limits_{i=1}^{\lceil \lambda \rceil} p_i \right] $. Następnie, jeśli $U$ jest mniejsze, to sprawdzamy przedziały na lewo, jeśli większe to na prawo. Dodatkowo zauważmy, że
+	$$ p_{i + 1} = p_i \cdot \frac{\lambda}{i + 1}, $$
+	Stąd kolejne $p_i$ otrzymamy domnażając $\frac{\lambda}{i + 1}$. Algorytm:
+	\begin{enumerate}[leftmargin=10mm]
+		\item Oblicz wartości $p_i$ dla $i = 0, 1, \dots, \lceil\lambda\rceil$.
+		\item Zdefiniuj $j = \lceil \lambda \rceil$, \ $p = p_{\lceil\lambda\rceil}$, \ $F = p$.
+		\item Generuj $U \sim \mathcal{U}(0, 1)$.
+	\end{enumerate}
 	
 	\subsubsection{Ciągły - rozkład Cauchy'ego}
 	\noindent Chcemy wygenerować $ X \sim \mathcal{C}(\mu, \sigma) $. 
@@ -409,7 +415,7 @@
 	$$ F(x) = \frac{1}{3\pi}\arctan(x) - \frac{2}{3}\mathrm{e}^{-2x} + \frac{5}{6}. $$
 	Jeśli zapiszemy ją w postaci
 	$$ F(x) = \frac{1}{3}\left(\frac{1}{\pi}\arctan(x) + \frac{1}{2}\right) + \frac{2}{3}\left(1 - \mathrm{e}^{-2x}\right), $$
-	to możemy zauważyć, że jest to suma dystrybuant rozkładów Cauchy'ego i wykładniczego. Weźmy zatem $Y_1 \sim \mathcal{C}(0, 1)$ oraz $Y_2 \sim \mathcal{Exp}(2)$. Niech $p_1 = \frac{1}{3}$ i $p_2 = \frac{2}{3}$. Wtedy możemy zapisać
+	to możemy zauważyć, że jest to suma dystrybuant rozkładów Cauchy'ego i wykładniczego. Weźmy zatem $Y_1 \sim \mathcal{C}(0, 1)$ oraz $Y_2 \sim \mathcal{E}xp(2)$. Niech $p_1 = \frac{1}{3}$ i $p_2 = \frac{2}{3}$. Wtedy możemy zapisać
 	$$ F(x) = p_1 F_1(x) + p_2 F_2(x), $$
 	gdzie $F_1$ i $F_2$ to dystrybuanty odpowiednio $Y_1$ i $Y_2$. Stąd algorytm prezentuje się następująco:
 	\begin{enumerate}[leftmargin=10mm]
