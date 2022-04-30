@@ -586,7 +586,7 @@
 	\end{figure}
 
 	\section{Porównanie metod generowania rozkładu normalnego}
-	\noindent Dwie ostatnie metody jakie pokazaliśmy dotyczą generowania tego samego rozkładu, dlatego ważne wydaje się, by porównać czas ich działania. Wykonaliśmy pomiary czasu generowania różnych wielkości prób (o wielkości $N$) dla metody Boxa-Mullera (B-M) oraz metody biegunowej. Dodatkowo policzyliśmy stosunek czasu potrzebnego do wygenerowania próby metodą B-M do czasu przy użyciu metody biegunowej. Dla wartości do $2^{24}$ pomiar wykonaliśmy 1000 razy, dla liczb nie większych niż $2^{27}$ zmniejszyliśmy pomiar do 200 prób, a pozostałe wielkości prób wygenerowaliśmy jedynie 10 razy. Wyniki pomiarów 
+	\noindent Dwie ostatnie metody jakie pokazaliśmy dotyczą generowania tego samego rozkładu, dlatego ważne wydaje się, by porównać czas ich działania. Wykonaliśmy pomiary czasu generowania różnych wielkości prób (o wielkości $N$) dla metody biegunowej oraz metody Boxa-Mullera (B-M). Dodatkowo policzyliśmy stosunek czasu potrzebnego do wygenerowania metodą pierwszą do metody B-M. W poniższej tabeli zamieściliśmy średni czas generowania próby. Dla wartości do $2^{24}$ pomiar wykonaliśmy 1000 razy, dla liczb nie większych niż $2^{27}$ zmniejszyliśmy pomiar do 200 prób, a pozostałe wielkości prób wygenerowaliśmy jedynie 10 razy.  
 	\begin{table}[H]\caption{Czas wykonania danych metod dla danych wielkości prób}\label{tab:time}
 		\begin{tabularx}{\textwidth}{|Z{6mm}|Z{19mm}|Y|Y|p{5mm}|Z{6mm}|Z{19mm}|Y|Y|}
 			\cline{1-4}\cline{6-9}
@@ -611,25 +611,43 @@
 %	\noindent Widzimy, że oba wykresy układają się w linię prostą, więc czas zależy liniowo od wielkości próby.
 %	Dodatkowo możemy zauważyć, że na wykresie metody biegunowej pojawiła się jedna dodatkowa wartość dla $n=2^{30}$. Metoda B-M nie zawiera pomiarów dla tej wielkości, ponieważ wielkości tej próby jest za duża by pomieścić ją w pamięci naszych komputerów.
 	\noindent Widzimy, że oba wykresy przypominają linię prostą, zatem możemy przypuszczać, że nasze algorytmy mają złożoność czasową rzędu $o(x^n)$, gdzie $n$ jest współczynnikiem kierunkowym powyższych wykresów. Z niewielkimi odchyleniami możemy obliczyć, że $n\approx 1$, z czego wynika, że czas działania obu algorytmów rośnie liniowo wraz z wielkością próby.
-
+	
+	\noindent Możemy odczytać z tabeli, że metoda biegunowa jest znacząco szybsza. Na podstawie tych danych widzimy, że tym sposobem możemy wygenerować tą samą próbę poświęcając średnio $0.633$ czasu który musielibyśmy poświęcić korzystając z metody Boxa-Mullera.
+	% Dodatkowo przy 2^30 wywalało sposób B-M, a drugi działał bez zarzutu
 	
 	\section{Podsumowanie}
-	Przedstawiliśmy wszystkie znane nam metody generowania zmiennych losowych. Każdą z metod opisaliśmy
+
+	\noindent Zgodnie z celem raportu przedstawiliśmy wszystkie znane nam metody generowania zmiennych losowych. Każdą z metod opisaliśmy poprzez przedstawienia ogólnej idei stającej za nią, założeń (jeśli jakieś były) kiedy możemy z danej metody skorzystać oraz algorytmu jej działania. Dodatkowo sprawdziliśmy poprawność metod poprzez wygenerowanie niewielkiej próby z danego rozkładu i porównaliśmy jej zgodność z rozkładem teoretycznym na wykresach.
+%	Do porównania wykorzystaliśmy wykres kwantylowy, histogram z próby oraz dystrybuantę empiryczną. 
+	O~poprawności działania algorytmów świadczy to, że:
+	\begin{enumerate}[leftmargin=10mm]
+		\item dystrybuanta empiryczna pokrywa się z teoretyczną,
+		\item histogram z próby dobrze przybliża gęstość generowanego rozkładu,
+		\item punkty na wykresie kwantylową układają się w jedną linię.
+	\end{enumerate}
+	Wszystkie przedstawione metody pokazywały zgodność z rozkładami teoretycznymi. Nie zależnie czy korzystaliśmy z najpopularniejszych rozkładów prawdopodobieństwa, czy stworzonych samodzielnie, żadna z metod nie wykazała żadnych znaczących defektów.
 	
 	
 	
 	
+	
+	\noindent Dodatkowo pokazaliśmy, że algorytm w metodzie biegunowej jest znacznie szybszy niż algorytm dla metody B-M. Ma to duże znaczenie, ponieważ obie metody generują próbę z rozkładu normalnego. Rozkład ten jest bardzo ważny, dlatego każdy sposób przyśpieszenia generowania tego rozkładu jest na wagę złota, szczególnie, że w tym przypadku różnica między czasem działania obu algorytmów jest znacząca.
+
+		
 	
 	
 	\begin{thebibliography}{1}
 		\bibitem{generator}
 		\url{https://en.wikipedia.org/wiki/Linear_congruential_generator}
 		
+		\bibitem{lcg}
+		\url{https://eportal.pwr.edu.pl/mod/resource/view.php?id=329296}
+		
 		\bibitem{OD - dyskretny}
-		\url{https://www.youtube.com/watch?v=oJYFlu2oJQE}
+		\url{https://youtu.be/oJYFlu2oJQE?t=19}
 		
 		\bibitem{OD - ciągły}
-		\url{https://www.youtube.com/watch?v=NFmbgbyj5M0}
+		\url{https://youtu.be/NFmbgbyj5M0?t=32}
 		
 		\bibitem{AO - dyskretny}
 		\url{https://youtu.be/NFmbgbyj5M0?t=1323}
