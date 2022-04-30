@@ -187,13 +187,14 @@
 
 
 
-	\section{Liniowy generator kongruentny - Kiedyś}
+	\section{Liniowy generator kongruentny}
 	\noindent Jest to narzędzie służące do generowania liczb pseudolosowych. Zanim omówimy jego działanie, wyjaśnijmy czym są wspomniane liczby pseudolosowe. Są to liczby przypominające losowe, jednakże są one wygenerowane według pewnego schematu. W tym przypadku są one obliczane według wzoru
 	$$ x_n = (ax_{n-1} + c)\ \mathrm{mod}\ m, $$
 	gdzie $a, c, m \in \mathbb{Z}_+$ muszą spełniać $0 < a < m$ i $0 \leq c < m$ oraz  $0 \leq x_0 < m$. Liczbę $x_0$ nazywamy ziarnem, na podstawie którego wyliczane są kolejne wartości $x_n$. Jak się okazuje, wartości $\frac{x_n}{m}$ posiadają własności zbliżone do rozkładu jednostajnego $\mathcal{U}(0, 1)$.
 	
 	\noindent Gdy już znamy wzór generatora, pojawia się pytanie jakie wartości współczynników $a, b, c$ dobrać, by wygenerowane liczby jak najlepiej przypominały liczby losowe. Istnieje kilka popularnych wyborów. Przykłady:
 	\begin{itemize}[leftmargin=10mm]
+		
 		\item generator RANDU: \ $a = 2^{16} + 3$, \ $c = 0$, \ $m = 2^{31}$\\
 		Wybierzmy $x_0 = 1$ i wykonajmy kilka testów.
 		\begin{figure}[H]
@@ -204,16 +205,29 @@
 		\begin{figure}[H]
 			\centering
 			\caption{Test 3D dla 100 000 liczb.}
-			\includegraphics[scale=1]{fig/fig_gen2.png}
+			\includegraphics[scale=0.8]{fig/fig_gen2.png}
 		\end{figure}
-		Widzimy, że dystrybuanta empiryczna pokrywa się z teoretyczną. Z kolei na teście 2D punkty wydają się być rozłożone losowo. Jednakże test 3D udowadnia, że liczby te są wygenerowane na podstawie schematu, ponieważ widać wyraźnie, że punkty układają się w uporządkowany sposób. Wniosek jest taki, że generator ten jest dobry, jednak trochę brakuje mu do ideału.
-		\item 
+		Widzimy, że dystrybuanta empiryczna pokrywa się z teoretyczną. Z kolei na teście 2D punkty wydają się być rozłożone losowo. Jednakże test 3D udowadnia, że liczby te są wygenerowane na podstawie schematu, ponieważ widać wyraźnie, że punkty układają się w uporządkowany sposób. Wniosek jest taki, że generator ten nie jest najlepszy.
+		
+		\item VMS's MTH\$RANDOM: \ $a = 69069$, \ $c = 5$, \ $m = 2^{32}$\\
+		Ponownie wybierzmy $x_0 = 1$ i wykonajmy te same testy.
+		\begin{figure}[H]
+			\centering
+			\caption{Po lewej porównanie dystrybuanty empirycznej z teoretyczną rozkładu jednostajnego $\mathcal{U}(0, 1)$, po prawej test 2D. Oba testy przeprowadzone zostały dla 1000 liczb wygenerowanych generatorem VMS's MTH\$RANDOM.}
+			\includegraphics[scale=0.1]{fig/fig_gen3.png}
+		\end{figure}
+		\begin{figure}[H]
+			\centering
+			\caption{Test 3D dla 100 000 liczb.}
+			\includegraphics[scale=0.8]{fig/fig_gen4.png}
+		\end{figure}
+		Jak możemy zauważyć, podobnie jak w poprzednim przykładzie, dystrybuanty empiryczna i teoretyczna są do siebie zbliżone oraz rozłożenie punktów w teście 2D wygląda na losowe. Dodatkowo test 3D także sugeruje niezależne rozłożenie punktów. Na tej podstawie możemy stwierdzić, że generator VMS's MTH\$RANDOM jest zdecydowanie lepszy od generatora RANDU.
 	\end{itemize}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%1
 	
-	\section{Metoda odwrotnej dystrybuanty - Malec}
+	\section{Metoda odwrotnej dystrybuanty}
 	
 	\subsection{Opis}
 	\noindent Metoda ta polega na generowaniu zmiennej losowej $X$ generując zmienną $U$ z rozkładu jednostajnego oraz nakładając na nią funkcję odwrotną dystrybuanty.
@@ -406,7 +420,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%3
 	
-	\section{Metoda splotowa - Malec}
+	\section{Metoda splotowa}
 	
 	\subsection{Opis}
 	\noindent Metoda ta pozwala wygenerować pewną zmienną losową $X$, przy pomocy innych zmiennych, które potrafimy efektywnie generować, i zsumowaniu ich. Załóżmy, że
@@ -451,7 +465,7 @@
 	
 	
 	
-	\section{Metoda kompozycji - Malec}
+	\section{Metoda kompozycji}
 	
 	\subsection{Opis}
 	\noindent Metoda ta służy do generowania wyłącznie ciągłych rozkładów. Załóżmy, że zmienna losowa $X$, którą chcemy symulować, ma dystrybuantę postaci
