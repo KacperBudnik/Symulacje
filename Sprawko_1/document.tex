@@ -192,7 +192,7 @@
 	$$ x_n = (ax_{n-1} + c)\ \mathrm{mod}\ m, $$
 	gdzie $a, c, m \in \mathbb{Z}_+$ muszą spełniać $0 < a < m$ i $0 \leq c < m$ oraz  $0 \leq x_0 < m$. Liczbę $x_0$ nazywamy ziarnem, na podstawie którego wyliczane są kolejne wartości $x_n$. Jak się okazuje, wartości $\frac{x_n}{m}$ posiadają własności zbliżone do rozkładu jednostajnego $\mathcal{U}(0, 1)$.
 	
-	\noindent Gdy już znamy wzór generatora, pojawia się pytanie jakie wartości współczynników $a, b, c$ dobrać, by wygenerowane liczby jak najlepiej przypominały liczby losowe. Istnieje kilka popularnych wyborów. Przykłady:
+	\noindent Gdy już znamy wzór generatora, pojawia się pytanie jakie wartości współczynników $a, b, c$ dobrać, by wygenerowane liczby jak najlepiej przypominały liczby losowe. Istnieje wiele popularnych wyborów. Przykłady:
 	\begin{itemize}[leftmargin=10mm]
 		
 		\item \textbf{generator RANDU}: \ $a = 2^{16} + 3$, \ $c = 0$, \ $m = 2^{31}$\\
@@ -231,14 +231,14 @@
 	
 	\subsection{Opis}
 	\noindent Metoda ta polega na generowaniu zmiennej losowej $X$ generując zmienną $U$ z rozkładu jednostajnego oraz nakładając na nią funkcję odwrotną dystrybuanty.
-	\subsubsection{Algorytm dla rozkładów dyskretnych}
+	\subsubsection{Algorytm dla rozkładów dyskretnych\textsuperscript{\cite{OD - dyskretny}}}
 	\noindent Załóżmy, że rozkład $X$ ma postać $\mathrm{P}(X = x_i) = p_\mathrm{i}$, \ $i = 1, 2,\dots $.
 	\begin{enumerate}[leftmargin=10mm]
 		\item Generuj $U \sim \mathcal{U}(0, 1)$.
 		\item Wyznacz $j \in \mathbb{N} $ takie, że $ \sum\limits_{i=1}^{j-1} p_i < U \leqslant \sum\limits_{i=1}^{j} p_i $.
 		\item Zwróć $ X = x_i $.
 	\end{enumerate}
-	\subsubsection{Algorytm dla rozkładów ciągłych}
+	\subsubsection{Algorytm dla rozkładów ciągłych\textsuperscript{\cite{OD - dyskretny}}}
 	\noindent Załóżmy, że $X$ ma dystrybuantę $F(x)$.
 	\begin{enumerate}[leftmargin=10mm]
 		\item[a)] Jeśli dystrybuanta jest ściśle rosnąca:
@@ -422,7 +422,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%3
 	
-	\section{Metoda splotowa}
+	\section{Metoda splotowa\textsuperscript{\cite{splot}}}
 	
 	\subsection{Opis}
 	\noindent Metoda ta pozwala wygenerować pewną zmienną losową $X$, przy pomocy innych zmiennych, które potrafimy efektywnie generować, i zsumowaniu ich. Załóżmy, że
@@ -467,7 +467,7 @@
 	
 	
 	
-	\section{Metoda kompozycji}
+	\section{Metoda kompozycji\textsuperscript{\cite{kompozycja}}}
 	
 	\subsection{Opis}
 	\noindent Metoda ta służy do generowania wyłącznie ciągłych rozkładów. Załóżmy, że zmienna losowa $X$, którą chcemy symulować, ma dystrybuantę postaci
@@ -600,6 +600,12 @@
 	
 	
 	\begin{thebibliography}{1}
+		\bibitem{OD - dyskretny}
+		\url{https://www.youtube.com/watch?v=oJYFlu2oJQE}
+		
+		\bibitem{OD - ciągły}
+		\url{https://www.youtube.com/watch?v=NFmbgbyj5M0}
+		
 		\bibitem{AO - dyskretny}
 		\url{https://youtu.be/NFmbgbyj5M0?t=1323}
 		
