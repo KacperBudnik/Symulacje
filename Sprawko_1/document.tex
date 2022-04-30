@@ -198,8 +198,13 @@
 		Wybierzmy $x_0 = 1$ i wykonajmy kilka testów.
 		\begin{figure}[H]
 			\centering
-			\caption{Test 3D}
-			\includegraphics[scale=1]{fig/fig_generator.png}
+			\caption{Po lewej porównanie dystrybuanty empirycznej z teoretyczną rozkładu jednostajnego $\mathcal{U}(0, 1)$, po prawej test 2D. Oba testy przeprowadzone zostały dla 1000 liczb wygenerowanych generatorem RANDU.}
+			\includegraphics[scale=0.1]{fig/fig_gen1.png}
+		\end{figure}
+		\begin{figure}[H]
+			\centering
+			\caption{Test 3D dla 100 000 liczb.}
+			\includegraphics[scale=1]{fig/fig_gen2.png}
 		\end{figure}
 		Widzimy, że dystrybuanta empiryczna pokrywa się z teoretyczną. Z kolei na teście 2D punkty wydają się być rozłożone losowo. Jednakże test 3D udowadnia, że liczby te są wygenerowane na podstawie schematu, ponieważ widać wyraźnie, że punkty układają się w uporządkowany sposób. Wniosek jest taki, że generator ten jest dobry, jednak trochę brakuje mu do ideału.
 		\item 
@@ -266,7 +271,7 @@
 	\end{enumerate}
 	\begin{figure}[H]
 		\centering
-		\caption{Porównanie dystrybuanty empirycznej i teoretycznej rozkładu $\mathcal{P}oiss(30)$ dla próby o długości $n = 1000$.}
+		\caption{Porównanie dystrybuanty empirycznej i teoretycznej dla próby z rozkładu $\mathcal{P}oiss(30)$ o długości $n = 1000$.}
 		\includegraphics[scale=0.1]{fig/fig_odwr1.png}
 	\end{figure}
 	
@@ -285,7 +290,7 @@
 	\end{enumerate}
 	\begin{figure}[H]
 		\centering
-		\caption{Porównanie dystrybuanty empirycznej i teoretycznej oraz wykres kwantylowy rozkładu $\mathcal{C}(0, 1)$ dla próby o długości $n = 1000$.}
+		\caption{Porównanie dystrybuanty empirycznej i teoretycznej oraz wykres kwantylowy dla próby z rozkładu $\mathcal{C}(0, 1)$ o długości $n = 1000$.}
 		\includegraphics[scale=0.1]{fig/fig_odwr2.png}
 	\end{figure}
 	%Aby przetestować powyższy algorytm, generujemy wektor 1000 realizacji zmiennej $X$, a następnie porównujemy dystrybuantę empiryczną tej próbki z dystrybuantą teoretyczną oraz tworzymy histogram i porównujemy go z gęstością.
@@ -424,7 +429,7 @@
 	\end{enumerate}
 	\begin{figure}[H]
 		\centering
-		\caption{Porównanie dystrybuanty empirycznej i teoretycznej rozkładu $\mathcal{B}(500, \frac{3}{10})$ dla próby o długości $n = 1000$.}
+		\caption{Porównanie dystrybuanty empirycznej i teoretycznej dla próby z rozkładu $\mathcal{B}(500, \frac{3}{10})$ o długości $n = 1000$.}
 		\includegraphics[scale=0.1]{fig/fig_splot1.png}
 	\end{figure}
 	
@@ -438,7 +443,7 @@
 	\end{enumerate}
 	\begin{figure}[H]
 		\centering
-		\caption{Porównanie dystrybuanty empirycznej i teoretycznej oraz wykres kwantylowy rozkładu $\mathcal{X}^2(10)$ dla próby o długości $n = 1000$.}
+		\caption{Porównanie dystrybuanty empirycznej i teoretycznej oraz wykres kwantylowy dla próby z rozkładu $\mathcal{X}^2(10)$ o długości $n = 1000$.}
 		\includegraphics[scale=0.1]{fig/fig_splot2.png}
 	\end{figure}
 	
@@ -461,18 +466,23 @@
 	\end{enumerate}
 
 	\subsection{Przykład}
-	\noindent Chcemy wygenerować zmienną losową $X$ o dystrybuancie
-	$$ F(x) = \frac{1}{3\pi}\arctan(x) - \frac{2}{3}\mathrm{e}^{-2x} + \frac{5}{6}. $$
+	\noindent Chcemy wygenerować zmienną losową $X$ o gęstości
+	$$ f(x) = \frac{1}{3\pi}\arctan(x) + \frac{2}{3\sqrt{2\pi}}\mathrm{e}^{-\frac{x^2}{2}} + \frac{1}{6}. $$
 	Jeśli zapiszemy ją w postaci
-	$$ F(x) = \frac{1}{3}\left(\frac{1}{\pi}\arctan(x) + \frac{1}{2}\right) + \frac{2}{3}\left(1 - \mathrm{e}^{-2x}\right), $$
-	to możemy zauważyć, że jest to suma dystrybuant rozkładów Cauchy'ego i wykładniczego. Weźmy zatem $Y_1 \sim \mathcal{C}(0, 1)$ oraz $Y_2 \sim \mathcal{E}xp(2)$. Niech $p_1 = \frac{1}{3}$ i $p_2 = \frac{2}{3}$. Wtedy możemy zapisać
-	$$ F(x) = p_1 F_1(x) + p_2 F_2(x), $$
-	gdzie $F_1$ i $F_2$ to dystrybuanty odpowiednio $Y_1$ i $Y_2$. Stąd algorytm prezentuje się następująco:
+	$$ f(x) = \frac{1}{3}\left(\frac{1}{\pi}\arctan(x) + \frac{1}{2}\right) + \frac{2}{3}\left(\frac{1}{\sqrt{2\pi}}\mathrm{e}^{-\frac{x^2}{2}}\right), $$
+	to możemy zauważyć, że jest to suma gęstości rozkładów Cauchy'ego i normalnego standardowego. Weźmy zatem $Y_1 \sim \mathcal{C}(0, 1)$ oraz $Y_2 \sim \mathcal{N}(0, 1)$. Niech $p_1 = \frac{1}{3}$ i $p_2 = \frac{2}{3}$. Wtedy możemy zapisać
+	$$ f(x) = p_1 f_1(x) + p_2 f_2(x), $$
+	gdzie $f_1$ i $f_2$ to gęstości odpowiednio $Y_1$ i $Y_2$. Stąd algorytm prezentuje się następująco:
 	\begin{enumerate}[leftmargin=10mm]
 		\item Generuj $I$ o rozkładzie $\mathrm{P}(I = 1) = \frac{1}{3}$, \ $\mathrm{P}(I = 2) = \frac{2}{3}$.
 		\item Generuj $Y_I$.
 		\item Zwróć $X = Y_I$.
 	\end{enumerate}
+	\begin{figure}[H]
+		\centering
+		\caption{Porównanie histogramu z gęstością teoretyczną oraz porównanie dystrybuanty empirycznej i teoretycznej dla próby z powyższego rozkładu mieszanego o długości $n = 1000$.}
+		\includegraphics[scale=0.1]{fig/fig_komp.png}
+	\end{figure}
 
 
 
