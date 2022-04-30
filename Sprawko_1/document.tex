@@ -92,7 +92,7 @@
 			Szymon Malec, 262276
 		\end{center}\\\hline
 		Wydział & Wydział matematyki, W13 \\\hline
-		Termin zajęć: & Wtorek,\vphantom{ $11^{1^{5}}$} $15^{15}$\\\hline
+		Termin zajęć: & Wtorek,\vphantom{ $11^{1^{5}}$} $11^{15}$\\\hline
 		Numer grupy ćwiczeniowej & T00-70d \\\hline
 		Data oddanie sprawozdania: & \today \\\hline
 		\textbf{Ocena końcowa} &\\\hline
@@ -174,6 +174,22 @@
 %	Nikt nie powie, że jest inaczej. Przynajmniej na poważnie.\\
 	Ale po przeczytaniu raportu tego, zaprzeczyć nie można\\
 	Nawet jeśli adresatem naszym jest osoba bardzo pobożna.\\
+	\\
+%	By dzieło nasze w pełni było w pełni kompletne,\\
+%	By o dziele naszym można powiedzieć, że jest kompletne\\
+	By powiedzieć, że nasze dzieło jest pełni kompletne\\
+	Jeszcze nam zakończenie było do szczęścia potrzebne.\\
+%	W którym zawarte podsumowanie naszej pracy będzie\\
+%	Bo my to nie jak ci UWr-owscy wieśniacy
+%	Tym samym teraz możemy skończyć wstępu pisanie\\
+%	I pozwolić Panu na w naszym dziele się zakochanie.\\ 
+%	I pozwolić Panu w naszym dziele zakochanie.\\
+%	I pozwolić Panu na naszym dziełem się delektowanie.\\
+	Tym samym całe dzieło opisane dokładnie zostało\\
+	I nadzieje mamy, że zachwytu dostarczy Panu nie mało.\\
+
+	
+	
 
 	
 	
@@ -322,7 +338,7 @@
 	\begin{itemize}[leftmargin=10mm]
 		\item Potrafimy efektywnie generować inną zmienną losową $Y$
 		\item Zmienne $X$ oraz $Y$ muszą być skupione na tym samym zbiorze
-		\item Potrafimy wyznaczyć stałą $c$ taką że $\dfrac{\mathrm{P}(X=i)}{\mathrm{P}(Y=i)}=\dfrac{p_Y}{q_Y}\leqslant c$ dla każdego $i$
+		\item Potrafimy wyznaczyć stałą $c$ taką że $\dfrac{\mathrm{P}(X=i)}{\mathrm{P}(Y=i)}=\dfrac{p_i}{q_i}\leqslant c$ dla każdego $i$
 	\end{itemize}
 	Jeśli są spełnione powyższe założenia możemy użyć poniższego algorytmu do generowania zmiennej $X$.
 	\subsubsection{Algorytm}
@@ -504,7 +520,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%4
 	
-	\section{Metoda Boxa-M{\"u}llera\textsuperscript{\cite{box-kox}} - Budnik}
+	\section{Metoda Boxa-M{u}llera\textsuperscript{\cite{box-kox}} - Budnik}
 	\subsection{Opis}
 	\noindent Najważniejszym rozkładem w prawdopodobieństwie jest rozkład normalny. Dlatego istnieje specjalna metoda generowania jego. Łatwo można pokazać (co zrobiliśmy na kursie Modelowanie Stochastyczne), że jeśli $U_1,U_2$ - iid, $U_1\sim\mathcal{U}(0,1)$, to zmienne
 	\begin{equation}\label{eq:B-M}
@@ -528,7 +544,7 @@
 	Algorytm ten generuje od razu dwie próby z rozkładu normalnego standardowego. By wygenerować zmienną z rozkładu $\mathcal{N}(\mu,\sigma^2)$ wystarczy wcześniej wygenerowane zmienne pomnożyć przez $\sigma$ po czym dodać do nich $\mu$.
 	\subsection{Przykłady}
 	
-	\begin{figure}[H]\caption{Sprawdzenie poprawności metody Boxa-M\"ullera dla próby o rozmiarze $n=1000$}\label{fig:BM}
+	\begin{figure}[H]\caption{Sprawdzenie poprawności metody Boxa-Mullera dla próby o rozmiarze $n=1000$}\label{fig:BM}
 		\includegraphics[width=\columnwidth]{fig/fig_BM.png}
 	\end{figure}
 	
@@ -536,7 +552,7 @@
 	
 	\section{Metoda biegunowa\textsuperscript{\cite{polar}} - Budink}
 	\subsection{Opis}
-	\noindent Jak wspomnieliśmy poprzednio rozkład normalny jest najważniejszym rozkładem prawdopodobieństwa. Z tego powodu jest on bardzo często wykorzystywany, ważne jest by generowanie próby trwało jak najkrócej. Niestety w metodzie Boxa-M{\"u}llera wyznaczanie pojawiają się funkcje $\sin$ oraz $\cos$. Wyznaczenie ich wartości jest stosunkowo czasochłonne dla procesora, dlatego była poszukiwana metoda, w która nie zawiera tych funkcji. Przekształcając wzór wykorzystywany w metodzie Boxa-M\"ullera można pokazać, że jeśli wektor $(V_1, V_2)$ ma rozkład jednostajny na kole jednostkowym to zmienne
+	\noindent Jak wspomnieliśmy poprzednio rozkład normalny jest najważniejszym rozkładem prawdopodobieństwa. Z tego powodu jest on bardzo często wykorzystywany, ważne jest by generowanie próby trwało jak najkrócej. Niestety w metodzie Boxa-M{u}llera wyznaczanie pojawiają się funkcje $\sin$ oraz $\cos$. Wyznaczenie ich wartości jest stosunkowo czasochłonne dla procesora, dlatego była poszukiwana metoda, w która nie zawiera tych funkcji. Przekształcając wzór wykorzystywany w metodzie Boxa-Mullera można pokazać, że jeśli wektor $(V_1, V_2)$ ma rozkład jednostajny na kole jednostkowym to zmienne
 	\begin{equation}
 		\begin{split}
 			X=\sqrt{\frac{-2\ln R^2}{R^2}}V_1\\
@@ -557,7 +573,7 @@
 			\end{split}
 		\end{equation}
 	\end{enumerate}
-	Podobnie jak w metodzie Boxa-M{\"u}llera algorytm ten zwraca dwie zmienne niezależne z rozkładu normalnego, więc by otrzymać zmienne z rozkładu $\mathcal{N}(\mu,\sigma^2)$ tak samo jak wcześniej mnożymy wygenerowaną próbę przez $\sigma$ i dodajemy do niej $\mu$.
+	Podobnie jak w metodzie Boxa-M{u}llera algorytm ten zwraca dwie zmienne niezależne z rozkładu normalnego, więc by otrzymać zmienne z rozkładu $\mathcal{N}(\mu,\sigma^2)$ tak samo jak wcześniej mnożymy wygenerowaną próbę przez $\sigma$ i dodajemy do niej $\mu$.
 	
 	\subsection{Szybkość algorytmu}
 	\noindent Do wygenerowania dwóch prób rozkładu normalnego korzystając z tego algorytmu potrzebne jest powtórzenie go średnio $\frac{4}{\pi}\approx1.25$ razy. Pomimo, że algorytm będzie czasem wykonywany wielokrotnie, to poprzez pozbycie się funkcji trygonometrycznych czas rzeczywisty wygenerowania danej próby będzie krótszy niż w poprzedniej metodzie, co pokażemy później.
@@ -569,7 +585,7 @@
 	\end{figure}
 
 	\section{Porównanie metod generowania rozkładu normalnego}
-	\noindent Dwie ostatnie metody jakie pokazaliśmy dotyczą generowania tego samego rozkładu, dlatego ważne wydaje się, by porównać czas ich działania. Wykonaliśmy pomiary czasu generowania różnych wielkości prób (o wielkości $N$) dla metody Boxa-M\"ullera (B-M) oraz metody biegunowej. Dodatkowo policzyliśmy stosunek czasu potrzebnego do wygenerowania próby metodą B-M do czasu przy użyciu metody biegunowej. Dla wartości do $2^{24}$ pomiar wykonaliśmy 1000 razy, dla liczb nie większych niż $2^{27}$ zmniejszyliśmy pomiar do 200 prób, a pozostałe wielkości prób wygenerowaliśmy jedynie 10 razy. Wyniki pomiarów 
+	\noindent Dwie ostatnie metody jakie pokazaliśmy dotyczą generowania tego samego rozkładu, dlatego ważne wydaje się, by porównać czas ich działania. Wykonaliśmy pomiary czasu generowania różnych wielkości prób (o wielkości $N$) dla metody Boxa-Mullera (B-M) oraz metody biegunowej. Dodatkowo policzyliśmy stosunek czasu potrzebnego do wygenerowania próby metodą B-M do czasu przy użyciu metody biegunowej. Dla wartości do $2^{24}$ pomiar wykonaliśmy 1000 razy, dla liczb nie większych niż $2^{27}$ zmniejszyliśmy pomiar do 200 prób, a pozostałe wielkości prób wygenerowaliśmy jedynie 10 razy. Wyniki pomiarów 
 	\begin{table}[H]\caption{Czas wykonania danych metod dla danych wielkości prób}\label{tab:time}
 		\begin{tabularx}{\textwidth}{|Z{6mm}|Z{19mm}|Y|Y|p{5mm}|Z{6mm}|Z{19mm}|Y|Y|}
 			\cline{1-4}\cline{6-9}
@@ -596,7 +612,12 @@
 	\noindent Widzimy, że oba wykresy przypominają linię prostą, zatem możemy przypuszczać, że nasze algorytmy mają złożoność czasową rzędu $o(x^n)$, gdzie $n$ jest współczynnikiem kierunkowym powyższych wykresów. Z niewielkimi odchyleniami możemy obliczyć, że $n\approx 1$, z czego wynika, że czas działania obu algorytmów rośnie liniowo wraz z wielkością próby.
 
 	
-	\section{Zakończenie - Początek}
+	\section{Podsumowanie}
+	Przedstawiliśmy wszystkie znane nam metody generowania zmiennych losowych. Każdą z metod opisaliśmy
+	
+	
+	
+	
 	
 	
 	\begin{thebibliography}{1}
