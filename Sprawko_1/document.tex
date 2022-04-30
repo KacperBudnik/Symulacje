@@ -570,12 +570,14 @@
 			$2^{20}$ & 0.018661 & 0.029472 & 0.633  &$\vphantom{\dfrac{1}{1}}$&  $2^{29}$ & 17.157 & 35.594 & 0.482\\\cline{1-4}\cline{6-9}
 		\end{tabularx}
 	\end{table}
-	\noindent Możemy przedstawić jeszcze te wartości na wykresach. Ponieważ widzimy, że liczba prób rośnie wykładniczo i podejrzewamy, że czas wykonania podobnie możemy nałożyć na obie osie odpowiednie logarytmy. Otrzymujemy w poniższe wykresy
+%	\noindent Możemy przedstawić jeszcze te wartości na wykresach. Ponieważ widzimy, że liczba prób rośnie wykładniczo i podejrzewamy, że czas wykonania podobnie możemy nałożyć na obie osie odpowiednie logarytmy. Otrzymujemy w poniższe wykresy
+	\noindent Możemy przedstawić jeszcze te wartości na wykresach. Ponieważ wielkości naszej próby rosą wykładniczo na obie osie nałożyliśmy $\log_2$. 
 	\begin{figure}[H]\caption{Wykres czasu generowania zmiennych w zależności od wielkości próby}\label{fig:normal_time}
 		\includegraphics[width=\columnwidth]{fig/fig_normal_time.png}
 	\end{figure}
-	\noindent Widzimy, że oba wykresy układają się w linię prostą, więc czas zależy liniowo od wielkości próby.
+%	\noindent Widzimy, że oba wykresy układają się w linię prostą, więc czas zależy liniowo od wielkości próby.
 %	Dodatkowo możemy zauważyć, że na wykresie metody biegunowej pojawiła się jedna dodatkowa wartość dla $n=2^{30}$. Metoda B-M nie zawiera pomiarów dla tej wielkości, ponieważ wielkości tej próby jest za duża by pomieścić ją w pamięci naszych komputerów.
+	\noindent Widzimy, że oba wykresy przypominają linię prostą, zatem możemy przypuszczać, że nasze algorytmy mają złożoność czasową rzędu $o(x^n)$, gdzie $n$ jest współczynnikiem kierunkowym powyższych wykresów. Z niewielkimi odchyleniami możemy obliczyć, że $n\approx 1$, z czego wynika, że czas działania obu algorytmów rośnie liniowo wraz z wielkością próby.
 
 	
 	\section{Zakończenie - Początek}
