@@ -203,7 +203,7 @@
 
 
 
-	\section{Liniowy generator kongruentny}
+	\section{Liniowy generator kongruentny\textsuperscript{\cite{lcg}}}
 	\noindent Jest to narzędzie służące do generowania liczb pseudolosowych. Zanim omówimy jego działanie, wyjaśnijmy czym są wspomniane liczby pseudolosowe. Są to liczby przypominające losowe, jednakże są one wygenerowane według pewnego schematu. W tym przypadku są one obliczane według wzoru
 	$$ x_n = (ax_{n-1} + c)\ \mathrm{mod}\ m, $$
 	gdzie $a, c, m \in \mathbb{Z}_+$ muszą spełniać $0 < a < m$ i $0 \leq c < m$ oraz  $0 \leq x_0 < m$. Liczbę $x_0$ nazywamy ziarnem, na podstawie którego wyliczane są kolejne wartości $x_n$. Jak się okazuje, wartości $\frac{x_n}{m}$ posiadają własności zbliżone do rozkładu jednostajnego $\mathcal{U}(0, 1)$.
@@ -333,7 +333,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
 
 	
-	\section{Metoda akceptacji i odrzucenia\textsuperscript{\cite{AO - dyskretny}} - Budnik}
+	\section{Metoda akceptacji i odrzucenia\textsuperscript{\cite{AO - dyskretny}}}
 	\subsection{Opis metody dla przypadku dyskretnego\textsuperscript{\cite{AO - dyskretny}}}
 	\noindent Metoda akceptacji i odrzucenia służy do generowania zmiennej losowej $X$ przy użyciu innych zmiennych. By móc wykorzystać tą metodę muszą być spełnione:
 	\begin{itemize}[leftmargin=10mm]
@@ -521,7 +521,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%4
 	
-	\section{Metoda Boxa-M{u}llera\textsuperscript{\cite{box-kox}} - Budnik}
+	\section{Metoda Boxa-M{u}llera\textsuperscript{\cite{box-kox}}}
 	\subsection{Opis}
 	\noindent Najważniejszym rozkładem w prawdopodobieństwie jest rozkład normalny. Dlatego istnieje specjalna metoda generowania jego. Łatwo można pokazać (co zrobiliśmy na kursie Modelowanie Stochastyczne), że jeśli $U_1,U_2$ - iid, $U_1\sim\mathcal{U}(0,1)$, to zmienne
 	\begin{equation}\label{eq:B-M}
@@ -551,7 +551,7 @@
 	
 	
 	
-	\section{Metoda biegunowa\textsuperscript{\cite{polar}} - Budink}
+	\section{Metoda biegunowa\textsuperscript{\cite{polar}}}
 	\subsection{Opis}
 	\noindent Jak wspomnieliśmy poprzednio rozkład normalny jest najważniejszym rozkładem prawdopodobieństwa. Z tego powodu jest on bardzo często wykorzystywany, ważne jest by generowanie próby trwało jak najkrócej. Niestety w metodzie Boxa-M{u}llera wyznaczanie pojawiają się funkcje $\sin$ oraz $\cos$. Wyznaczenie ich wartości jest stosunkowo czasochłonne dla procesora, dlatego była poszukiwana metoda, w która nie zawiera tych funkcji. Przekształcając wzór wykorzystywany w metodzie Boxa-Mullera można pokazać, że jeśli wektor $(V_1, V_2)$ ma rozkład jednostajny na kole jednostkowym to zmienne
 	\begin{equation}
