@@ -281,7 +281,7 @@
 	\begin{figure}[H]
 		\centering
 		\caption{Porównanie dystrybuanty empirycznej i teoretycznej oraz wykres kwantylowy rozkładu Cauchy'ego $\mathcal{C}(0, 1)$ dla próby o długości $n = 1000$.}
-		\includegraphics[scale=0.52]{fig/fig_odwr2.png}
+		\includegraphics[scale=0.1]{fig/fig_odwr2.png}
 	\end{figure}
 	%Aby przetestować powyższy algorytm, generujemy wektor 1000 realizacji zmiennej $X$, a następnie porównujemy dystrybuantę empiryczną tej próbki z dystrybuantą teoretyczną oraz tworzymy histogram i porównujemy go z gęstością.
 	%Jak możemy zauważyć dystrybuanty empiryczna i teoretyczna są do siebie zbliżone. To samo możemy powiedzieć o krzywej gęstości, której kształt jest podobny do histogramu próby.
@@ -417,6 +417,11 @@
 		\item Generuj $ Y_1, Y_2, \dots, Y_n $, gdzie $Y_i \sim \mathcal{B}(1, p) $.
 		\item Zwróć $ X = Y_1 + Y_2 + \dots + Y_n $.
 	\end{enumerate}
+	\begin{figure}[H]
+		\centering
+		\caption{Porównanie dystrybuanty empirycznej i teoretycznej rozkładu Bernoulliego $\mathcal{B}(500, \frac{3}{10})$ dla próby o długości $n = 1000$.}
+		\includegraphics[scale=0.1]{fig/fig_splot1.png}
+	\end{figure}
 	
 	\subsubsection{Ciągły - rozkład chi-kwadrat}
 	\noindent Niech $ X \sim \mathcal{X}^2(n) $ oraz niech $Y_1, Y_2, \dots, Y_n$ będzie ciągiem niezależnych zmiennych losowych o rozkładzie normalnym standardowym. Wtedy
@@ -426,6 +431,11 @@
 		\item Generuj $ Y_1, Y_2, \dots, Y_n $, gdzie $Y_i \sim \mathcal{N}(0, 1) $.
 		\item Zwróć $ X = Y_1^2 + Y_2^2 + \dots + Y_n^2 $.
 	\end{enumerate}
+	\begin{figure}[H]
+		\centering
+		\caption{Porównanie dystrybuanty empirycznej i teoretycznej oraz wykres kwantylowy rozkładu chi-kwadrat $\mathcal{X}^2(10)$ dla próby o długości $n = 1000$.}
+		\includegraphics[scale=0.1]{fig/fig_splot2.png}
+	\end{figure}
 	
 	
 	
