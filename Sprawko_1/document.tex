@@ -195,7 +195,7 @@
 	\noindent Gdy już znamy wzór generatora, pojawia się pytanie jakie wartości współczynników $a, b, c$ dobrać, by wygenerowane liczby jak najlepiej przypominały liczby losowe. Istnieje kilka popularnych wyborów. Przykłady:
 	\begin{itemize}[leftmargin=10mm]
 		
-		\item generator RANDU: \ $a = 2^{16} + 3$, \ $c = 0$, \ $m = 2^{31}$\\
+		\item \textbf{generator RANDU}: \ $a = 2^{16} + 3$, \ $c = 0$, \ $m = 2^{31}$\\
 		Wybierzmy $x_0 = 1$ i wykonajmy kilka testów.
 		\begin{figure}[H]
 			\centering
@@ -205,11 +205,11 @@
 		\begin{figure}[H]
 			\centering
 			\caption{Test 3D dla 100 000 liczb.}
-			\includegraphics[scale=0.8]{fig/fig_gen2.png}
+			\includegraphics[scale=0.7]{fig/fig_gen2.png}
 		\end{figure}
 		Widzimy, że dystrybuanta empiryczna pokrywa się z teoretyczną. Z kolei na teście 2D punkty wydają się być rozłożone losowo. Jednakże test 3D udowadnia, że liczby te są wygenerowane na podstawie schematu, ponieważ widać wyraźnie, że punkty układają się w uporządkowany sposób. Wniosek jest taki, że generator ten nie jest najlepszy.
-		
-		\item VMS's MTH\$RANDOM: \ $a = 69069$, \ $c = 5$, \ $m = 2^{32}$\\
+		\vspace{6mm}
+		\item \textbf{generator VMS's MTH\$RANDOM}: \ $a = 69069$, \ $c = 5$, \ $m = 2^{32}$\\
 		Ponownie wybierzmy $x_0 = 1$ i wykonajmy te same testy.
 		\begin{figure}[H]
 			\centering
@@ -219,7 +219,7 @@
 		\begin{figure}[H]
 			\centering
 			\caption{Test 3D dla 100 000 liczb.}
-			\includegraphics[scale=0.8]{fig/fig_gen4.png}
+			\includegraphics[scale=0.7]{fig/fig_gen4.png}
 		\end{figure}
 		Jak możemy zauważyć, podobnie jak w poprzednim przykładzie, dystrybuanty empiryczna i teoretyczna są do siebie zbliżone oraz rozłożenie punktów w teście 2D wygląda na losowe. Dodatkowo test 3D także sugeruje niezależne rozłożenie punktów. Na tej podstawie możemy stwierdzić, że generator VMS's MTH\$RANDOM jest zdecydowanie lepszy od generatora RANDU.
 	\end{itemize}
@@ -246,6 +246,7 @@
 			\item[1.] Generuj $U \sim \mathcal{U}(0, 1)$.
 			\item[2.] Zwróć $ X = F_X^{-1}(U) $.
 		\end{enumerate}
+		\vspace{3mm}
 		\item[b)] Jeśli dystrybuanta nie jest ściśle rosnąca:
 		\begin{enumerate}
 			\item[1.] Generuj $U \sim \mathcal{U}(0, 1)$.
@@ -276,6 +277,7 @@
 			$j = j + 1$
 			\item Jeżeli $U < s$, zwróć $X = j$. W przeciwnym razie wróć do a).
 		\end{enumerate}
+		\vspace{2mm}
 		Jeśli $U < s$:
 		\begin{enumerate}[leftmargin=10mm]
 			\item $s = s_{j-1}$\\
