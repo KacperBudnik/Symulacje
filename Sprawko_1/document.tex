@@ -174,7 +174,6 @@
 %	Nikt nie powie, że jest inaczej. Przynajmniej na poważnie.\\
 %	Ale po przeczytaniu raportu tego, zaprzeczyć nie można\\
 %	Nawet jeśli adresatem naszym jest osoba bardzo pobożna.\\
-	\\
 %	By dzieło nasze w pełni było w pełni kompletne,\\
 %	By o dziele naszym można powiedzieć, że jest kompletne\\
 	By powiedzieć, że nasze dzieło jest pełni kompletne\\
@@ -247,7 +246,7 @@
 	\section{Metoda odwrotnej dystrybuanty}
 	
 	\subsection{Opis}
-	\noindent Metoda ta polega na generowaniu zmiennej losowej $X$ generując zmienną $U$ z rozkładu jednostajnego oraz nakładając na nią funkcję odwrotną dystrybuanty.
+	\noindent Metoda ta polega na generowaniu zmiennej losowej $X$ generując zmienną $U$ z rozkładu jednostajnego oraz nałożeniu na nią funkcji odwrotnej dystrybuanty.
 	\subsubsection{Algorytm dla rozkładów dyskretnych\textsuperscript{\cite{OD - dyskretny}}}
 	\noindent Załóżmy, że rozkład $X$ ma postać $\mathrm{P}(X = x_i) = p_\mathrm{i}$, \ $i = 1, 2,\dots $.
 	\begin{enumerate}[leftmargin=10mm]
@@ -285,7 +284,7 @@
 	Stąd kolejne $p_i$ otrzymamy domnażając $\frac{\lambda}{i + 1}$. Na podstawie tych informacji możemy zbudować algorytm:
 	\begin{enumerate}[leftmargin=10mm]
 		\item Oblicz wartości $p_i$ oraz $s_i$ dla $i = 0, 1, \dots, \lceil\lambda\rceil$.
-		\item Zdefiniuj $j = \lceil \lambda \rceil$, \ $p = p_{\lceil\lambda\rceil}$, \ $F = s_{\lceil\lambda\rceil}$.
+		\item Zdefiniuj $j = \lceil \lambda \rceil$, \ $p = p_{\lceil\lambda\rceil}$, \ $s = s_{\lceil\lambda\rceil}$.
 		\item Generuj $U \sim \mathcal{U}(0, 1)$.
 		\item Jeśli $U > s$:
 		\begin{enumerate}[leftmargin=10mm]
@@ -335,27 +334,27 @@
 	
 	\section{Metoda akceptacji i odrzucenia}
 	\subsection{Opis metody dla przypadku dyskretnego\textsuperscript{\cite{AO - dyskretny}}}
-	\noindent Metoda akceptacji i odrzucenia służy do generowania zmiennej losowej $X$ przy użyciu innych zmiennych. By móc wykorzystać tą metodę muszą być spełnione:
+	\noindent Metoda akceptacji i odrzucenia służy do generowania zmiennej losowej $X$ przy użyciu innych zmiennych. By móc wykorzystać tą metodę, muszą być spełnione:
 	\begin{itemize}[leftmargin=10mm]
-		\item Potrafimy efektywnie generować inną zmienną losową $Y$
-		\item Zmienne $X$ oraz $Y$ muszą być skupione na tym samym zbiorze
-		\item Potrafimy wyznaczyć stałą $c$ taką że $\dfrac{\mathrm{P}(X=i)}{\mathrm{P}(Y=i)}=\dfrac{p_i}{q_i}\leqslant c$ dla każdego $i$
+		\item potrafimy efektywnie generować inną zmienną losową $Y$,
+		\item zmienne $X$ oraz $Y$ muszą być skupione na tym samym zbiorze,
+		\item potrafimy wyznaczyć stałą $c$ taką że $\dfrac{\mathrm{P}(X=i)}{\mathrm{P}(Y=i)}=\dfrac{p_i}{q_i}\leqslant c$ dla każdego $i$.
 	\end{itemize}
-	Jeśli są spełnione powyższe założenia możemy użyć poniższego algorytmu do generowania zmiennej $X$.
+	Jeśli są spełnione powyższe założenia, możemy użyć poniższego algorytmu do generowania zmiennej $X$.
 	\subsubsection{Algorytm}
 	\begin{enumerate}[leftmargin=10mm]
-		\item Generuj jedną realizację $Y$
-		\item Generuj $U\sim \mathcal{U}(0,1)$, $U\indep Y$
+		\item Generuj jedną realizację $Y$.
+		\item Generuj $U\sim \mathcal{U}(0,1)$, $U\indep Y$.
 		\item Jeśli $U\leqslant\frac{p_Y}{cq_Y}$ zwróć $X=Y$, w przeciwnym wróć do 1.
 	\end{enumerate}
 	
 	
 	\subsection{Opis metody dla przypadku ciągłego\textsuperscript{\cite{AO - ciagly}}}
-	M\noindent etoda akceptacji i odrzucenia służy do generowania zmiennej losowej $X$ o gęstości $f(x)$ przy użyciu innych zmiennych. By móc wykorzystać tą metodę muszą być spełnione:
+	\noindent Metoda akceptacji i odrzucenia służy do generowania zmiennej losowej $X$ o gęstości $f(x)$ przy użyciu innych zmiennych. By móc wykorzystać tą metodę, muszą być spełnione:
 	\begin{itemize}[leftmargin=10mm]
-		\item Potrafimy efektywnie generować inną zmienną losową $Y$ o gęstości $g(x)$
-		\item Zmienne $X$ oraz $Y$ muszą być skupione na tym samym zbiorze
-		\item Potrafimy wyznaczyć stałą $c$ taką że $\sup\dfrac{f(x)}{g(x)}\leqslant c$ dla każdego $x$, gdzie $g(x)\neq0$ (więc również $f(x)\neq0$)
+		\item potrafimy efektywnie generować inną zmienną losową $Y$ o gęstości $g(x)$,
+		\item zmienne $X$ oraz $Y$ muszą być skupione na tym samym zbiorze,
+		\item potrafimy wyznaczyć stałą $c$ taką że $\sup\dfrac{f(x)}{g(x)}\leqslant c$ dla każdego $x$, gdzie $g(x)\neq0$.
 	\end{itemize}
 	\subsubsection{Algorytm}
 	\begin{enumerate}[leftmargin=10mm]
@@ -365,9 +364,9 @@
 	\end{enumerate}
 
 	\subsection{Szybkość algorytmu}
-	\noindent W obu przypadkach, ciągłym i dyskretnym, prawdopodobieństwo, że zmienna zostanie zaakceptowana wynosi $\frac{1}{c}$.\\
+	\noindent W obu przypadkach, ciągłym i dyskretnym, prawdopodobieństwo, że zmienna zostanie zaakceptowana wynosi $\frac{1}{c}$.
 %	Średnia liczba powtórzeń algorytmu wynosi $c$, zatem stałą tę powinniśmy dobierać jak najmniejszą spełniającą wymagane kryteria.
-	Liczba iteracji algorytmu potrzebnych do wygenerowania zmiennej ma rozkład $\mathcal{G}eom(\frac{1}{c})$, zatem średnia liczba iteracji potrzebna do wygenerowania tej zmiennej to $c$. Z tego powodu stałą tą powinniśmy dobrać jak najmniejszą możliwą. Najoptymalniej wybrać $c=\max\frac{p_Y}{q_Y}$ w przypadku dyskretnym oraz $c=\sup\frac{f(x)}{g(x)}$ dla przypadku ciągłego.
+	Liczba iteracji algorytmu potrzebnych do wygenerowania zmiennej ma rozkład $\mathcal{G}eom(\frac{1}{c})$, zatem średnia liczba iteracji potrzebna do wygenerowania tej zmiennej to $c$. Z tego powodu powinniśmy dobrać ją możliwie jak najmniejszą. Najoptymalniej wybrać $c=\max\frac{p_Y}{q_Y}$ w przypadku dyskretnym oraz $c=\sup\frac{f(x)}{g(x)}$ dla przypadku ciągłego.
 %		Prawdopodobieństwo że zmienna zostanie zaakceptowana wynosi
 %	$$\mathbb{P}(\text{'wartość zaakceptowana'})=\frac{1}{c}$$
 %	zatem by algorytm był wydajny stała $c$ powinna być jak najmniejsza. Średnia liczba powtórzeń algorytmu wynosi $c$.
@@ -385,7 +384,7 @@
 %			0.1, \phantom{0}\quad\text{dla $i=\phantom{-}1$}
 		\end{cases}
 	\end{equation}
-	Do generowania tej zmiennej potrzebujemy zmienną, która jest skupiona na tym samym zbiorze. Najprostszym pomysłem jest wykorzystanie zmiennej z rozkładu jednostajnego dyskretnego $Y\sim\mathcal{DU}(-2,-1,0,1)$. Prawdopodobieństwo, że $Y$ przyjmie daną wartość stale wynosi $\frac{1}{4}$, zatem łatwo wyliczyć stałą $c=4\max_i\mathrm{P}(X=i)=4\cdot0.5=2$. Znając tą stałą wystarczy zastosować dany algorytm
+	Do generowania tej zmiennej potrzebujemy zmienną, która jest skupiona na tym samym zbiorze. Najprostszym pomysłem jest wykorzystanie zmiennej z rozkładu jednostajnego dyskretnego $Y\sim\mathcal{DU}(-2,-1,0,1)$. Prawdopodobieństwo, że $Y$ przyjmie daną wartość stale wynosi $\frac{1}{4}$, zatem łatwo wyliczyć stałą $c=4\max_i\mathrm{P}(X=i)=4\cdot0.5=2$. Znając tą stałą wystarczy zastosować dany algorytm:
 	\begin{enumerate}[leftmargin=10mm]
 		\item Generuj jedną realizację $Y\sim\lfloor4\cdot\mathcal{U}(0,1)\rfloor-2$
 		\item Generuj $U\sim \mathcal{U}(0,1)$, $U\indep Y$
@@ -491,7 +490,7 @@
 	$$ F(x) = \sum_{i=1}^n p_i F_i(x), $$
 	gdzie $p_i > 0$, \ $\sum\limits_{i=1}^n p_i = 1$ oraz $F_i$ to dystrybuanty pewnych zmiennych losowych $Y_i$. Jeżeli zmienne $Y_i$ mają gęstość, to równoważne będzie założenie, że gęstość zmiennej $X$ ma postać
 	$$ f(x) = \sum_{i=1}^n p_i f_i(x), $$
-	gdzie $f$ są gęstościami zmiennych $Y_i$. Do wygenerowania $X$ może posłużyć poniższy algorytm:
+	gdzie $f_i$ są gęstościami zmiennych $Y_i$. Do wygenerowania $X$ może posłużyć poniższy algorytm:
 	\begin{enumerate}[leftmargin=10mm]
 		\item Generuj zmienną losową $I$ o rozkładzie $\mathrm{P}(I = i) = p_i$.
 		\item Generuj $Y_I$.
@@ -523,7 +522,7 @@
 	
 	\section{Metoda Boxa-M{u}llera\textsuperscript{\cite{box-kox}}}
 	\subsection{Opis}
-	\noindent Najważniejszym rozkładem w prawdopodobieństwie jest rozkład normalny. Dlatego istnieje specjalna metoda generowania jego. Łatwo można pokazać (co zrobiliśmy na kursie Modelowanie Stochastyczne), że jeśli $U_1,U_2$ - iid, $U_1\sim\mathcal{U}(0,1)$, to zmienne
+	\noindent Najważniejszym rozkładem w prawdopodobieństwie jest rozkład normalny. Dlatego istnieje specjalna metoda jego generowania. Łatwo można pokazać (co zrobiliśmy na kursie Modelowanie Stochastyczne), że jeśli $U_1,U_2$ - iid, $U_1\sim\mathcal{U}(0,1)$, to zmienne
 	\begin{equation}\label{eq:B-M}
 		\begin{split}
 			X=\sqrt{-2\ln(U_1)}\cos(2\pi U_2)\\
@@ -542,7 +541,7 @@
 			\end{split}
 		\end{equation}
 	\end{enumerate}
-	Algorytm ten generuje od razu dwie próby z rozkładu normalnego standardowego. By wygenerować zmienną z rozkładu $\mathcal{N}(\mu,\sigma^2)$ wystarczy wcześniej wygenerowane zmienne pomnożyć przez $\sigma$ po czym dodać do nich $\mu$.
+	Algorytm ten generuje od razu dwie próby z rozkładu normalnego standardowego. By wygenerować zmienną z rozkładu $\mathcal{N}(\mu,\sigma^2)$, wystarczy wcześniej wygenerowane zmienne pomnożyć przez $\sigma$ po czym dodać do nich $\mu$.
 	\subsection{Przykłady}
 	
 	\begin{figure}[H]\caption{Sprawdzenie poprawności metody Boxa-Mullera dla próby o rozmiarze $n=1000$}\label{fig:BM}
@@ -553,14 +552,14 @@
 	
 	\section{Metoda biegunowa\textsuperscript{\cite{polar}}}
 	\subsection{Opis}
-	\noindent Jak wspomnieliśmy poprzednio rozkład normalny jest najważniejszym rozkładem prawdopodobieństwa. Z tego powodu jest on bardzo często wykorzystywany, ważne jest by generowanie próby trwało jak najkrócej. Niestety w metodzie Boxa-M{u}llera wyznaczanie pojawiają się funkcje $\sin$ oraz $\cos$. Wyznaczenie ich wartości jest stosunkowo czasochłonne dla procesora, dlatego była poszukiwana metoda, w która nie zawiera tych funkcji. Przekształcając wzór wykorzystywany w metodzie Boxa-Mullera można pokazać, że jeśli wektor $(V_1, V_2)$ ma rozkład jednostajny na kole jednostkowym to zmienne
+	\noindent Jak wspomnieliśmy poprzednio, rozkład normalny jest najważniejszym rozkładem prawdopodobieństwa. Z tego powodu jest on bardzo często wykorzystywany, ważne jest by generowanie próby trwało jak najkrócej. Niestety w metodzie Boxa-M{u}llera pojawiają się funkcje $\sin$ oraz $\cos$. Wyznaczenie ich wartości jest stosunkowo czasochłonne dla procesora, dlatego poszukiwana była metoda, która nie zawiera tych funkcji. Przekształcając wzór wykorzystywany w metodzie Boxa-Mullera, można pokazać, że jeśli wektor $(V_1, V_2)$ ma rozkład jednostajny na kole jednostkowym, to zmienne
 	\begin{equation}
 		\begin{split}
 			X=\sqrt{\frac{-2\ln R^2}{R^2}}V_1\\
 			Y=\sqrt{\frac{-2\ln R^2}{R^2}}V_2
 		\end{split}
 	\end{equation}
-	mają rozkład normalny standardowy $\mathcal{N}(0,1)$ oraz $X \indep Y$. Ponieważ umiemy w sposób efektywny generować wektor losowy $(V_1, V_2)$ wystarczy skorzystać z poniższego algorytmu
+	mają rozkład normalny standardowy $\mathcal{N}(0,1)$ oraz $X \indep Y$. Ponieważ umiemy w sposób efektywny generować wektor losowy $(V_1, V_2)$, wystarczy skorzystać z poniższego algorytmu
 	\subsubsection{Algorytm}
 	\begin{enumerate}[leftmargin=10mm]
 		\item Generuj zmienne $V_1, V_2$ - iid, $V_1\sim\mathcal{U}(-1,1)$
@@ -574,7 +573,7 @@
 			\end{split}
 		\end{equation}
 	\end{enumerate}
-	Podobnie jak w metodzie Boxa-M{u}llera algorytm ten zwraca dwie zmienne niezależne z rozkładu normalnego, więc by otrzymać zmienne z rozkładu $\mathcal{N}(\mu,\sigma^2)$ tak samo jak wcześniej mnożymy wygenerowaną próbę przez $\sigma$ i dodajemy do niej $\mu$.
+	Podobnie jak w metodzie Boxa-M{u}llera, algorytm ten zwraca dwie zmienne niezależne z rozkładu normalnego, więc by otrzymać zmienne z rozkładu $\mathcal{N}(\mu,\sigma^2)$, tak samo jak wcześniej, mnożymy wygenerowaną próbę przez $\sigma$ i dodajemy do niej $\mu$.
 	
 	\subsection{Szybkość algorytmu}
 	\noindent Do wygenerowania dwóch prób rozkładu normalnego korzystając z tego algorytmu potrzebne jest powtórzenie go średnio $\frac{4}{\pi}\approx1.25$ razy. Pomimo, że algorytm będzie czasem wykonywany wielokrotnie, to poprzez pozbycie się funkcji trygonometrycznych czas rzeczywisty wygenerowania danej próby będzie krótszy niż w poprzedniej metodzie, co pokażemy później.
@@ -586,7 +585,7 @@
 	\end{figure}
 
 	\section{Porównanie metod generowania rozkładu normalnego}
-	\noindent Dwie ostatnie metody jakie pokazaliśmy dotyczą generowania tego samego rozkładu, dlatego ważne wydaje się, by porównać czas ich działania. Wykonaliśmy pomiary czasu generowania różnych wielkości prób (o wielkości $N$) dla metody biegunowej oraz metody Boxa-Mullera (B-M). Dodatkowo policzyliśmy stosunek czasu potrzebnego do wygenerowania metodą pierwszą do metody B-M. W poniższej tabeli zamieściliśmy średni czas generowania próby. Dla wartości do $2^{24}$ pomiar wykonaliśmy 1000 razy, dla liczb nie większych niż $2^{27}$ zmniejszyliśmy pomiar do 200 prób, a pozostałe wielkości prób wygenerowaliśmy jedynie 10 razy.  
+	\noindent Dwie ostatnie metody, jakie pokazaliśmy, dotyczą generowania tego samego rozkładu, dlatego ważne wydaje się, by porównać czas ich działania. Wykonaliśmy pomiary czasu generowania różnych wielkości prób (o wielkości $N$) dla metody biegunowej oraz metody Boxa-Mullera (B-M). Dodatkowo policzyliśmy stosunek czasu potrzebnego do wygenerowania metodą pierwszą do metody B-M. W poniższej tabeli zamieściliśmy średni czas generowania próby. Dla wartości do $2^{24}$ pomiar wykonaliśmy 1000 razy, dla liczb nie większych niż $2^{27}$ zmniejszyliśmy pomiar do 200 prób, a pozostałe wielkości prób wygenerowaliśmy jedynie 10 razy.  
 	\begin{table}[H]\caption{Czas wykonania danych metod dla danych wielkości prób}\label{tab:time}
 		\begin{tabularx}{\textwidth}{|Z{6mm}|Z{19mm}|Y|Y|p{5mm}|Z{6mm}|Z{19mm}|Y|Y|}
 			\cline{1-4}\cline{6-9}
@@ -604,7 +603,7 @@
 		\end{tabularx}
 	\end{table}
 %	\noindent Możemy przedstawić jeszcze te wartości na wykresach. Ponieważ widzimy, że liczba prób rośnie wykładniczo i podejrzewamy, że czas wykonania podobnie możemy nałożyć na obie osie odpowiednie logarytmy. Otrzymujemy w poniższe wykresy
-	\noindent Możemy przedstawić jeszcze te wartości na wykresach. Ponieważ wielkości naszej próby rosą wykładniczo na obie osie nałożyliśmy $\log_2$. 
+	\noindent Możemy przedstawić jeszcze te wartości na wykresach. Ponieważ wielkości naszej próby rosną wykładniczo na obie osie nałożyliśmy $\log_2$. 
 	\begin{figure}[H]\caption{Wykres czasu generowania zmiennych w zależności od wielkości próby}\label{fig:normal_time}
 		\includegraphics[width=\columnwidth]{fig/fig_normal_time.png}
 	\end{figure}
@@ -612,12 +611,12 @@
 %	Dodatkowo możemy zauważyć, że na wykresie metody biegunowej pojawiła się jedna dodatkowa wartość dla $n=2^{30}$. Metoda B-M nie zawiera pomiarów dla tej wielkości, ponieważ wielkości tej próby jest za duża by pomieścić ją w pamięci naszych komputerów.
 	\noindent Widzimy, że oba wykresy przypominają linię prostą, zatem możemy przypuszczać, że nasze algorytmy mają złożoność czasową rzędu $o(x^n)$, gdzie $n$ jest współczynnikiem kierunkowym powyższych wykresów. Z niewielkimi odchyleniami możemy obliczyć, że $n\approx 1$, z czego wynika, że czas działania obu algorytmów rośnie liniowo wraz z wielkością próby.
 	
-	\noindent Możemy odczytać z tabeli, że metoda biegunowa jest znacząco szybsza. Na podstawie tych danych widzimy, że tym sposobem możemy wygenerować tą samą próbę poświęcając średnio $0.633$ czasu który musielibyśmy poświęcić korzystając z metody Boxa-Mullera.
+	\noindent Możemy odczytać z tabeli, że metoda biegunowa jest znacząco szybsza. Na podstawie tych danych widzimy, że tym sposobem możemy wygenerować tę samą próbę poświęcając średnio $0.633$ czasu, który musielibyśmy poświęcić korzystając z metody Boxa-Mullera.
 	% Dodatkowo przy 2^30 wywalało sposób B-M, a drugi działał bez zarzutu
 	
 	\section{Podsumowanie}
 
-	\noindent Zgodnie z celem raportu przedstawiliśmy wszystkie znane nam metody generowania zmiennych losowych. Każdą z metod opisaliśmy poprzez przedstawienia ogólnej idei stającej za nią, założeń (jeśli jakieś były) kiedy możemy z danej metody skorzystać oraz algorytmu jej działania. Dodatkowo sprawdziliśmy poprawność metod poprzez wygenerowanie niewielkiej próby z danego rozkładu i porównaliśmy jej zgodność z rozkładem teoretycznym na wykresach.
+	\noindent Zgodnie z celem raportu przedstawiliśmy wszystkie znane nam metody generowania zmiennych losowych. Każdą z metod opisaliśmy poprzez przedstawienie ogólnej idei stającej za nią, założeń (jeśli jakieś były) kiedy możemy z danej metody skorzystać oraz algorytmu jej działania. Dodatkowo sprawdziliśmy poprawność metod poprzez wygenerowanie niewielkiej próby z danego rozkładu i porównaliśmy jej zgodność z rozkładem teoretycznym na wykresach.
 %	Do porównania wykorzystaliśmy wykres kwantylowy, histogram z próby oraz dystrybuantę empiryczną. 
 	O~poprawności działania algorytmów świadczy to, że:
 	\begin{enumerate}[leftmargin=10mm]
