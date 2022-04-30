@@ -129,7 +129,7 @@
 	Rozpoczęliśmy od generatora kongruentnego stworzenia\\
 	Oraz sprawdzenia na wykresie jego zagęszczenia\\
 	By pokazać niezależność prób generowanych\\
-	W zależności od parametrów starannie dobranych\\
+	W zależności niewątpliwie od parametrów dobranych\\
 	\\
 %	Oczywiście wszystkie metody generowania opisaliśmy\\
 %	Dla czytelności każdą w osobnej sekcji zawarliśmy.\\
@@ -166,14 +166,14 @@
 %	Dlatego \\
 %	Życzymy Panu obaj dobrego dnia\
 %	Na zakończenie podsumowaliśmy wszystko w jednym miejscu\\
-%	Na zakończenie podsumowanie zrobiliśmy wszystkiego\\
+	Na zakończenie podsumowanie zrobiliśmy wszystkiego\\
 %	A ponieważ w raporcie użyliśmy rozkładu dzikiego\\
-%	Napisaliśmy, że w losowości nie ma działania boskiego\\
+	Napisaliśmy, że w losowości nie ma działania boskiego\\
 %	Ale po przeczytaniu tego raportu, tak bardzo uważnie\\
 %	Nikt nie może uznać, że jest inaczej na poważnie\\
 %	Nikt nie powie, że jest inaczej. Przynajmniej na poważnie.\\
-%	Ale po przeczytaniu raportu tego, zaprzeczyć nie można\\
-%	Nawet jeśli adresatem naszym jest osoba bardzo pobożna.\\
+	Ale po przeczytaniu raportu tego, zaprzeczyć nie można\\
+	Nawet jeśli adresatem naszym jest osoba bardzo pobożna.\\
 	\\
 %	By dzieło nasze w pełni było w pełni kompletne,\\
 %	By o dziele naszym można powiedzieć, że jest kompletne\\
@@ -211,7 +211,7 @@
 	\noindent Gdy już znamy wzór generatora, pojawia się pytanie jakie wartości współczynników $a, b, c$ dobrać, by wygenerowane liczby jak najlepiej przypominały liczby losowe. Istnieje wiele popularnych wyborów. Przykłady:
 	\begin{itemize}[leftmargin=10mm]
 		
-		\item \textbf{generator RANDU}: \ $a = 2^{16} + 3$, \ $c = 0$, \ $m = 2^{31}$\\
+		\item \textbf{generator RANDU}\textsuperscript{\cite{generator}}: \ $a = 2^{16} + 3$, \ $c = 0$, \ $m = 2^{31}$\\
 		Wybierzmy $x_0 = 1$ i wykonajmy kilka testów.
 		\begin{figure}[H]
 			\centering
@@ -225,7 +225,8 @@
 		\end{figure}
 		Widzimy, że dystrybuanta empiryczna pokrywa się z teoretyczną. Z kolei na teście 2D punkty wydają się być rozłożone losowo. Jednakże test 3D udowadnia, że liczby te są wygenerowane na podstawie schematu, ponieważ widać wyraźnie, że punkty układają się w uporządkowany sposób. Wniosek jest taki, że generator ten nie jest najlepszy.
 		\vspace{6mm}
-		\item \textbf{generator VMS's MTH\$RANDOM}: \ $a = 69069$, \ $c = 5$, \ $m = 2^{32}$\\
+		
+		\item \textbf{generator VMS's MTH\$RANDOM}\textsuperscript{\cite{generator}}: \ $a = 69069$, \ $c = 5$, \ $m = 2^{32}$\\
 		Ponownie wybierzmy $x_0 = 1$ i wykonajmy te same testy.
 		\begin{figure}[H]
 			\centering
@@ -609,25 +610,21 @@
 	\end{figure}
 %	\noindent Widzimy, że oba wykresy układają się w linię prostą, więc czas zależy liniowo od wielkości próby.
 %	Dodatkowo możemy zauważyć, że na wykresie metody biegunowej pojawiła się jedna dodatkowa wartość dla $n=2^{30}$. Metoda B-M nie zawiera pomiarów dla tej wielkości, ponieważ wielkości tej próby jest za duża by pomieścić ją w pamięci naszych komputerów.
-	\noindent Widzimy, że oba wykresy przypominają linię prostą, zatem możemy przypuszczać, że nasze algorytmy mają złożoność czasową rzędu $o(x^n)$, gdzie $n$ jest współczynnikiem kierunkowym powyższych wykresów. Z niewielkimi odchyleniami możemy obliczyć, że $n\approx 1$, z czego wynika, że czas działania obu algorytmów rośnie liniowo wraz z wielkością próby.\\
-	\textbf{Zrobić porównanie}
+	\noindent Widzimy, że oba wykresy przypominają linię prostą, zatem możemy przypuszczać, że nasze algorytmy mają złożoność czasową rzędu $o(x^n)$, gdzie $n$ jest współczynnikiem kierunkowym powyższych wykresów. Z niewielkimi odchyleniami możemy obliczyć, że $n\approx 1$, z czego wynika, że czas działania obu algorytmów rośnie liniowo wraz z wielkością próby.
+
 	
 	\section{Podsumowanie}
-
-	\noindent Zgodnie z celem raportu przedstawiliśmy wszystkie znane nam metody generowania zmiennych losowych. Każdą z metod opisaliśmy poprzez przedstawienia ogólnej idei stającej za nią, założeń (jeśli jakieś były) kiedy możemy z danej metody skorzystać oraz algorytmu jej działania. Dodatkowo sprawdziliśmy poprawność metod poprzez wygenerowanie niewielkiej próby z danego rozkładu i porównaliśmy jej zgodność z rozkładem teoretycznym na wykresach.
-%	Do porównania wykorzystaliśmy wykres kwantylowy, histogram z próby oraz dystrybuantę empiryczną. 
-	O poprawności działania algorytmów świadczy to, że:
-	\begin{enumerate}[leftmargin=10mm]
-		\item dystrybuanta empiryczna pokrywa się z teoretyczną,
-		\item histogram z próby dobrze przybliża gęstość generowanego rozkładu,
-		\item punkty na wykresie kwantylową układają się w jedną linię.
-	\end{enumerate}
-
+	Przedstawiliśmy wszystkie znane nam metody generowania zmiennych losowych. Każdą z metod opisaliśmy
+	
+	
 	
 	
 	
 	
 	\begin{thebibliography}{1}
+		\bibitem{generator}
+		\url{https://en.wikipedia.org/wiki/Linear_congruential_generator}
+		
 		\bibitem{OD - dyskretny}
 		\url{https://www.youtube.com/watch?v=oJYFlu2oJQE}
 		
