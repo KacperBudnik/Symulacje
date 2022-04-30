@@ -212,7 +212,7 @@
 	\begin{itemize}[leftmargin=10mm]
 		
 		\item \textbf{generator RANDU}\textsuperscript{\cite{generator}}: \ $a = 2^{16} + 3$, \ $c = 0$, \ $m = 2^{31}$\\
-		Wybierzmy $x_0 = 1$ i wykonajmy kilka testów.
+		Jest to jeden z najgorszych w historii generatorów kongruentnych. Był wykorzystywany głównie w latach 60-tych i 70-tych. Wybierzmy $x_0 = 1$ i wykonajmy kilka testów.
 		\begin{figure}[H]
 			\centering
 			\caption{Po lewej porównanie dystrybuanty empirycznej z teoretyczną rozkładu jednostajnego $\mathcal{U}(0, 1)$, po prawej test 2D. Oba testy przeprowadzone zostały dla 1000 liczb wygenerowanych generatorem RANDU.}
@@ -226,11 +226,11 @@
 		Widzimy, że dystrybuanta empiryczna pokrywa się z teoretyczną. Z kolei na teście 2D punkty wydają się być rozłożone losowo. Jednakże test 3D udowadnia, że liczby te są wygenerowane na podstawie schematu, ponieważ widać wyraźnie, że punkty układają się w uporządkowany sposób. Wniosek jest taki, że generator ten nie jest najlepszy.
 		\vspace{6mm}
 		
-		\item \textbf{generator VMS's MTH\$RANDOM}\textsuperscript{\cite{generator}}: \ $a = 69069$, \ $c = 5$, \ $m = 2^{32}$\\
+		\item \textbf{generator MTH\$RANDOM}\textsuperscript{\cite{generator}}: \ $a = 69069$, \ $c = 5$, \ $m = 2^{32}$\\
 		Ponownie wybierzmy $x_0 = 1$ i wykonajmy te same testy.
 		\begin{figure}[H]
 			\centering
-			\caption{Po lewej porównanie dystrybuanty empirycznej z teoretyczną rozkładu jednostajnego $\mathcal{U}(0, 1)$, po prawej test 2D. Oba testy przeprowadzone zostały dla 1000 liczb wygenerowanych generatorem VMS's MTH\$RANDOM.}
+			\caption{Po lewej porównanie dystrybuanty empirycznej z teoretyczną rozkładu jednostajnego $\mathcal{U}(0, 1)$, po prawej test 2D. Oba testy przeprowadzone zostały dla 1000 liczb wygenerowanych generatorem MTH\$RANDOM.}
 			\includegraphics[scale=0.1]{fig/fig_gen3.png}
 		\end{figure}
 		\begin{figure}[H]
@@ -238,7 +238,7 @@
 			\caption{Test 3D dla 100 000 liczb.}
 			\includegraphics[scale=0.7]{fig/fig_gen4.png}
 		\end{figure}
-		Jak możemy zauważyć, podobnie jak w poprzednim przykładzie, dystrybuanty empiryczna i teoretyczna są do siebie zbliżone oraz rozłożenie punktów w teście 2D wygląda na losowe. Dodatkowo test 3D także sugeruje niezależne rozłożenie punktów. Na tej podstawie możemy stwierdzić, że generator VMS's MTH\$RANDOM jest zdecydowanie lepszy od generatora RANDU.
+		Jak możemy zauważyć, podobnie jak w poprzednim przykładzie, dystrybuanty empiryczna i teoretyczna są do siebie zbliżone oraz rozłożenie punktów w teście 2D wygląda na losowe. Dodatkowo test 3D także sugeruje niezależne rozłożenie punktów. Na tej podstawie możemy stwierdzić, że generator MTH\$RANDOM jest zdecydowanie lepszy od generatora RANDU.
 	\end{itemize}
 
 
