@@ -195,8 +195,14 @@
 	\noindent Gdy już znamy wzór generatora, pojawia się pytanie jakie wartości współczynników $a, b, c$ dobrać, by wygenerowane liczby jak najlepiej przypominały liczby losowe. Istnieje kilka popularnych wyborów. Przykłady:
 	\begin{itemize}[leftmargin=10mm]
 		\item generator RANDU: \ $a = 2^{16} + 3$, \ $c = 0$, \ $m = 2^{31}$\\
-		Wybierzmy $x_0 = 1$ i wykonajmy kilka testów.\\
+		Wybierzmy $x_0 = 1$ i wykonajmy kilka testów.
+		\begin{figure}[H]
+			\centering
+			\caption{Test 3D}
+			\includegraphics[scale=1]{fig/fig_generator.png}
+		\end{figure}
 		Widzimy, że dystrybuanta empiryczna pokrywa się z teoretyczną. Z kolei na teście 2D punkty wydają się być rozłożone losowo. Jednakże test 3D udowadnia, że liczby te są wygenerowane na podstawie schematu, ponieważ widać wyraźnie, że punkty układają się w uporządkowany sposób. Wniosek jest taki, że generator ten jest dobry, jednak trochę brakuje mu do ideału.
+		\item 
 	\end{itemize}
 
 
