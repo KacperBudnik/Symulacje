@@ -11,7 +11,7 @@
 \renewcommand{\refname}{Źródła}
 \captionsetup{justification=raggedright,singlelinecheck=true}
 
-
+\newcommand{\indep}{\perp \!\!\! \perp}
 \begin{document}
 	
 	\begin{center}
@@ -137,8 +137,81 @@
 	
 	
 	\section{Zadanie 2}
+	\subsection{Proces Wienera}
+	\noindent Procesem Wienera (Ruchem Browna) nazywamy proces $\{W_t\}_{t\geqslant0}$, który spełnia:
+	\begin{itemize}[leftmargin=10mm]%, label=$\boldsymbol{\cdot}$]
+		\item $W_0=0$,
+		\item $W_t$ ma niezależne przyrosty,
+		\item $W_t$ ma stacjonarne przyrosty,
+		\item $W_t \sim \mathcal{N}(0, t)$,
+		\item $W_t$ ma ciągłe trajektorie.
+	\end{itemize}	
+	\noindent \textbf{Algorytm}\\
+	\noindent Naszym celem jest wygenerowanie wektora $\left[W_{t_0}, W_{t_1}, \dots, W_{t_n}\right]$, gdzie
+	\begin{equation}
+		t_i=ih, \quad i=0,1,\dots,n, \quad h=T/n
+	\end{equation}
+	\begin{equation}
+		t_i=ih, \quad i\in\left[n\right]=\left\{0, 1, \dots, n\right\}, \quad h=T/n
+	\end{equation}
+	\begin{equation}
+		t_i=ih, \quad i\in\mathbb{N}_0^{\leqslant n}, \quad h=T/n.
+	\end{equation}
+	W tym celu stosujemy poniższy algorytm
+	\begin{enumerate}[leftmargin=10mm]
+		\item Generuj realizację zmiennych $\xi_i\text{ iid }\mathcal{N}(0,1), \,i\in\left[n-1\right]$,
+		\item $W_{t_0}=W\left(0\right)=0$,
+		\item $W_{t_{i+1}} = W_{t_{i}}+\sqrt{h}\xi_i,\quad i\in\left[n-1\right]$%\in\mathbb{N}^{n}$.
+	\end{enumerate}
+
+	\subsection{Średni czas wyjścia procesu Wienera}
+	\noindent Niech $\left\{B^x_t\right\}_{t\geqslant0}$ będzie ruchem Browna startującym z $x\in\mathbb{R}$, a $\tau^x$ czasem wyjścia tego procesu z ustalonego przedziału $[a, b]$, czyli
+	\begin{equation}
+		\tau^x=\inf\left\{t\geqslant0:B^x_t\notin[a, b]\right\}
+	\end{equation}
+	\noindent dla $x$ z przedziału $[a,b]$. Łatwo można pokazać, że $B^{x+y}_t\in[a ,b] \iff B^x_t\in[a-y, b-y]$.
+%	\\Ponieważ $W_t+x\in[a, b] \iff W_t\in[a-x, b-x]$ \\
+%	$B^x_t\in[a,b]\iff B^y_t\in[a-x+y, b-x+y]$\\widzimy, że czas wyjścia nie zależy bezpośrednio od wyboru punktów $a$ oraz $b$, a od punktu początkowego oraz długości przedziału.
+	Dodatkowo, ponieważ ruch Browna jest $\frac{1}{2}$-samopodobny($W_t\overset{d}{=}\sqrt{\Delta}W_{t/\Delta}$), zachodzi
+	\begin{equation}
+		B^x_t=W_t+x\overset{d}{=}\Delta W_{t/\Delta^2}+x = \Delta\left(W_{t/\Delta-\frac{x}{\Delta}}\right)=B^{x/\Delta}_{t/\Delta^2}
+	\end{equation}
+	Korzystając z tych dwóch własności pokażemy, że
+	\begin{equation}
+		\begin{split}
+			\tau^x&\overset{d}{=}\inf\left\{\Delta^2\frac{t}{\Delta^2}\geqslant0:\Delta B^{x/\Delta}_{t/\Delta^2}\notin[a, b]\right\} =\Delta^2\inf\left\{t^*\geqslant0:B^{x/\Delta}_{t^*}\notin\left[\frac{a}{\Delta},\frac{b}{\Delta}\right]\right\}\\
+			&=\Delta^2\inf\left\{t^*\geqslant0:B^{(x-y)\Delta}_{t^*}\notin\left[\frac{a-y}{\Delta},\frac{b-y}{\Delta}\right]\right\}
+		\end{split}
+	\end{equation}
+	Wybierając teraz $\Delta=(b-a)$ oraz $y=a$ otrzymujemy
+	\begin{equation}\label{eq:tau_przeskalowane}
+		\tau^x\overset{d}{=}(b-a)^2\inf\left\{t\geqslant0:B^z_t\in[0,1]\right\},
+	\end{equation}
+	gdzie $z$ jest "przeskalowanym" $x$ na odcinek $[0, 1]$.\\
+	Dzięki tym przekształceniom widzimy, że $\mathbb{E}\tau^x$ zwiększa się z kwadratem długości przedziału jaki rozważamy oraz zależy ona od odległości $x$ od jednego końca przedziału względem drugiego. Z tego powodu później będziemy rozważać jedynie czas wyjścia z przedziału $[0, 1]$.
 	
 	
+	
+	
+%	Naszym celem jest oszacowanie średniego czasu wyjścia procesu Wienera startującego z $x\in\mathbb{R}$, w zależności od wyboru $x$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	\newpage
 	
 	\section{Podsumowanie}
 	
