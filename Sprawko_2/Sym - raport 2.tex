@@ -1,0 +1,115 @@
+\documentclass[12pt]{mwart}
+
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools,amsthm,amssymb,icomma,upgreek,xfrac,graphics,scrextend,float,tabularx,hyperref,multicol,array,caption,enumitem}
+\usepackage[table,xcdraw]{xcolor}
+
+\mathtoolsset{mathic}
+\raggedbottom
+\graphicspath{ {./images/} }
+\renewcommand{\refname}{Źródła}
+\captionsetup{justification=raggedright,singlelinecheck=true}
+
+
+\begin{document}
+	
+	\begin{center}
+		{\Large\textbf{Symulacje komputerowe}}
+	\end{center}
+	\begin{center}
+		Raport 2
+	\end{center}
+	
+	\noindent Temat: \ \textbf{Proces Ryzyka i ruch Browna}\\
+	Imię i Nazwisko prowadzącego kurs: \ \textbf{Dr Michał Balcerek}	\newline\newline
+	
+	
+	\noindent\begin{tabularx}{\textwidth}{|X |X|}
+		\hline
+		\begin{center}
+			Imię i Nazwisko,\\ nr indeksu
+		\end{center} &  \begin{center}
+			Kacper Brudnik, 262286\\
+			Szymon Malec, 262276
+		\end{center}\\\hline
+		Wydział: & Wydział matematyki, W13 \\\hline
+		Dzień i godzina zajęć: & Wtorek,\vphantom{ $11^{1^{5}}$} $11^{15}$\\\hline
+		Kod grupy ćwiczeniowej: & T00-70d \\\hline
+		Data oddania raportu: & 26.06.2022 \\\hline
+		\textbf{Ocena końcowa} &\\\hline
+	\end{tabularx}\newline\newline
+	
+	\noindent\textbf{Adnotacje i uwagi:}
+	
+	\newpage
+	
+	
+	\section{Wstęp}
+	\noindent 
+	
+	
+	
+	\section{Zadanie 1}
+	
+	\subsection{Jednorodny proces Poissona}
+	\noindent Jednorodnym procesem Poissona z intensywnością $\lambda > 0$ nazywamy proces liczący $\{N_t\}_{t \geq 0}$, który spełnia:
+	\begin{itemize}
+		\item $N_0 = 0$,
+		\item $N_t$ ma niezależne przyrosty,
+		\item $N_t$ ma stacjonarne przyrosty,
+		\item $N_t \sim \mathcal{P}oiss(\lambda t)$.
+	\end{itemize}
+	
+	\noindent \textbf{Algorytm}
+	\begin{enumerate}
+		\item Definiuj $I = 0$, $t=0$.
+		\item Generuj $X \sim \mathcal{E}xp(\lambda)$.
+		\item $t = t + X$. Jeśli $t > T$, przerwij i zwróć $\{S_i\}$. W przeciwnym razie $I = I + 1$, $S_I = t$.
+		\item Wróć do kroku 2.
+	\end{enumerate}
+	Otrzymane z powyższego algorytmu $\{S_i\}$ to czasy oczekiwania na i-ty skok od startu trajektorii.
+	
+	
+	\subsection{Klasyczny proces Ryzyka}
+	\noindent Klasycznym procesem Ryzyka nazywamy proces stochastyczny opisujący kapitał firmy ubezpieczeniowej postaci
+	$$ R_t = u + ct - \sum_{i=1}^{N_t} X_i, $$
+	gdzie
+	\begin{itemize}[label=\textbf{.}]
+		\item $u > 0$ -- kapitał początkowy,
+		\item $ct$ -- stałe przychody ($c > 0$),
+		\item $N_t$ -- jednorodny proces Poissona z intensywnością $\lambda > 0$,
+		\item $X_i$ -- ciąg niezależnych zmiennych losowych o tym samym rozkładzie opisujący straty, $\mathrm{E}X_i = \mu$, $X_i > 0$.
+	\end{itemize}
+
+	\noindent \textbf{Algorytm}
+	\begin{enumerate}
+		\item Generuj $N_t$ na $[0, T]$.
+		\item Generuj $X_1, \dots, X_{N_t}$.
+		\item Zwróć $R_t = u + ct - \sum_{i=1}^{N_t} X_i$.
+	\end{enumerate}
+	
+	
+	\subsection{Dopasowanie modelu do danych}
+	
+	\subsection{Prawdopodobieństwo ruiny}
+	
+	
+	
+	
+	\section{Zadanie 2}
+	
+	
+	
+	\section{Podsumowanie}
+	
+	
+	
+	\newpage
+	\begin{thebibliography}{1}
+		\bibitem{dane}
+		\url{}
+	\end{thebibliography}
+
+
+\end{document}
