@@ -211,7 +211,7 @@
 	\section{Zadanie 2}
 	\subsection{Proces Wienera}
 	\noindent Procesem Wienera (Ruchem Browna) nazywamy proces $\{W_t\}_{t\geqslant0}$, który spełnia:
-	\begin{itemize}[leftmargin=10mm]%, label=$\boldsymbol{\cdot}$]
+	\begin{itemize}[leftmargin=10mm, label=\small$\bullet$]%label=$\boldsymbol{\cdot}$]
 		\item $W_0=0$,
 		\item $W_t$ ma niezależne przyrosty,
 		\item $W_t$ ma stacjonarne przyrosty,
@@ -251,30 +251,31 @@
 %	$B^x_t\in[a,b]\iff B^y_t\in[a-x+y, b-x+y]$\\widzimy, że czas wyjścia nie zależy bezpośrednio od wyboru punktów $a$ oraz $b$, a od punktu początkowego oraz długości przedziału.
 	Dodatkowo, ponieważ ruch Browna jest $\frac{1}{2}$-samopodobny($W_t\overset{d}{=}\sqrt{\Delta}W_{t/\Delta}$), zachodzi
 	\begin{equation}
-		B^x_t=W_t+x\overset{d}{=}\Delta W_{t/\Delta^2}+x = \Delta\left(W_{t/\Delta-\frac{x}{\Delta}}\right)=B^{x/\Delta}_{t/\Delta^2}
+		B^x_t=W_t+x\overset{d}{=}\Delta W_{t/\Delta^2}+x = \Delta\left(W_{t/\Delta}-\frac{x}{\Delta}\right)=\Delta B^{x/\Delta}_{t/\Delta^2}
 	\end{equation}
 	Korzystając z tych dwóch własności można udowodnić, że
 	\begin{equation}
 		\begin{split}
 			\tau^x&\overset{d}{=}\inf\left\{\Delta^2\frac{t}{\Delta^2}\geqslant0:\Delta B^{x/\Delta}_{t/\Delta^2}\notin[a, b]\right\} =\Delta^2\inf\left\{t^*\geqslant0:B^{x/\Delta}_{t^*}\notin\left[\frac{a}{\Delta},\frac{b}{\Delta}\right]\right\}\\
-			&=\Delta^2\inf\left\{t^*\geqslant0:B^{(x-y)\Delta}_{t^*}\notin\left[\frac{a-y}{\Delta},\frac{b-y}{\Delta}\right]\right\}
+			&=\Delta^2\inf\left\{t^*\geqslant0:B^{(x-s)\Delta}_{t^*}\notin\left[\frac{a-s}{\Delta},\frac{b-s}{\Delta}\right]\right\}
 		\end{split}
 	\end{equation}
-	Wybierając teraz $\Delta=(b-a)$ oraz $y=a$ otrzymujemy
+	Wybierając teraz $\Delta=(b-a)$ oraz $s=a$ otrzymujemy
 	\begin{equation}\label{eq:tau_przeskalowane}
-		\tau^x\overset{d}{=}(b-a)^2\inf\left\{t\geqslant0:B^z_t\in[0,1]\right\},
+		\tau^x\overset{d}{=}(b-a)^2\inf\left\{t\geqslant0:B^y_t\in[0,1]\right\}=(b-a)^2\widetilde\tau^y,
 	\end{equation}
-	gdzie $z$ jest "przeskalowaniem" $x$ na odcinek $[0, 1]$.\\
+	gdzie $\widetilde\tau^y$ jest czasem wyjścia z przedziału $[0, 1]$ jeśli zaczniemy z punktu $y=\frac{x-a}{b-a}$, czyli z odcinek dzielącego przedział $[0, 1]$ w stosunku takim samym jak $x$ dzieli odcinek $[a, b]$.\\
+%	gdzie $z$ jest "przeskalowaniem" $x$ na odcinek $[0, 1]$.\\
 	Dzięki tym przekształceniom widzimy, że $\mathbb{E}\tau^x$ zwiększa się z kwadratem długości przedziału jaki rozważamy oraz zależy ona od odległości $x$ od jednego końca przedziału względem drugiego. Z tego powodu później będziemy rozważać jedynie czas wyjścia z przedziału $[0, 1]$.
 	
 	
 	\subsection{Średni czas wyjścia procesu Wienera}
-	\noindent Interesuje nasz średni czas wyjścia procesu w zależności od wybranego $x$. Można pokazać, że $\mathbb{E}\tau^x<\infty$\textsuperscript{\cite{art}}. Wiemy dodatkowo, że średnia w próbie jest dobrym estymatorem wartości oczekiwanej. Dlatego posłużyliśmy się tą metodą do oszacowania wartości oczekiwanej. W wyniku otrzymaliśmy poniższy wykres
+	\noindent Interesuje nasz średni czas wyjścia procesu w zależności od wybranego $x$. Można pokazać, że $\mathbb{E}\tau^x<\infty$\textsuperscript{\cite{art}}. Wiemy dodatkowo, że średnia w próbie jest dobrym estymatorem wartości oczekiwanej. Dlatego posłużyliśmy się tą metodą do oszacowania szukanej wartości. W wyniku otrzymaliśmy poniższy wykres
 	\begin{figure}[H]
 		\includegraphics[width=\columnwidth]{fig/plot/expect_val.pdf}
 		\caption{Oszacowanie średniego czasu wyjścia}
 	\end{figure}
-	\noindent Patrząc na wykres podejrzewaliśmy, że jest on wielomianem. Z pomocą pakietów matematycznych udało nam się dopasować funkcję $-1.0012x^2+1.0012x+0.0016$, która jak widzimy dobrze przybliża otrzymaną krzywą.\\
+	\noindent Patrząc na wykres podejrzewaliśmy, że jest on wielomianem. Z pomocą pakietów matematycznych udało nam się dopasować funkcję $-1.0012x^2+1.0012x+0.0016$, która jak widzimy, dobrze przybliża otrzymaną krzywą.\\
 	Znana jest dokłada wartość wyjścia dla procesu Wienera\textsuperscript{\cite{art}}
 	\begin{equation}
 		\mathbb{E}\mathbb{\tau}=ab,
@@ -286,18 +287,18 @@
 	co zgadza się z wynikami naszej symulacji.
 	
 	\subsection{Prawdopodobieństwo wyjścia przez b}
-	\noindent Chcieliśmy jeszcze sprawdzić jak często wyjście nastąpi przez większą z wartości końców przedziału, czyli
+	\noindent Chcieliśmy jeszcze sprawdzić jak często wyjście nastąpi przez większy z końców przedziału, czyli%większą z wartości końców przedziału, czyli
 	\begin{equation}
 		\mathbb{P}\left(B^x_{\tau^x}=b\right).
 	\end{equation}
 %	Korzystając z własności udowodnionych wcześniej oraz wykorzystując, że zmienna $B^x_{\tau^x}$ ma rozkład dwupunktowy skupiona na $\{a, b\}$, możemy prosto przekształcić to prawdopodobieństwo do postaci
-	Korzystając z własności udowodnionych wcześniej, możemy prosto przekształcić to prawdopodobieństwo do postaci
+	Korzystając z własności udowodnionych wcześniej, przekształciliśmy powyższy wzór do postaci%możemy prosto przekształcić to prawdopodobieństwo do postaci
 	\begin{equation}
-		\mathbb{P}\left(B^y_{\tau^y}=1\right),
+		\mathbb{P}\left(B^y_{\widetilde\tau^y}=1\right),
 	\end{equation}
 	gdzie $\tau^y$ jest czasem wyjścia procesu z przedziału $[0, 1]$. By oszacować to prawdopodobieństwo ponownie skorzystaliśmy z metody Monte Carlo. Niestety generując trajektorię procesu generujemy punkty dyskretne, sprawdzając czy w danym momencie $B^x_t\geqslant b$. Prawdopodobieństwo, że trafimy dokładnie w punkt $b$ jest zatem znikome. Ponieważ $B^x_{\tau^x}$ może przyjmować jedynie dwie wartości, $a$ oraz $b$, możemy przekształcić to prawdopodobieństwo i otrzymać
 	\begin{equation}
-		\mathbb{P}\left(B^x_{\tau^x}=b\right)=\mathbb{P}\left(B^y_{\tau^y}\geqslant1\right).
+		\mathbb{P}\left(B^x_{\tau^x}=b\right)=\mathbb{P}\left(B^y_{\widetilde{\tau}^y}\geqslant1\right).
 	\end{equation}
 	 Wykorzystując powyższy wzór, otrzymaliśmy następujący wykres
 	\begin{figure}[H]
@@ -310,7 +311,7 @@
 	\end{equation}
 	Wynik możemy prosto przekształcić i uzyskać
 	\begin{equation}
-		\mathbb{P}\left(B^x_{\tau^x}=b\right)=\mathbb{P}\left(B^y_{\tau^y}=1\right)=\frac{y}{1-y+y}=y,
+		\mathbb{P}\left(B^x_{\tau^x}=b\right)=\mathbb{P}\left(B^y_{\widetilde\tau^y}=1\right)=\frac{y}{1-y+y}=y,
 	\end{equation}
 	więc wyniki naszej symulacji pokrywają się z rozwiązaniami analitycznymi.
 
