@@ -338,9 +338,9 @@
 		\end{split}
 	\end{equation*}
 	Wybierając teraz $\Delta=(b-a)$ oraz $s=a$ otrzymujemy
-	\begin{equation*}\label{eq:tau_przeskalowane}
+	\begin{equation}\label{eq:tau_przeskalowane}
 		\tau^x\overset{d}{=}(b-a)^2\inf\left\{t\geqslant0:B^y_t\in[0,1]\right\}=(b-a)^2\widetilde\tau^y,
-	\end{equation*}
+	\end{equation}
 	gdzie $\widetilde\tau^y$ jest czasem wyjścia z przedziału $[0, 1]$ jeśli zaczniemy z punktu $y=\frac{x-a}{b-a}$, czyli z punktu dzielącego ten odcinek w stosunku takim samym jak $x$ dzieli odcinek $[a, b]$.\vspace{1.5mm}\\
 	\noindent Dzięki tym przekształceniom widzimy, że $\mathbb{E}\tau^x$ zwiększa się z kwadratem długości przedziału jaki rozważamy oraz zależy ona od odległości $x$ od jednego końca przedziału względem drugiego. Z tego powodu później będziemy rozważać jedynie czas wyjścia z przedziału $[0, 1]$.
 	
@@ -354,7 +354,11 @@
 		\caption{Oszacowanie wartości oczekiwanej czasu wyjścia w zależności od punktu początkowego}
 	\end{figure}
 %	\noindent Patrząc na wykres podejrzewaliśmy, że jest on wielomianem. Z pomocą pakietów matematycznych udało nam się dopasować funkcję $-1,0012y^2+1,0012y+0,0016$, która jak widzimy, dobrze przybliża otrzymaną krzywą.\\
-	\noindent Kształt wykresu mógł sugerować, że funkcja $f(y)=\mathbb{E}\widetilde\tau^y$ jest wielomianem. Z pomocą pakietów matematycznych udało nam się dopasować funkcję $f(y)=-1,0012y^2+1,0012y+0,0016$, która jak widzimy na wykresie, dobrze przybliża otrzymaną krzywą.\vspace{1.5mm}\\
+	\noindent Kształt wykresu mógł sugerować, że funkcja $f(y)=\mathbb{E}\widetilde\tau^y$ jest wielomianem. Z pomocą pakietów matematycznych udało nam się dopasować funkcję 
+	\begin{equation}\label{eq:oszac}
+		f(y)=-1,0012y^2+1,0012y+0,0016,
+	\end{equation}
+	która jak widzimy na wykresie, dobrze przybliża otrzymaną krzywą.\vspace{1.5mm}\\
 	Wartość oczekiwana czasu wyjścia dla standardowego procesu Wienera jest znana\textsuperscript{\cite{art}}
 %	Znana jest dokłada wartość wyjścia dla procesu Wienera\textsuperscript{\cite{art}}
 	\begin{equation*}
@@ -362,9 +366,13 @@
 	\end{equation*}
 	gdzie $\tau$ jest czasem wyjścia z przedziału $[-a, b]$. Stąd, uwzględniając przesunięcie początkowe naszego procesu, otrzymujemy
 	\begin{equation*}
-		\mathbb{E}\widetilde\tau^y=y(1-y),
-	\end{equation*} 
-	co zgadza się z wynikami naszej symulacji.\\
+		\mathbb{E}\widetilde\tau^y=y(1-y).
+	\end{equation*}
+	Stosując niewielkie przybliżenie (do 2-giego miejsca po przecinku) do funkcji \eqref{eq:oszac}, otrzymujemy wartość teoretyczną. Dodatkowo, korzystając teraz z \eqref{eq:tau_przeskalowane} oraz $y=(x-a)/(b-a)$ możemy uogólnić wzór na dowolny przedział $[a, b]$, otrzymując
+	\begin{equation*}
+		\mathbb{E}\tau^x=(b-a)^2\frac{x-a}{b-a}\left(1-\frac{x-a}{b-a}\right)=-(x-b)(x-a)
+	\end{equation*}
+
 %	Wynik otrzymany przez nasz nie różni się bardzo od wyniku analitycznego 
 	
 	\subsection{Prawdopodobieństwo wyjścia przez b}
@@ -419,6 +427,23 @@
 	
 	
 	\section{pod budnik}
+	
+	
+	Połączenie
+	
+%	Chcieliśmy oszacować średni czas wyjścia procesu Wienera z danego przedziału oraz prawdopodobieństwo wyjścia przez dany jego koniec, w zależności od punktu startowego.
+	\noindent Celem drugiego zadania oszacowanie funkcje $x\mapsto\mathbb{E}\tau^x$ oraz $x\mapsto\mathbb{P}\left(B^x_{\tau^x}=b\right)$.
+	Zanim do tego przystąpiliśmy pokazaliśmy, że rozpatrywany przedział mogliśmy wybrać swobodnie oraz sposób jak uogólnić otrzymane wyniki na dowolny inny. Obie funkcje oszacowaliśmy metodą Monte Carlo. W ten sposób otrzymaliśmy szukane funkcje
+	\begin{equation*}
+		\mathbb{E}\tau^x=-(x-b)(x-a)\quad\text{ oraz }\quad\mathbb{P}\left(B^x_{\tau^x}=b\right)=\frac{x-a}{b-a}.
+	\end{equation*}
+	Otrzymane wyniki bardzo dobrze odzwierciedlają wartości teoretyczne.\vspace{1.5mm}\\
+	\noindent Dodatkowo podczas symulacji zauważyliśmy jak ważne jest generowanie procesu Wienera z odpowiednio mały krok czasowy. Wraz ze wzrostem wielkości kroku rósł, średni czas wyjścia procesu. By uzyskać dokładne dane generowaliśmy proces z krokiem $h=10^{-4}$.
+	
+	
+	
+	
+	
 	
 	\newpage
 	\begin{thebibliography}{1}
