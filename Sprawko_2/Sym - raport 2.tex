@@ -90,7 +90,9 @@
 	\end{itemize}
 	Proces ten odgrywa ważną rolę w branży ubezpieczeniowej, ponieważ symulacja tego procesu pozwala oszacować prawdopodobieństwo bankructwa firmy oraz jej średni zysk. Dzięki temu jesteśmy w stanie określić jaka powinna być cena ubezpieczenia, by takie prawdopodobieństwo nie było zbyt wysokie, a zysk zadowalający.\vspace{1.5mm}\\
 	Parametrem odpowiadającym za przychody jest stała $c$. Do odpowiedniego doboru tego parametru wykorzystuje się wzór
-	$$ c = (1 + \theta)\mu\lambda, $$
+	\begin{equation}\label{c}
+		c = (1 + \theta)\mu\lambda
+	\end{equation}
 	gdzie $\theta > 0$ jest parametrem odpowiadającym za wysokość premii.\\
 	
 	\noindent \textbf{Algorytm}
@@ -152,6 +154,9 @@
 
 	
 	\subsubsection{Parametr {\boldmath $\theta$}}
+	\noindent Znając już wszystkie parametry z prosty sposób możemy wyliczyć wartość parametru $\theta$ odpowiadającego za wysokość premii. Przekształcając wzór \eqref{c} dostaniemy
+	$$ \theta = \frac{c}{\mu\lambda} - 1. $$
+	Po podstawieniu wartości otrzymujemy $\theta = 0,256$.
 	
 	
 	
