@@ -111,7 +111,7 @@
 	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[scale=0.1]{fig/trajektorie.png}
+		\includegraphics[scale=0.1]{fig/trajektorie_1.png}
 		\caption{Trajektorie 50 realizacji klasycznego procesu Ryzyka zawartych w danych.}
 	\end{figure}
 	
@@ -123,7 +123,7 @@
 	By wyestymować parametr $\lambda$, skorzystamy z faktu, że dla $\tau \sim \mathcal{E}xp(\lambda)$ wartość oczekiwana jest równa
 	$$ \mathrm{E}\tau = \frac{1}{\lambda}. $$
 	Najlepszym estymatorem wartości oczekiwanej jest średnia z próby. Oznaczmy przez $\tau_1, \dots, \tau_n$ odstępy czasowe pozyskane z naszych danych. Estymatorem $\lambda$ będzie więc
-	$$ \widehat{\lambda} = \frac{1}{\sum\limits_{i=1}^n \tau_i}. $$
+	$$ \widehat{\lambda} = \frac{1}{\frac{1}{n}\sum\limits_{i=1}^n \tau_i} = \frac{n}{\sum\limits_{i=1}^n \tau_i}. $$
 	Po obliczeniu otrzymaliśmy $\widehat{\lambda} \approx 1,48$. Poniżej możemy zobaczyć, że krzywa gęstości teoretycznej rozkładu $\mathcal{E}xp\left(\widehat{\lambda}\right)$ wyraźnie pokrywa się z histogramem z naszych danych.
 	
 	\begin{figure}[H]
@@ -143,20 +143,38 @@
 
 	\noindent Na powyższym histogramie widzimy, że zdecydowana większość danych znajduje się w okolicach 30. Kształt histogramu sugeruje, że mają one rozkład jednostajny. Możemy jednak zauważyć, że pojawia się niewielka ilość odstających większych wartości.
 	
-	\begin{figure}[H]
+	\begin{figure}[H]\label{odstające}
 		\centering
 		\includegraphics[scale=0.1]{fig/straty_2.png}
-		\caption{Unormowany histogram ze strat większych od 40}
+		\caption{Unormowany histogram ze strat większych od 40.}
 	\end{figure}
 
-	\noindent Wspomnianych wartości odstających jest zaledwie 46 na 7358 wszystkich danych. 
+	\noindent Wspomnianych wartości odstających jest zaledwie 46 na 7358 wszystkich danych.
+	
 
 
 	
 	\subsubsection{Parametr {\boldmath $\theta$}}
 	\noindent Znając już wszystkie parametry z prosty sposób możemy wyliczyć wartość parametru $\theta$ odpowiadającego za wysokość premii. Przekształcając wzór \eqref{c} dostaniemy
 	$$ \theta = \frac{c}{\mu\lambda} - 1. $$
-	Po podstawieniu wartości otrzymujemy $\theta = 0,256$.
+	Po podstawieniu wartości otrzymujemy $\theta \approx 0,256$.
+	
+	
+	
+	\subsubsection{Gotowy model}
+	\noindent Po wyznaczeniu wszystkich potrzebnych parametrów i znalezieniu rozkładu strat możemy sprawdzić działanie modelu. Zanim to zrobimy, wyznaczmy średnią procesu. Jest funkcja liniowa postaci
+	\begin{multline*}
+		m(t) = \mathrm{E}R_t = \mathrm{E}\left[u + ct - \sum_{i=1}^{N_t} X_i \right] = u + ct + \mathrm{E}\left[ \mathrm{E}\left[ \sum_{i=1}^{N_t} X_i | N_t \right] \right]\\ = u + ct - \mu\lambda t = u + (1 + \theta)\mu\lambda t - \mu\lambda t = u + \mu\lambda\theta t.
+	\end{multline*}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.1]{fig/trajektorie_2.png}
+		\caption{Wykres 100 trajektorii klasycznego modelu Ryzyka z wyznaczonymi parametrami wraz z jedną trajektorią z danych oraz średnią procesu wyznaczoną analitycznie.}
+		\label{fig:trajektorie2}
+	\end{figure}
+
+	\noindent Jak widzimy na Rys. \ref{fig:trajektorie2}, wysymulowane trajektorie oscylują wokół średniej procesu. Pojedyncza trajektoria pochodząca z danych wydaje się zachowywać podobnie do tych wysymulowanych.
 	
 	
 	
