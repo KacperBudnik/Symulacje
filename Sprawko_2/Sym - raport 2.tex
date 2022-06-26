@@ -55,7 +55,7 @@
 	\subsection{Jednorodny proces Poissona}
 	
 	\noindent Jednorodnym procesem Poissona z intensywnością $\lambda > 0$ nazywamy proces liczący $\{N_t\}_{t \geq 0}$, który spełnia:
-	\begin{itemize}
+	\begin{itemize}[leftmargin=10mm, label={\small$\bullet$}]
 		\item $N_0 = 0$,
 		\item $N_t$ ma niezależne przyrosty,
 		\item $N_t$ ma stacjonarne przyrosty,
@@ -67,7 +67,7 @@
 	Oznacza to, że jeśli chcemy wygenerować jedną trajektorię na przedziale $[0, T]$, to wystarczy generować kolejne $X_i \sim \mathcal{E}xp(\lambda)$, aż ich suma przekroczy $T$.\\
 	
 	\noindent \textbf{Algorytm}
-	\begin{enumerate}
+	\begin{enumerate}[leftmargin=10mm]
 		\item Definiuj $I = 0$, $t=0$.
 		\item Generuj $X \sim \mathcal{E}xp(\lambda)$.
 		\item $t = t + X$. Jeśli $t > T$, przerwij i zwróć $\{S_i\}$. W przeciwnym razie $I = I + 1$, $S_I = t$.
@@ -82,11 +82,11 @@
 	\noindent Klasycznym procesem Ryzyka nazywamy proces stochastyczny opisujący kapitał firmy ubezpieczeniowej postaci
 	$$ R_t = u + ct - \sum_{i=1}^{N_t} X_i, $$
 	gdzie
-	\begin{itemize}[label={\boldmath $\cdot$}]
+	\begin{itemize}[leftmargin=10mm, label={\small$\bullet$}]
 		\item $u > 0$ -- kapitał początkowy,
 		\item $ct$ -- stałe przychody ($c > 0$),
 		\item $N_t$ -- jednorodny proces Poissona z intensywnością $\lambda > 0$,
-		\item $X_i$ -- ciąg niezależnych zmiennych losowych o tym samym rozkładzie opisujący straty, $\mathrm{E}X_i = \mu$, $X_i > 0$.
+		\item $X_i$ -- ciąg niezależnych zmiennych losowych o tym samym rozkładzie opisujący straty, $\mathbb{E}X_i = \mu$, $X_i > 0$.
 	\end{itemize}
 	Proces ten odgrywa ważną rolę w branży ubezpieczeniowej, ponieważ symulacja tego procesu pozwala oszacować prawdopodobieństwo bankructwa firmy oraz jej średni zysk. Dzięki temu jesteśmy w stanie określić jaka powinna być cena ubezpieczenia, by takie prawdopodobieństwo nie było zbyt wysokie, a zysk zadowalający.\vspace{1.5mm}\\
 	Parametrem odpowiadającym za przychody jest stała $c$. Do odpowiedniego doboru tego parametru wykorzystuje się wzór
@@ -96,7 +96,7 @@
 	gdzie $\theta > 0$ jest parametrem odpowiadającym za wysokość premii.\\
 	
 	\noindent \textbf{Algorytm}
-	\begin{enumerate}
+	\begin{enumerate}[leftmargin=10mm]
 		\item Generuj $N_t$ na przedziale $[0, T]$.
 		\item Generuj $X_1, \dots, X_{N_t}$.
 		\item Zwróć $R_t = u + ct - \sum\limits_{i=1}^{N_t} X_i$.
@@ -111,7 +111,7 @@
 	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[scale=0.1]{fig/trajektorie_1.png}
+		\includegraphics[width=\columnwidth]{fig/trajektorie_1.pdf}
 		\caption{Trajektorie 50 realizacji klasycznego procesu Ryzyka zawartych w danych.}
 	\end{figure}
 	
@@ -121,14 +121,14 @@
 	\subsubsection{Parametr {\boldmath $\lambda$}}
 	\noindent W przypadku tego parametru nie jesteśmy w stanie wyznaczyć jego dokładnej wartości, zatem skorzystamy z estymatora. Wykorzystamy fakt, że jeśli proces Poissona ma intensywność $\lambda$, to odstępy czasowe między kolejnymi skokami mają rozkład $\mathcal{E}xp(\lambda)$. Wydzielamy więc wszystkie czasy oczekiwania ze wszystkich trajektorii do jednego zbioru danych. Robimy to sumując wszystkie kroki czasowe następujące po każdym spadku aż do następnego spadku, przy czym dodajemy także ostatni krok spadkowy. Należy zaznaczyć w tym miejscu, że pozwalamy sobie tutaj na pewne uproszczenie, ponieważ przyjmujemy, że spadek miał miejsce dokładnie pod koniec kroku spadkowego, podczas gdy w rzeczywistości miał on miejsce w jego trakcie.\vspace{1.5mm}\\
 	By wyestymować parametr $\lambda$, skorzystamy z faktu, że dla $\tau \sim \mathcal{E}xp(\lambda)$ wartość oczekiwana jest równa
-	$$ \mathrm{E}\tau = \frac{1}{\lambda}. $$
+	$$ \mathbb{E}\tau = \frac{1}{\lambda}. $$
 	Najlepszym estymatorem wartości oczekiwanej jest średnia z próby. Oznaczmy przez $\tau_1, \dots, \tau_n$ odstępy czasowe pozyskane z naszych danych. Estymatorem $\lambda$ będzie więc
 	$$ \widehat{\lambda} = \frac{1}{\frac{1}{n}\sum\limits_{i=1}^n \tau_i} = \frac{n}{\sum\limits_{i=1}^n \tau_i}. $$
 	Po obliczeniu otrzymaliśmy $\widehat{\lambda} \approx 1,48$. Poniżej możemy zobaczyć, że krzywa gęstości teoretycznej rozkładu $\mathcal{E}xp\left(\widehat{\lambda}\right)$ wyraźnie pokrywa się z histogramem z naszych danych.
 	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[scale=0.1]{fig/lambda.png}
+		\includegraphics[width=\columnwidth]{fig/lambda.pdf}
 		\caption{Porównanie unormowanego histogramu z odstępów czasowych pomiędzy skokami z gęstością teoretyczną rozkładu $\mathcal{E}xp\left(\widehat{\lambda}\right)$.}
 	\end{figure}
 	
@@ -137,7 +137,7 @@
 	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[scale=0.1]{fig/straty_1.png}
+		\includegraphics[width=\columnwidth]{fig/straty_1.pdf}
 		\caption{Unormowany histogram ze wszystkich strat pozyskanych z 50 trajektorii.}
 	\end{figure}
 
@@ -162,7 +162,7 @@
 	
 	\begin{figure}[H]\label{odstające}
 		\centering
-		\includegraphics[scale=0.1]{fig/straty_2.png}
+		\includegraphics[width=\columnwidth]{fig/straty_2.pdf}
 		\caption{Unormowany histogram ze strat większych od 40.}
 	\end{figure}
 
@@ -189,12 +189,12 @@
 	\subsubsection{Gotowy model}
 	\noindent Po wyznaczeniu wszystkich potrzebnych parametrów i znalezieniu rozkładu strat możemy sprawdzić działanie modelu. Zanim to zrobimy, wyznaczmy średnią procesu. Jest funkcja liniowa postaci
 	\begin{multline*}
-		m(t) = \mathrm{E}R_t = \mathrm{E}\left[u + ct - \sum_{i=1}^{N_t} X_i \right] = u + ct + \mathrm{E}\left[ \mathrm{E}\left[ \sum_{i=1}^{N_t} X_i | N_t \right] \right]\\ = u + ct - \mu\lambda t = u + (1 + \theta)\mu\lambda t - \mu\lambda t = u + \mu\lambda\theta t.
+		m(t) = \mathbb{E}R_t = \mathbb{E}\left[u + ct - \sum_{i=1}^{N_t} X_i \right] = u + ct + \mathbb{E}\left[ \mathbb{E}\left[ \sum_{i=1}^{N_t} X_i | N_t \right] \right]\\ = u + ct - \mu\lambda t = u + (1 + \theta)\mu\lambda t - \mu\lambda t = u + \mu\lambda\theta t.
 	\end{multline*}
 	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[scale=0.1]{fig/trajektorie_2.png}
+		\includegraphics[width=\columnwidth]{fig/trajektorie_2.pdf}
 		\caption{Wykres 100 trajektorii klasycznego modelu Ryzyka z wyznaczonymi parametrami wraz z jedną trajektorią z danych oraz średnią procesu wyznaczoną analitycznie.}
 		\label{fig:trajektorie2}
 	\end{figure}
