@@ -211,19 +211,24 @@
 		\item $W_{t_{i+1}} = W_{t_{i}}+\sqrt{h}\xi_i,\quad i\in\left[n-1\right]$%\in\mathbb{N}^{n}$.
 	\end{enumerate}
 
-	\subsection{Średni czas wyjścia procesu Wienera}
-	\noindent Niech $\left\{B^x_t\right\}_{t\geqslant0}$ będzie ruchem Browna startującym z $x\in\mathbb{R}$, a $\tau^x$ czasem wyjścia tego procesu z ustalonego przedziału $[a, b]$, czyli
+	\subsection{Czas wyjścia}
+	\noindent Czasem wyjścia tego procesu z ustalonego przedziału $[a, b]$ nazywamy zmienną
+	\begin{equation}
+		\tau=\inf\left\{t\geqslant0:W_t\notin[a, b]\right\}
+	\end{equation}
+	Niech $\left\{B^x_t\right\}_{t\geqslant0}$ będzie ruchem Browna startującym z $x\in\mathbb{R}$. Możemy zdefiniować teraz zmienną 
 	\begin{equation}
 		\tau^x=\inf\left\{t\geqslant0:B^x_t\notin[a, b]\right\}
 	\end{equation}
-	\noindent dla $x$ z przedziału $[a,b]$. Łatwo można pokazać, że $B^{x+y}_t\in[a ,b] \iff B^x_t\in[a-y, b-y]$.
+%	dla $x$ z przedziału $[a,b]$.
+	 Łatwo można pokazać, że $B^{x+y}_t\in[a ,b] \iff B^x_t\in[a-y, b-y]$.
 %	\\Ponieważ $W_t+x\in[a, b] \iff W_t\in[a-x, b-x]$ \\
 %	$B^x_t\in[a,b]\iff B^y_t\in[a-x+y, b-x+y]$\\widzimy, że czas wyjścia nie zależy bezpośrednio od wyboru punktów $a$ oraz $b$, a od punktu początkowego oraz długości przedziału.
 	Dodatkowo, ponieważ ruch Browna jest $\frac{1}{2}$-samopodobny($W_t\overset{d}{=}\sqrt{\Delta}W_{t/\Delta}$), zachodzi
 	\begin{equation}
 		B^x_t=W_t+x\overset{d}{=}\Delta W_{t/\Delta^2}+x = \Delta\left(W_{t/\Delta-\frac{x}{\Delta}}\right)=B^{x/\Delta}_{t/\Delta^2}
 	\end{equation}
-	Korzystając z tych dwóch własności pokażemy, że
+	Korzystając z tych dwóch własności można udowodnić, że
 	\begin{equation}
 		\begin{split}
 			\tau^x&\overset{d}{=}\inf\left\{\Delta^2\frac{t}{\Delta^2}\geqslant0:\Delta B^{x/\Delta}_{t/\Delta^2}\notin[a, b]\right\} =\Delta^2\inf\left\{t^*\geqslant0:B^{x/\Delta}_{t^*}\notin\left[\frac{a}{\Delta},\frac{b}{\Delta}\right]\right\}\\
@@ -234,20 +239,55 @@
 	\begin{equation}\label{eq:tau_przeskalowane}
 		\tau^x\overset{d}{=}(b-a)^2\inf\left\{t\geqslant0:B^z_t\in[0,1]\right\},
 	\end{equation}
-	gdzie $z$ jest "przeskalowanym" $x$ na odcinek $[0, 1]$.\\
+	gdzie $z$ jest "przeskalowaniem" $x$ na odcinek $[0, 1]$.\\
 	Dzięki tym przekształceniom widzimy, że $\mathbb{E}\tau^x$ zwiększa się z kwadratem długości przedziału jaki rozważamy oraz zależy ona od odległości $x$ od jednego końca przedziału względem drugiego. Z tego powodu później będziemy rozważać jedynie czas wyjścia z przedziału $[0, 1]$.
 	
 	
+	\subsection{Średni czas wyjścia procesu Wienera}
+	\noindent Interesuje nasz średni czas wyjścia procesu w zależności od wybranego $x$. Można pokazać, że $\mathbb{E}\tau^x<\infty$\textsuperscript{\cite{art}}. Wiemy dodatkowo, że średnia w próbie jest dobrym estymatorem wartości oczekiwanej. Dlatego posłużyliśmy się tą metodą do oszacowania wartości oczekiwanej. W wyniku otrzymaliśmy poniższy wykres
+	\begin{figure}[H]
+		\includegraphics[width=\columnwidth]{fig/plot/expect_val.pdf}
+		\caption{Oszacowanie średniego czasu wyjścia}
+	\end{figure}
+	\noindent Patrząc na wykres podejrzewaliśmy, że jest on wielomianem. Z pomocą pakietów matematycznych udało nam się dopasować funkcję $-1.0012x^2+1.0012x+0.0016$, która jak widzimy dobrze przybliża otrzymaną krzywą.\\
+	Znana jest dokłada wartość wyjścia dla procesu Wienera\textsuperscript{\cite{art}}
+	\begin{equation}
+		\mathbb{E}\mathbb{\tau}=ab,
+	\end{equation}
+	gdzie $\tau$ jest czasem wyjścia z przedziału $[-a, b]$. Uwzględniając przesunięcie naszego procesu otrzymujemy
+	\begin{equation}
+		\mathbb{E}\tau^x=x(1-x),
+	\end{equation} 
+	co zgadza się z wynikami naszej symulacji.
 	
-	
-%	Naszym celem jest oszacowanie średniego czasu wyjścia procesu Wienera startującego z $x\in\mathbb{R}$, w zależności od wyboru $x$.
-
-
-
-
-
-
-
+	\subsection{Prawdopodobieństwo wyjścia przez b}
+	\noindent Chcieliśmy jeszcze sprawdzić jak często wyjście nastąpi przez większą z wartości końców przedziału, czyli
+	\begin{equation}
+		\mathbb{P}\left(B^x_{\tau^x}=b\right).
+	\end{equation}
+%	Korzystając z własności udowodnionych wcześniej oraz wykorzystując, że zmienna $B^x_{\tau^x}$ ma rozkład dwupunktowy skupiona na $\{a, b\}$, możemy prosto przekształcić to prawdopodobieństwo do postaci
+	Korzystając z własności udowodnionych wcześniej, możemy prosto przekształcić to prawdopodobieństwo do postaci
+	\begin{equation}
+		\mathbb{P}\left(B^y_{\tau^y}=1\right),
+	\end{equation}
+	gdzie $\tau^y$ jest czasem wyjścia procesu z przedziału $[0, 1]$. By oszacować to prawdopodobieństwo ponownie skorzystaliśmy z metody Monte Carlo. Niestety generując trajektorię procesu generujemy punkty dyskretne, sprawdzając czy w danym momencie $B^x_t\geqslant b$. Prawdopodobieństwo, że trafimy dokładnie w punkt $b$ jest zatem znikome. Ponieważ $B^x_{\tau^x}$ może przyjmować jedynie dwie wartości, $a$ oraz $b$, możemy przekształcić to prawdopodobieństwo i otrzymać
+	\begin{equation}
+		\mathbb{P}\left(B^x_{\tau^x}=b\right)=\mathbb{P}\left(B^y_{\tau^y}\geqslant1\right).
+	\end{equation}
+	 Wykorzystując powyższy wzór, otrzymaliśmy następujący wykres
+	\begin{figure}[H]
+		\includegraphics[width=\columnwidth]{fig/plot/prob.pdf}
+		\caption{Prawdopodobieństwo wyjścia przez punkt b.}
+	\end{figure}
+	\noindent Widoczna jest zależność liniowa między punktem początkowym $x$, a szukanym prawdopodobieństwem. Podobnie jak przy wyznaczaniu wartości oczekiwanej, znany jest nam wynik analityczny\textsuperscript{\cite{art}}
+	\begin{equation}
+		\mathbb{P}\left(W_{\tau}=b\right)=\frac{a}{b+a}.
+	\end{equation}
+	Wynik możemy prosto przekształcić i uzyskać
+	\begin{equation}
+		\mathbb{P}\left(B^x_{\tau^x}=b\right)=\mathbb{P}\left(B^y_{\tau^y}=1\right)=\frac{y}{1-y+y}=y,
+	\end{equation}
+	więc wyniki naszej symulacji pokrywają się z rozwiązaniami analitycznymi.
 
 
 
@@ -268,6 +308,9 @@
 	\begin{thebibliography}{1}
 		\bibitem{dane}
 		\url{}
+		
+		\bibitem{art}
+		\url{https://galton.uchicago.edu/~lalley/Courses/313/BrownianMotionCurrent.pdf}
 	\end{thebibliography}
 
 
