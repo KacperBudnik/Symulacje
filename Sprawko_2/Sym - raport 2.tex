@@ -142,7 +142,9 @@
 	\end{figure}
 
 	\noindent Na powyższym histogramie widzimy, że zdecydowana większość danych znajduje się w okolicach 30. Kształt histogramu sugeruje, że mają one rozkład jednostajny. Możemy jednak zauważyć, że pojawia się niewielka ilość odstających większych wartości. Stąd możemy przypuszczać, że jest to kompozycja rozkładów. Zdefiniujmy zatem jej gęstość jako
-	$$ f_X(x) = p_1 f_1(x) + p_2 f_2(x), $$
+	\begin{equation}\label{gęstość_strat}
+		f_X(x) = p_1 f_1(x) + p_2 f_2(x),
+	\end{equation}
 	gdzie $p_1$ i $p_2$ są pewnymi prawdopodobieństwami ($p_1 + p_2 = 1$), a $f_1$ i $f_2$ są gęstościami skomponowanych rozkładów.
 	\vspace{1.5mm}\\
 	Zajmijmy się najpierw znalezieniem rozkładu dominujących danych (o gęstości $f_1$). Jak zostało wspomniane, histogram sugeruje, że mają one rozkład jednostajny. Odseparujemy te wartości definiując zbiór
@@ -164,9 +166,17 @@
 		\caption{Unormowany histogram ze strat większych od 40.}
 	\end{figure}
 
-	\noindent Na powyższym histogramie zauważyć możemy, że dane zachowują się w miarę podobny sposób jak rozkład normalny.
-	
-
+	\noindent Na powyższym histogramie zauważyć możemy, że dane zachowują się w miarę podobny sposób jak rozkład normalny. Przyjmijmy więc, że
+	$$ X \sim \mathcal{N}(m, \sigma^2) \ \ \forall_{X \in K_2}. $$
+	Estymatorami parametrów $m$ i $\sigma^2$ są oczywiście
+	$$ \widehat{m} = \frac{1}{\mathrm{\#}K_2}\sum_{X \in K_2} X \approx 58,5\ , \ \ \ \widehat{\sigma}^2 = \frac{1}{\#K_2 - 1}\sum_{X \in K_2} (X - \widehat{m})^2 \approx 4,88. $$
+	Dla tego rozkładu również przeprowadziliśmy test Kołmogorowa-Smirnowa i otrzymaliśmy p-wartość równą $0,7586$, więc możemy zaakceptować nasze założenie.
+	\vspace{1.5mm}\\
+	Policzmy jeszcze współczynniki $p_1$ i $p_2$ we wzorze \eqref{gęstość_strat}.
+	Możemy je wyestymować w prosty sposób:
+	$$ \widehat{p}_1 = \frac{\#K_1}{\#K_1 + \#K_2} \approx 0,9937\ , \ \ \ \widehat{p}_1 = \frac{\#K_2}{\#K_1 + \#K_2} \approx 0,0063. $$
+	Na koniec znajdźmy wartość parametru $\mu$. Wystarczy, że obliczymy średnią ze wszystkich strat, czyli
+	$$ \widehat{\mu} = \frac{1}{n} \sum_{i=1}^n X_i \approx 30,23. $$
 
 	
 	\subsubsection{Parametr {\boldmath $\theta$}}
