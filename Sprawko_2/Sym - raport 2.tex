@@ -141,7 +141,22 @@
 		\caption{Unormowany histogram ze wszystkich strat pozyskanych z 50 trajektorii.}
 	\end{figure}
 
-	\noindent Na powyższym histogramie widzimy, że zdecydowana większość danych znajduje się w okolicach 30. Kształt histogramu sugeruje, że mają one rozkład jednostajny. Możemy jednak zauważyć, że pojawia się niewielka ilość odstających większych wartości.
+	\noindent Na powyższym histogramie widzimy, że zdecydowana większość danych znajduje się w okolicach 30. Kształt histogramu sugeruje, że mają one rozkład jednostajny. Możemy jednak zauważyć, że pojawia się niewielka ilość odstających większych wartości. Stąd możemy przypuszczać, że jest to kompozycja rozkładów. Zdefiniujmy zatem jej gęstość jako
+	$$ f_X(x) = p_1 f_1(x) + p_2 f_2(x), $$
+	gdzie $p_1$ i $p_2$ są pewnymi prawdopodobieństwami ($p_1 + p_2 = 1$), a $f_1$ i $f_2$ są gęstościami skomponowanych rozkładów.
+	\vspace{1.5mm}\\
+	Zajmijmy się najpierw znalezieniem rozkładu dominujących danych (o gęstości $f_1$). Jak zostało wspomniane, histogram sugeruje, że mają one rozkład jednostajny. Odseparujemy te wartości definiując zbiór
+	$$ K_1 = \left\{ X_i: X_i < 40 \right\}. $$
+	Załóżmy, że dane te pochodzą z rozkładu $\mathcal{U}(a, b)$. Estymatorami parametrów $a$ i $b$ wyznaczonymi metodą Największej Wiarygodności są
+	$$ \widehat{a} = \min(K_1) \approx 23, \ \ \widehat{b} = \max(K_1) \approx 37. $$
+	Skorzystamy z testu Kołmogorowa-Smirnowa w celu weryfikacji hipotezy
+	$$ H_0: X \sim \mathcal{U}(23, 37) \ \ \forall_{X \in K_1}. $$
+	Otrzymaliśmy p-wartość równą $0,2449$, zatem możemy śmiało przyjąć tę hipotezę.
+	\vspace{1.5mm}\\
+	Pozostało nam wyznaczyć rozkład wartości odstających. Ponieważ jest ich zaledwie 46 na 7358 wszystkich danych, to nie jesteśmy w stanie jednoznacznie stwierdzić do jakiego rozkładu one należą. Jednakże, ze względu na tak niewielką ilość, nie jest na tyle istotne, ponieważ wartości te mają marginalny wpływ na całkowity rozkład. Ważne jest, by w naszym modelu z taką samą częstością pojawiały się takie właśnie ekstremalne spadki, a ich wartość była zbliżona do tych, które zawierają dane.
+	\vspace{1.5mm}\\
+	Zdefiniujmy zbiór wartości odstających jako
+	$$ K_2 = \left\{ X_i: X_i > 40 \right\}. $$
 	
 	\begin{figure}[H]\label{odstające}
 		\centering
@@ -149,7 +164,7 @@
 		\caption{Unormowany histogram ze strat większych od 40.}
 	\end{figure}
 
-	\noindent Wspomnianych wartości odstających jest zaledwie 46 na 7358 wszystkich danych.
+	\noindent Na powyższym histogramie zauważyć możemy, że dane zachowują się w miarę podobny sposób jak rozkład normalny.
 	
 
 
