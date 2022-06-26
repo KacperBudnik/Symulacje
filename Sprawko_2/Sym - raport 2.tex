@@ -188,7 +188,7 @@
 	\vspace{1.5mm}\\
 	Policzmy jeszcze współczynniki $p_1$ i $p_2$ we wzorze \eqref{gęstość_strat}.
 	Możemy je wyestymować w prosty sposób:
-	$$ \widehat{p}_1 = \frac{\#K_1}{\#K_1 + \#K_2} \approx 0,9937\ , \ \ \ \widehat{p}_1 = \frac{\#K_2}{\#K_1 + \#K_2} \approx 0,0063. $$
+	$$ \widehat{p}_1 = \frac{\#K_1}{\#K_1 + \#K_2} \approx 0,9937\ , \ \ \ \widehat{p}_2 = \frac{\#K_2}{\#K_1 + \#K_2} \approx 0,0063. $$
 	Na koniec znajdźmy wartość parametru $\mu$. Wystarczy, że obliczymy średnią ze wszystkich strat, czyli
 	$$ \widehat{\mu} = \frac{1}{n} \sum_{i=1}^n X_i \approx 30,23. $$
 
@@ -241,7 +241,7 @@
 	$$ \Psi(u) = \mathbb{P}(\tau(u) < \infty). $$
 	Analityczne wyznaczenie $\Psi(u)$ także nie jest możliwe w naszym przypadku. Nie możemy również skorzystać z metody Monte Carlo, ponieważ czas jest tym razem nieskończony. Posłużymy się więc wzorem Pollaczka-Chinczyna, który wygląda następująco:
 	$$ \Psi(u) = \frac{\theta}{1 + \theta} \sum_{n=0}^{\infty} \left( \frac{1}{1 + \theta} \right)^n B_n(u), $$
-	gdzie $B_n(u) = \mathbb{P}(Y_1 + \dots + Y_n > u)$ i $Y_i$ to zmienne losowe iid o gęstości $f(x) = \frac{1 - F_X(x)}{\mu}$, a $F_X(x)$ jest dystrybuantą rozkładu strat $X_i$. Wykorzystamy pewien fakt wynikający z tego wzoru, a konkretnie to, że
+	gdzie $B_n(u) = \mathbb{P}(Y_1 + \dots + Y_n > u)$ i $Y_i$ to zmienne losowe iid o gęstości \mbox{$f(x) = \frac{1 - F_X(x)}{\mu}$}, $x > 0$, a $F_X(x)$ jest dystrybuantą rozkładu strat $X_i$. Wykorzystamy pewien fakt wynikający z tego wzoru, a konkretnie to, że
 	$$ \Psi(u) = \mathbb{P}(Y_1 + \dots + Y_K > u), $$
 	gdzie $K \sim \mathcal{G}eom \left( \frac{\theta}{1+\theta} \right)$.\\
 	
@@ -249,14 +249,26 @@
 	\begin{enumerate}[leftmargin=10mm]
 		\item Definiuj $Z = 0$.
 		\item Generuj $K \sim \mathcal{G}eom \left( \frac{\theta}{1+\theta} \right)$.
-		\item Generuj $Y_1, \dots, Y_K$ z rozkładu o gęstości $f(x) = \frac{1 - F_X(x)}{\mu}$.
+		\item Generuj $Y_1, \dots, Y_K$ z rozkładu o gęstości $f(x) = \frac{1 - F_X(x)}{\mu}, \ x > 0$.
 		\item Jeśli $Y_1 + \dots + Y_K > u$, to $Z = Z + 1$.
 		\item Kroki 2, 3, 4 powtórz $N$ razy.
 		\item Zwróć $\Psi(u) = \frac{Z}{N}$.
 	\end{enumerate}
-	Po wykonaniu tego algorytmu dla $N = 1000$ powtórzeń, otrzymaliśmy
-	$$ \Psi(50) = .$$
-	
+	Zauważmy, że do tej symulacji potrzebna jest nam gęstość $f(x) = \frac{1 - F_X(x)}{\mu}$. Ponieważ $F_X$, czyli dystrybuanta rozkładu zmiennych $X_i$ jest kompozycją dwóch innych dystrybuant (podobnie jak dla gęstości we wzorze \eqref{gęstość_strat}), w tym dystrybuanty rozkładu normalnego, wyznaczenie gęstości $f$ będzie problematyczne. Wiemy jednak, że współczynnik $p_2$ jest bardzo mały, a więc możemy pozwolić sobie na małe uproszczenie i w symulacji uwzględnić tylko dystrybuantę rozkładu jednostajnego, czyli
+	$$ F_1(x) = \begin{cases}
+		0, & x < 23 \\
+		\frac{x - 23}{14}, & 23 \leq x < 37 \\
+		1, & 37 \leq x
+	\end{cases}. $$
+	Wtedy musimy także przyjąć wartość teoretyczną $\mu$ dla tego rozkładu tzn. $\mu = 30$. Po takim uproszczeniu otrzymamy 
+	$$ f(x) = \begin{cases}
+		0, & x < 0 \\
+		\frac{1}{30}, & 0 \leq x < 23 \\
+		\frac{37 - x}{420}, & 23 \leq x < 37\\
+		0, & 37 \leq x
+		\end{cases}. $$
+	Zmienne o takiej gęstości już o wiele łatwiej wygenerować (np. metodą akceptacji i odrzucenia). Ostatecznie po wykonaniu algorytmu dla $N = 1\ 000\ 000$ powtórzeń, otrzymaliśmy
+	$$ \Psi(50) \approx 0,4206.$$
 	
 	
 	\section{Zadanie 2}
