@@ -82,15 +82,14 @@
 	\noindent Klasycznym procesem Ryzyka nazywamy proces stochastyczny opisujący kapitał firmy ubezpieczeniowej postaci
 	$$ R_t = u + ct - \sum_{i=1}^{N_t} X_i, $$
 	gdzie
-	\begin{itemize}[label=\textbf{.}]
+	\begin{itemize}[label={\boldmath $\cdot$}]
 		\item $u > 0$ -- kapitał początkowy,
 		\item $ct$ -- stałe przychody ($c > 0$),
 		\item $N_t$ -- jednorodny proces Poissona z intensywnością $\lambda > 0$,
 		\item $X_i$ -- ciąg niezależnych zmiennych losowych o tym samym rozkładzie opisujący straty, $\mathrm{E}X_i = \mu$, $X_i > 0$.
 	\end{itemize}
-	Proces ten odgrywa ważną rolę w branży ubezpieczeniowej, ponieważ symulacja tego procesu pozwala oszacować prawdopodobieństwo bankructwa firmy oraz jej średni zysk. Dzięki temu jesteśmy w stanie określić jaka powinna być cena ubezpieczenia, by takie prawdopodobieństwo nie było zbyt wysokie, a zysk zadowalający.\\
-	
-	\noindent Parametrem odpowiadającym za przychody jest stała $c$. Do odpowiedniego doboru tego parametru wykorzystuje się wzór
+	Proces ten odgrywa ważną rolę w branży ubezpieczeniowej, ponieważ symulacja tego procesu pozwala oszacować prawdopodobieństwo bankructwa firmy oraz jej średni zysk. Dzięki temu jesteśmy w stanie określić jaka powinna być cena ubezpieczenia, by takie prawdopodobieństwo nie było zbyt wysokie, a zysk zadowalający.\vspace{1.5mm}\\
+	Parametrem odpowiadającym za przychody jest stała $c$. Do odpowiedniego doboru tego parametru wykorzystuje się wzór
 	$$ c = (1 + \theta)\mu\lambda, $$
 	gdzie $\theta > 0$ jest parametrem odpowiadającym za wysokość premii.\\
 	
@@ -105,14 +104,20 @@
 	
 	\subsection{Dopasowanie modelu do danych}
 	
-	\noindent Zastosujemy teraz proces Ryzyka w praktyce. Postaramy się jak najlepiej dopasować model klasycznego procesu Ryzyka do danych, które zostały nam udostępnione przez prowadzącego zajęcia laboratoryjne. Dane te opisują 50 trajektorii pewnego klasycznego procesu Ryzyka. Naszym celem jest wyznaczenie parametrów tego procesu na podstawie danych, by móc następnie przeprowadzać jego symulacje.\vspace{2mm}\\
+	\noindent Zastosujemy teraz proces Ryzyka w praktyce. Postaramy się jak najlepiej dopasować model klasycznego procesu Ryzyka do danych, które zostały nam udostępnione przez prowadzącego zajęcia laboratoryjne. Dane te opisują 50 trajektorii pewnego klasycznego procesu Ryzyka. Naszym celem jest wyznaczenie parametrów tego procesu na podstawie danych, by móc następnie przeprowadzać jego symulacje.\vspace{1.5mm}\\
 	Badany proces został wysymulowany na odcinku $[0, 100]$ z krokiem czasowym $h = 0,01$. Kapitał początkowy wynosi $u = 50$.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.1]{fig/trajektorie.png}
+		\caption{Trajektorie 50 realizacji klasycznego procesu Ryzyka zawartych w danych.}
+	\end{figure}
 	
 	\subsubsection{Parametr {\boldmath $c$}}
 	\noindent Możemy wyznaczyć go w bardzo prosty sposób. Wiedząc, że jest to współczynnik nachylenia funkcji liniowej $ct$, wystarczy, że policzymy o ile funkcja ta wzrasta w jednym kroku czasowym (obliczymy różnicę dwóch sąsiadujących danych) i wartość tę podzielimy przez długość kroku. Ważne, by upewnić się, czy w danym kroku nie nastąpił spadek. Dla pewności możemy policzyć $c$ dla kilku kroków i sprawdzić, czy otrzymane wartości są identyczne. Wartość, którą otrzymaliśmy z naszych danych to $c = 56,25$.
 	
 	\subsubsection{Parametr {\boldmath $\lambda$}}
-	\noindent W przypadku tego parametru nie jesteśmy w stanie wyznaczyć jego dokładnej wartości, zatem skorzystamy z estymatora. Wykorzystamy fakt, że jeśli proces Poissona ma intensywność $\lambda$, to odstępy czasowe między kolejnymi skokami mają rozkład $\mathcal{E}xp(\lambda)$. Wydzielamy więc wszystkie czasy oczekiwania ze wszystkich trajektorii do jednego zbioru danych. Robimy to sumując wszystkie kroki czasowe następujące po każdym spadku aż do następnego spadku, przy czym dodajemy także ostatni krok spadkowy. Należy zaznaczyć w tym miejscu, że pozwalamy sobie tutaj na pewne uproszczenie, ponieważ przyjmujemy, że spadek miał miejsce dokładnie pod koniec kroku spadkowego, podczas gdy w rzeczywistości miał on miejsce w jego trakcie.\vspace{2mm}\\
+	\noindent W przypadku tego parametru nie jesteśmy w stanie wyznaczyć jego dokładnej wartości, zatem skorzystamy z estymatora. Wykorzystamy fakt, że jeśli proces Poissona ma intensywność $\lambda$, to odstępy czasowe między kolejnymi skokami mają rozkład $\mathcal{E}xp(\lambda)$. Wydzielamy więc wszystkie czasy oczekiwania ze wszystkich trajektorii do jednego zbioru danych. Robimy to sumując wszystkie kroki czasowe następujące po każdym spadku aż do następnego spadku, przy czym dodajemy także ostatni krok spadkowy. Należy zaznaczyć w tym miejscu, że pozwalamy sobie tutaj na pewne uproszczenie, ponieważ przyjmujemy, że spadek miał miejsce dokładnie pod koniec kroku spadkowego, podczas gdy w rzeczywistości miał on miejsce w jego trakcie.\vspace{1.5mm}\\
 	By wyestymować parametr $\lambda$, skorzystamy z faktu, że dla $\tau \sim \mathcal{E}xp(\lambda)$ wartość oczekiwana jest równa
 	$$ \mathrm{E}\tau = \frac{1}{\lambda}. $$
 	Najlepszym estymatorem wartości oczekiwanej jest średnia z próby. Oznaczmy przez $\tau_1, \dots, \tau_n$ odstępy czasowe pozyskane z naszych danych. Estymatorem $\lambda$ będzie więc
@@ -122,10 +127,29 @@
 	\begin{figure}[H]
 		\centering
 		\includegraphics[scale=0.1]{fig/lambda.png}
-		\caption{Porównanie histogramu z odstępów czasowych pomiędzy skokami z gęstością teoretyczną rozkładu $\mathcal{E}xp\left(\widehat{\lambda}\right)$.}
+		\caption{Porównanie unormowanego histogramu z odstępów czasowych pomiędzy skokami z gęstością teoretyczną rozkładu $\mathcal{E}xp\left(\widehat{\lambda}\right)$.}
 	\end{figure}
 	
 	\subsubsection{Straty {\boldmath $X_i$}}
+	\noindent Niezbędną informacją potrzebną do dopasowania modelu do badanego procesu Ryzyka jest rozkład strat $X_i$. Aby pozyskać dane opisujące straty, obliczmy różnicę sąsiadujących danych w każdym kroku spadkowym. Dodatkowo, ponieważ nasze dane opisują trajektorie z dokładnością do kroku czasowego, to należy do otrzymanych wartości dodać jeszcze przyrost z przychodów w tym kroku. W naszym przypadku przyrost ten będzie wynosił $c \cdot h = 0,56625$.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.1]{fig/straty_1.png}
+		\caption{Unormowany histogram ze wszystkich strat pozyskanych z 50 trajektorii.}
+	\end{figure}
+
+	\noindent Na powyższym histogramie widzimy, że zdecydowana większość danych znajduje się w okolicach 30. Kształt histogramu sugeruje, że mają one rozkład jednostajny. Możemy jednak zauważyć, że pojawia się niewielka ilość odstających większych wartości.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.1]{fig/straty_2.png}
+		\caption{Unormowany histogram ze strat większych od 40}
+	\end{figure}
+
+	\noindent Wspomnianych wartości odstających jest zaledwie 46 na 7358 wszystkich danych. 
+
+
 	
 	\subsubsection{Parametr {\boldmath $\theta$}}
 	
