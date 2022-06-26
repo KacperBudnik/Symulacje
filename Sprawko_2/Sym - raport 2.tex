@@ -219,13 +219,29 @@
 		\item Wyznacz $ n = \#\left\{ i = 1,\dots,N: \min\limits_{t \in [0, T]} R_t^{(i)} < 0 \right\} $.
 		\item Zwróć $\Psi(u, T) = \frac{n}{N}$.
 	\end{enumerate}
-	Wygenerowaliśmy więc $N = 100\ 000$ trajektorii na przedziałach $[0, 100]$ i $[0, 200]$, po czym sprawdziliśmy ile z nich spadło w dowolnym momencie poniżej zera. Otrzymaliśmy
-	$$ \Psi(50, 100) \approx , \ \ \ \Psi(50, 200) \approx .$$
+	Wygenerowaliśmy więc $N = 1000$ trajektorii na przedziałach $[0, 100]$ i $[0, 200]$, po czym sprawdziliśmy ile z nich spadło w dowolnym momencie poniżej zera. Otrzymaliśmy
+	$$ \Psi(50, 100) = 0,409 \ , \ \ \ \Psi(50, 200) = 0,459 .$$
 	
 	\subsubsection{Prawdopodobieństwo ruiny w nieskończonym czasie}
 	\noindent Definiujemy prawdopodobieństwo ruiny w nieskończonym czasie jako
 	$$ \Psi(u) = \mathbb{P}(\tau(u) < \infty). $$
+	Analityczne wyznaczenie $\Psi(u)$ także nie jest możliwe w naszym przypadku. Nie możemy również skorzystać z metody Monte Carlo, ponieważ czas jest tym razem nieskończony. Posłużymy się więc wzorem Pollaczka-Chinczyna, który wygląda następująco:
+	$$ \Psi(u) = \frac{\theta}{1 + \theta} \sum_{n=0}^{\infty} \left( \frac{1}{1 + \theta} \right)^n B_n(u), $$
+	gdzie $B_n(u) = \mathbb{P}(Y_1 + \dots + Y_n > u)$ i $Y_i$ to zmienne losowe iid o gęstości $f(x) = \frac{1 - F_X(x)}{\mu}$, a $F_X(x)$ jest dystrybuantą rozkładu strat $X_i$. Wykorzystamy pewien fakt wynikający z tego wzoru, a konkretnie to, że
+	$$ \Psi(u) = \mathbb{P}(Y_1 + \dots + Y_K > u), $$
+	gdzie $K \sim \mathcal{G}eom \left( \frac{\theta}{1+\theta} \right)$.\\
 	
+	\noindent \textbf{Algorytm}
+	\begin{enumerate}[leftmargin=10mm]
+		\item Definiuj $Z = 0$.
+		\item Generuj $K \sim \mathcal{G}eom \left( \frac{\theta}{1+\theta} \right)$.
+		\item Generuj $Y_1, \dots, Y_K$ z rozkładu o gęstości $f(x) = \frac{1 - F_X(x)}{\mu}$.
+		\item Jeśli $Y_1 + \dots + Y_K > u$, to $Z = Z + 1$.
+		\item Kroki 2, 3, 4 powtórz $N$ razy.
+		\item Zwróć $\Psi(u) = \frac{Z}{N}$.
+	\end{enumerate}
+	Po wykonaniu tego algorytmu dla $N = 1000$ powtórzeń, otrzymaliśmy
+	$$ \Psi(50) = .$$
 	
 	
 	
