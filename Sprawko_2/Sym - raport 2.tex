@@ -89,6 +89,12 @@
 	\end{enumerate}
 	Otrzymane z powyższego algorytmu $\{S_i\}$ to czasy oczekiwania na i-ty skok od startu trajektorii.
 	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\columnwidth]{fig/poisson.pdf}
+		\caption{Przykładowa trajektoria procesu Poisson z intensywnością $\lambda = 1$.}
+	\end{figure}
+	
 	
 	
 	\subsection{Klasyczny proces Ryzyka}
@@ -147,7 +153,7 @@
 	\end{figure}
 	
 	\subsubsection{Straty {\boldmath $X_i$}}
-	\noindent Niezbędną informacją potrzebną do dopasowania modelu do badanego procesu Ryzyka jest rozkład strat $X_i$. Aby pozyskać dane opisujące straty, obliczmy różnicę sąsiadujących danych w każdym kroku spadkowym. Dodatkowo, ponieważ nasze dane opisują trajektorie z dokładnością do kroku czasowego, to należy do otrzymanych wartości dodać jeszcze przyrost z przychodów w tym kroku. W naszym przypadku przyrost ten będzie wynosił $c \cdot h = 0,56625$.
+	\noindent Niezbędną informacją potrzebną do dopasowania modelu do badanego procesu Ryzyka jest rozkład strat $X_i$. Aby pozyskać dane opisujące straty, obliczamy różnicę sąsiadujących danych w każdym kroku spadkowym. Dodatkowo, ponieważ nasze dane opisują trajektorie z dokładnością do kroku czasowego, to należy do otrzymanych wartości dodać jeszcze przyrost z przychodów w tym kroku. W naszym przypadku przyrost ten będzie wynosił $c \cdot h = 0,56625$.
 	
 	\begin{figure}[H]
 		\centering
@@ -169,7 +175,7 @@
 	$$ H_0: X \sim \mathcal{U}(23, 37) \ \ \forall_{X \in K_1}. $$
 	Otrzymaliśmy p-wartość równą $0,2449$, zatem możemy śmiało przyjąć tę hipotezę.
 	\vspace{1.5mm}\\
-	Pozostało nam wyznaczyć rozkład wartości odstających. Ponieważ jest ich zaledwie 46 na 7358 wszystkich danych, to nie jesteśmy w stanie jednoznacznie stwierdzić do jakiego rozkładu one należą. Jednakże, ze względu na tak niewielką ilość, nie jest na tyle istotne, ponieważ wartości te mają marginalny wpływ na całkowity rozkład. Ważne jest, by w naszym modelu z taką samą częstością pojawiały się takie właśnie ekstremalne spadki, a ich wartość była zbliżona do tych, które zawierają dane.
+	Pozostało nam wyznaczyć rozkład wartości odstających. Ponieważ jest ich zaledwie 46 na 7358 wszystkich danych, to nie jesteśmy w stanie jednoznacznie stwierdzić do jakiego rozkładu one należą. Jednakże, ze względu na tak niewielką ilość, nie jest to na tyle istotne, ponieważ wartości te mają marginalny wpływ na całkowity rozkład. Ważne jest, by w naszym modelu z taką samą częstością pojawiały się takie właśnie ekstremalne spadki, a ich wartość była zbliżona do tych, które zawierają dane.
 	\vspace{1.5mm}\\
 	Zdefiniujmy zbiór wartości odstających jako
 	$$ K_2 = \left\{ X_i: X_i > 40 \right\}. $$
@@ -213,7 +219,14 @@
 		\label{fig:trajektorie2}
 	\end{figure}
 
-	\noindent Jak widzimy na Rys. \ref{fig:trajektorie2}, wysymulowane trajektorie oscylują wokół średniej procesu. Pojedyncza trajektoria pochodząca z danych wydaje się zachowywać podobnie do tych wysymulowanych.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\columnwidth]{fig/srednia_porownanie.pdf}
+		\caption{Porównanie funkcji średniej $m(t)$ wyznaczonego procesu oraz średniej z trajektorii z danych.}
+		\label{fig:średnia}
+	\end{figure}
+
+	\noindent Jak widzimy na Rys. \ref{fig:trajektorie2}, wysymulowane trajektorie oscylują wokół średniej procesu. Pojedyncza trajektoria pochodząca z danych wydaje się zachowywać podobnie do tych wysymulowanych. Z kolei na Rys. \ref{fig:średnia} można zobaczyć, że funkcja średniej $m(t)$ dla naszego procesu pokrywa się ze średnią z trajektorii, które zawierają dane.
 	
 	
 	
@@ -233,7 +246,7 @@
 		\item Wyznacz $ n = \#\left\{ i = 1,\dots,N: \min\limits_{t \in [0, T]} R_t^{(i)} < 0 \right\} $.
 		\item Zwróć $\Psi(u, T) = \frac{n}{N}$.
 	\end{enumerate}
-	Wygenerowaliśmy więc $N = 1000$ trajektorii na przedziałach $[0, 100]$ i $[0, 200]$, po czym sprawdziliśmy ile z nich spadło w dowolnym momencie poniżej zera. Otrzymaliśmy
+	Wygenerowaliśmy więc $N = 10\ 000$ trajektorii na przedziałach $[0, 100]$ i $[0, 200]$, po czym sprawdziliśmy ile z nich spadło w dowolnym momencie poniżej zera. Otrzymaliśmy
 	$$ \Psi(50, 100) = 0,409 \ , \ \ \ \Psi(50, 200) = 0,4194 .$$
 	
 	\subsubsection{Prawdopodobieństwo ruiny w nieskończonym czasie}
