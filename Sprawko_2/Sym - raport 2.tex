@@ -208,7 +208,7 @@
 	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=\columnwidth]{fig/trajektorie_2.pdf}
+		\includegraphics[width=\columnwidth]{fig/trajektorie_2.png}
 		\caption{Wykres 100 trajektorii klasycznego modelu Ryzyka z wyznaczonymi parametrami wraz z jedną trajektorią z danych oraz średnią procesu wyznaczoną analitycznie.}
 		\label{fig:trajektorie2}
 	\end{figure}
@@ -234,7 +234,7 @@
 		\item Zwróć $\Psi(u, T) = \frac{n}{N}$.
 	\end{enumerate}
 	Wygenerowaliśmy więc $N = 1000$ trajektorii na przedziałach $[0, 100]$ i $[0, 200]$, po czym sprawdziliśmy ile z nich spadło w dowolnym momencie poniżej zera. Otrzymaliśmy
-	$$ \Psi(50, 100) = 0,409 \ , \ \ \ \Psi(50, 200) = 0,459 .$$
+	$$ \Psi(50, 100) = 0,409 \ , \ \ \ \Psi(50, 200) = 0,4194 .$$
 	
 	\subsubsection{Prawdopodobieństwo ruiny w nieskończonym czasie}
 	\noindent Definiujemy prawdopodobieństwo ruiny w nieskończonym czasie jako
@@ -269,6 +269,7 @@
 		\end{cases}. $$
 	Zmienne o takiej gęstości już o wiele łatwiej wygenerować (np. metodą akceptacji i odrzucenia). Ostatecznie po wykonaniu algorytmu dla $N = 1\ 000\ 000$ powtórzeń, otrzymaliśmy
 	$$ \Psi(50) \approx 0,4206.$$
+	Wynik ten może być odrobinę zaniżony przez to, że nie uwzględniliśmy odstających wartości. Mimo to jest on większy od poprzednich prawdopodobieństw dla skończonego czasu, co jest naturalne, ponieważ im więcej czasu minie, tym więcej trajektorii może jeszcze spaść do zera.
 	
 	
 	\section{Zadanie 2}
