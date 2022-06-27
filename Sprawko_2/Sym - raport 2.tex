@@ -30,7 +30,7 @@
 		\begin{center}
 			Imię i Nazwisko,\\ nr indeksu
 		\end{center} &  \begin{center}
-			Kacper Brudnik, 262286\\
+			Kacper Budnik, 262286\\
 			Szymon Malec, 262276
 		\end{center}\\\hline
 		Wydział: & Wydział matematyki, W13 \\\hline
@@ -51,7 +51,7 @@
 		\item Znaleźliśmy rozkład zmiennej losowej $X_i$ oznaczającej wielkość $i$-tej szkody.
 		\item Wyestymowaliśmy pozostałe parametry procesu:
 		\begin{enumerate}[leftmargin=10mm]
-			\item $\lambda$ -- intensywność jednorodnego procesu Poissona;
+			\item $\lambda$ -- intensywność jednorodnego procesu Poissona,
 			\item $\theta$ -- parametr odpowiedzialny za wysokość premii.
 		\end{enumerate}
 		\item Oszacowaliśmy prawdopodobieństwo ruiny dla czasu:
@@ -60,7 +60,7 @@
 			\item nieskończonego przy pomocy algorytmu Pollaczka-Chinczyna.
 		\end{enumerate}
 	\end{itemize}
-	\noindent Drugie zadanie polegało natomiast na oszacowaniu średniego czasu wyjścia ruchu Browna z zadanego przedziału w zależności od punktu startowego. Dodatkowo mieliśmy oszacować prawdopodobieństwo wyjścia przez dany koniec odcinka. Pokazaliśmy, że wybór przedziału może być dowolny i łatwo go uogólnić na dowolny inny przedział. Na koniec, przy pomocy pakietów matematycznych, dopasowaliśmy funkcję do wygenerowanych metodą Monte Carlo danych.
+	\noindent Drugie zadanie polegało natomiast na oszacowaniu średniego czasu wyjścia ruchu Browna z zadanego przedziału w zależności od punktu startowego. Dodatkowo mieliśmy oszacować prawdopodobieństwo wyjścia przez dany koniec odcinka. Na koniec, przy pomocy pakietów matematycznych, dopasowaliśmy funkcję do wygenerowanych metodą Monte Carlo danych.
 	
 	
 	
@@ -239,7 +239,7 @@
 	gdzie $u$ oznacza kapitał początkowy. Prawdopodobieństwo ruiny w skończonym czasie $T$ definiujemy poprzez
 	$$ \Psi(u, T) = \mathbb{P}(\tau(u) < T). $$
 	Prawdopodobieństwo to da się wyznaczyć tylko w przypadku, gdy $X_i$ mają rozkład wykładniczy, co nas nie dotyczy. Skorzystamy więc z symulacji Monte Carlo.\\
-	
+	\newpage
 	\noindent \textbf{Algorytm}
 	\begin{enumerate}[leftmargin=10mm]
 		\item Generuj $N$ trajektorii $R_t^{(1)}, \dots, R_t^{(N)}$ procesu ryzyka na $[0, T]$.
@@ -247,7 +247,7 @@
 		\item Zwróć $\Psi(u, T) = \frac{n}{N}$.
 	\end{enumerate}
 	Wygenerowaliśmy więc $N = 10\ 000$ trajektorii na przedziałach $[0, 100]$ i $[0, 200]$, po czym sprawdziliśmy ile z nich spadło w dowolnym momencie poniżej zera. Otrzymaliśmy
-	$$ \Psi(50, 100) = 0,409 \ , \ \ \ \Psi(50, 200) = 0,4194 .$$
+	$$ \Psi(50, 100) = 0,4091 \ , \ \ \ \Psi(50, 200) = 0,4194 .$$
 	
 	\subsubsection{Prawdopodobieństwo ruiny w nieskończonym czasie}
 	\noindent Definiujemy prawdopodobieństwo ruiny w nieskończonym czasie jako
@@ -301,7 +301,7 @@
 %		t_i=ih, \quad i=0,1,\dots,n, \quad h=T/n
 %	\end{equation*}
 	\begin{equation*}
-		t_i=ih, \quad i\in\left[n\right]=\left\{0, 1, \dots, n\right\}, \quad h=T/n
+		t_i=ih, \quad i\in\left[n\right]=\left\{0, 1, \dots, n\right\}, \quad h=T/n.
 	\end{equation*}
 %	\begin{equation*}
 %		t_i=ih, \quad i\in\mathbb{N}_0^{\leqslant n}, \quad h=T/n.
@@ -310,7 +310,7 @@
 	\begin{enumerate}[leftmargin=10mm]
 		\item Generuj realizację zmiennych $\xi_i\text{ iid. }\mathcal{N}(0,1), \,i\in\left[n-1\right]$,
 		\item $W_{t_0}=W\left(0\right)=0$,
-		\item $W_{t_{i+1}} = W_{t_{i}}+\sqrt{h}\xi_i,\quad i\in\left[n-1\right]$%\in\mathbb{N}^{n}$.
+		\item $W_{t_{i+1}} = W_{t_{i}}+\sqrt{h}\xi_i,\quad i\in\left[n-1\right].$%\in\mathbb{N}^{n}$.
 	\end{enumerate}
 
 	\subsection{Czas wyjścia}
@@ -341,17 +341,17 @@
 	\begin{equation}\label{eq:tau_przeskalowane}
 		\tau^x\overset{d}{=}(b-a)^2\inf\left\{t\geqslant0:B^y_t\in[0,1]\right\}=(b-a)^2\widetilde\tau^y,
 	\end{equation}
-	gdzie $\widetilde\tau^y$ jest czasem wyjścia z przedziału $[0, 1]$ jeśli zaczniemy z punktu $y=\frac{x-a}{b-a}$, czyli z punktu dzielącego ten odcinek w stosunku takim samym jak $x$ dzieli odcinek $[a, b]$.\vspace{1.5mm}\\
+	gdzie $\widetilde\tau^y$ jest czasem wyjścia z przedziału $[0, 1]$, jeśli zaczniemy z punktu $y=\frac{x-a}{b-a}$, czyli z punktu dzielącego ten odcinek w stosunku takim samym jak $x$ dzieli odcinek $[a, b]$.\vspace{1.5mm}\\
 	\noindent Dzięki tym przekształceniom widzimy, że $\mathbb{E}\tau^x$ zwiększa się z kwadratem długości przedziału jaki rozważamy oraz zależy ona od odległości $x$ od jednego końca przedziału względem drugiego. Z tego powodu później będziemy rozważać jedynie czas wyjścia z przedziału $[0, 1]$.
 	
 	
 	\subsection{Średni czas wyjścia procesu Wienera}
 %	\noindent Interesuje nasz średni czas wyjścia procesu w zależności od wybranego $x$. Można pokazać, że $\mathbb{E}\tau^x<\infty$\textsuperscript{\cite{art}}. Wiemy dodatkowo, że średnia w próbie jest dobrym estymatorem wartości oczekiwanej. Dlatego posłużyliśmy się tą metodą do oszacowania szukanej wartości. W wyniku otrzymaliśmy poniższy wykres
-	\noindent Interesuje nasz średni czas wyjścia procesu Weinera w zależności od wybranego punktu startowego $x$. Tą wielkość oszacowaliśmy poprzez obliczenie średniej w wygenerowanej przez nas próbie. Metoda jest poprawna, ponieważ średnia w próbie jest dobrym estymatorem wartości oczekiwanej oraz można udowodnić, że $\mathbb{E}\tau^x<\infty$\textsuperscript{\cite{art}}. W wyniku symulacji otrzymaliśmy poniższy wykres
+	\noindent Interesuje nasz średni czas wyjścia procesu Wienera w zależności od wybranego punktu startowego $x$. Tą wielkość oszacowaliśmy poprzez obliczenie średniej w wygenerowanej przez nas próbie. Metoda jest poprawna, ponieważ średnia w próbie jest dobrym estymatorem wartości oczekiwanej oraz można udowodnić, że $\mathbb{E}\tau^x<\infty$\textsuperscript{\cite{art}}. W wyniku symulacji otrzymaliśmy poniższy wykres.
 %	 W wyniku otrzymaliśmy poniższy wykres
 	\begin{figure}[H]
 		\includegraphics[width=\columnwidth]{fig/plot/expect_val.pdf}
-		\caption{Oszacowanie wartości oczekiwanej czasu wyjścia w zależności od punktu początkowego}
+		\caption{Oszacowanie wartości oczekiwanej czasu wyjścia w zależności od punktu początkowego.}
 	\end{figure}
 %	\noindent Patrząc na wykres podejrzewaliśmy, że jest on wielomianem. Z pomocą pakietów matematycznych udało nam się dopasować funkcję $-1,0012y^2+1,0012y+0,0016$, która jak widzimy, dobrze przybliża otrzymaną krzywą.\\
 	\noindent Kształt wykresu mógł sugerować, że funkcja $f(y)=\mathbb{E}\widetilde\tau^y$ jest wielomianem. Z pomocą pakietów matematycznych udało nam się dopasować funkcję 
@@ -370,13 +370,13 @@
 	\end{equation*}
 	Stosując niewielkie przybliżenie (do 2-giego miejsca po przecinku) do funkcji \eqref{eq:oszac}, otrzymujemy wartość teoretyczną. Dodatkowo, korzystając teraz z \eqref{eq:tau_przeskalowane} oraz $y=(x-a)/(b-a)$ możemy uogólnić wzór na dowolny przedział $[a, b]$, otrzymując
 	\begin{equation*}
-		\mathbb{E}\tau^x=(b-a)^2\frac{x-a}{b-a}\left(1-\frac{x-a}{b-a}\right)=-(x-b)(x-a)
+		\mathbb{E}\tau^x=(b-a)^2\frac{x-a}{b-a}\left(1-\frac{x-a}{b-a}\right)=-(x-b)(x-a).
 	\end{equation*}
 
 %	Wynik otrzymany przez nasz nie różni się bardzo od wyniku analitycznego 
 	
 	\subsection{Prawdopodobieństwo wyjścia przez b}
-	\noindent Chcieliśmy jeszcze sprawdzić jak często wyjście nastąpi przez większy z końców przedziału, czyli%większą z wartości końców przedziału, czyli
+	\noindent Chcieliśmy jeszcze sprawdzić, jak często wyjście nastąpi przez większy z końców przedziału, czyli%większą z wartości końców przedziału, czyli
 	\begin{equation*}
 		\mathbb{P}\left(B^x_{\tau^x}=b\right).
 	\end{equation*}
@@ -385,7 +385,7 @@
 	\begin{equation*}
 		\mathbb{P}\left(B^y_{\widetilde\tau^y}=1\right),
 	\end{equation*}
-	gdzie $\widetilde\tau^y$ jest czasem wyjścia procesu z przedziału $[0, 1]$. By oszacować to prawdopodobieństwo ponownie skorzystaliśmy z metody Monte Carlo. Niestety generując trajektorię procesu generujemy punkty dyskretne, sprawdzając czy w danym momencie $B^x_t\geqslant b$. Prawdopodobieństwo, że trafimy dokładnie w punkt $b$ jest zatem znikome. Ponieważ $B^x_{\tau^x}$ może przyjmować jedynie dwie wartości, $a$ oraz $b$ ($b>a$), możemy przekształcić to prawdopodobieństwo, otrzymując
+	gdzie $\widetilde\tau^y$ jest czasem wyjścia procesu z przedziału $[0, 1]$. By oszacować to prawdopodobieństwo, ponownie skorzystaliśmy z metody Monte Carlo. Niestety generując trajektorię procesu generujemy punkty dyskretne, sprawdzając czy w danym momencie $B^x_t\geqslant b$. Prawdopodobieństwo, że trafimy dokładnie w punkt $b$ jest zatem znikome. Ponieważ $B^x_{\tau^x}$ może przyjmować jedynie dwie wartości, $a$ oraz $b$ ($b>a$), możemy przekształcić to prawdopodobieństwo, otrzymując
 	\begin{equation}\label{eq:dyskretyzaction}
 		\mathbb{P}\left(B^x_{\tau^x}=b\right)=\mathbb{P}\left(B^y_{\widetilde{\tau}^y}\geqslant1\right).
 	\end{equation}
@@ -398,7 +398,7 @@
 	\begin{equation}\label{eq:zad2_res}
 		\mathbb{P}\left(B^x_{{\tau}^x}= b\right)=\frac{x-a}{b-a}.
 	\end{equation}
-	Podobnie jak przy wyznaczaniu wartości oczekiwanej, znany jest nam wynik analityczny\textsuperscript{\cite{art}} dla procesu Weinera startującego w 0
+	Podobnie jak przy wyznaczaniu wartości oczekiwanej, znany jest nam wynik analityczny\textsuperscript{\cite{art}} dla procesu Wienera startującego w 0
 	\begin{equation*}
 		\mathbb{P}\left(W_{\tau}=b\right)=\frac{a}{b+a},
 	\end{equation*}
@@ -424,12 +424,12 @@
 	\section{Podsumowanie}
 	\noindent W zadaniu 1, korzystając z różnych metod statystycznych, udało nam się dopasować model klasycznego procesu Ryzyka do danych, co potwierdziło między innymi porównanie funkcji średniej procesu ze średnią z trajektorii z danych. Następnie wykorzystaliśmy wyznaczony model do oszacowania prawdopodobieństwa ruiny. Dokonaliśmy tego korzystając z metody Monte Carlo, a w przypadku nieskończonego czasu, ogromnie przydatny okazał się wzór Pollaczka-Chinczyna. Zgodnie z intuicją okazało się, że wraz ze zwiększaniem czasu, prawdopodobieństwo ruiny rośnie, jednak nie może przekroczyć tego dla nieskończonego czasu.\vspace{1.5mm}\\
 	\noindent Celem drugiego zadania było oszacowanie dwóch funkcji.
-	Zanim do tego przystąpiliśmy pokazaliśmy, że rozpatrywany przedział mogliśmy wybrać swobodnie. W prosty sposób można uogólnić otrzymane wyniki na dowolny inny przedział. Obie funkcje oszacowaliśmy metodą Monte Carlo. W ten sposób otrzymaliśmy szukane funkcje
+	Zanim do tego przystąpiliśmy, pokazaliśmy, że rozpatrywany przedział mogliśmy wybrać swobodnie. W prosty sposób można uogólnić otrzymane wyniki na dowolny inny przedział. Obie funkcje oszacowaliśmy metodą Monte Carlo. W ten sposób otrzymaliśmy szukane funkcje
 	\begin{equation*}
 		\mathbb{E}\tau^x=-(x-b)(x-a)\quad\text{ oraz }\quad\mathbb{P}\left(B^x_{\tau^x}=b\right)=\frac{x-a}{b-a}.
 	\end{equation*}
 	Otrzymane wyniki bardzo dobrze odzwierciedlają wartości teoretyczne.\vspace{1.5mm}\\
-	\noindent Dodatkowo podczas symulacji zauważyliśmy jak ważne jest generowanie procesu Wienera z odpowiednio mały krok czasowy. Wraz ze wzrostem wielkości kroku rósł, średni czas wyjścia procesu. By uzyskać dokładne dane generowaliśmy proces z krokiem $h=10^{-4}$.
+	\noindent Dodatkowo podczas symulacji zauważyliśmy, jak ważne jest generowanie procesu Wienera z odpowiednio małym krokiem czasowym. Wraz ze wzrostem wielkości kroku, rósł średni czas wyjścia procesu. By uzyskać dokładne dane, generowaliśmy proces z krokiem $h=10^{-4}$.
 	
 	
 	
