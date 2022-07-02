@@ -1,0 +1,47 @@
+Algorytm
+1. Generuj $V\sim \mathcal{U}\left(-\frac{\pi}{2},\frac{\pi}{2}\right)$
+1. Generuj $W\sim \mathcal{E}xp\left(1\right)$
+1. Wstaw
+    2. dla $\alpha \neq 1$
+    $$ X=S_{\alpha,\beta}\frac{\sin\left\{\alpha\left(V+B_{\alpha,\beta}\right)\right\}}{\left\{\cos\left(V\right)\right\}^{1/\alpha}}\left[ \frac{\cos\left\{V-\alpha\left(V+B_{\alpha,\beta}\right)\right\}}{W} \right]^{\left(1-\alpha\right)/\alpha},$$
+    gdzie
+       $$B_{\alpha,\beta}=\frac{\arctan\left(\beta\tan\frac{\pi\alpha}{2}\right)}{\alpha},$$
+       $$ S_{\alpha,\beta} = \left\{1+\beta^2\tan^2\left(\frac{\pi\alpha}{2}\right)\right)^{1/(2\alpha)};$$
+    2. dla $\alpha = 1$ 
+    $$ X = \frac{2}{\pi}\left\{\left(\frac{\pi}{2}+\beta V\right)\tan V-\beta\ln\left(\frac{\frac{\pi}{2}W\cos V}{\frac{\pi}{2}+\beta V}\right)\right\}$$
+
+
+
+
+
+
+
+
+
+Jeśli chcemy obliczyć $Y\sim S_\alpha(\sigma,\beta,\mu)$ wstawiamy
+$$
+Y=\begin{align}
+\begin{cases}
+\sigma X+\mu&\alpha\neq1\\
+\sigma X + \frac{2}{\pi}\beta\sigma\ln\sigma+\mu&\alpha = 1\\
+\end{cases}
+\end{align}
+$$
+
+
+
+
+$$
+Z=\begin{align}
+\begin{cases}
+\Delta_t^{1/\alpha}\dfrac{\sin\left(\alpha V\right)}{\left(\cos V\right)^{1/\alpha}}\left[ \dfrac{\cos\left\{\left(1-\alpha\right)V\right\}}{W} \right]^{\left(1-\alpha\right)/\alpha}
+&\alpha\neq 1\\
+\\
+\Delta_t^{1/\alpha}\tan V
+&\alpha=1\\
+\end{cases}
+\end{align}
+$$
+
+
+
