@@ -6,6 +6,6 @@
 *checkpoint.ipynb
 Sprawko_1/.vscode/settings.json
 Sprawko_2/.vscode/settings.json
-
+**/jl/
 !**/fig/**
 !**/plot/**
