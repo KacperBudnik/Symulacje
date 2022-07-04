@@ -8,8 +8,9 @@
 
 %\usepackage[margin=20mm, left=30mm]{geometry}
 
-\usepackage{newtxtext}
-\usepackage{newtxmath}
+%\usepackage{newtxtext}
+%\usepackage{newtxmath}
+\usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{bm}
 \usepackage{mathtools}
@@ -36,6 +37,7 @@
 
 \renewcommand{\thesection}{\arabic{section}}
 \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\usepackage{wrapfig}
 
 
 \begin{document}
@@ -71,199 +73,119 @@
 	
 	\newpage
 	
-	
-%	\section{Wstęp}
-%	\noindent Drugi raport z symulacji komputerowych został podzielony na dwa zadania. Celem pierwszego z nich było dopasowanie modelu Ryzyka do otrzymanych danych oraz oszacowanie prawdopodobieństwa ruiny w skończonym i nieskończonym czasie. W tym celu:
-%	\begin{itemize}[leftmargin=10mm, label=\small$\bullet$]
-%		\item Znaleźliśmy rozkład zmiennej losowej $X_i$ oznaczającej wielkość $i$-tej szkody.
-%		\item Wyestymowaliśmy pozostałe parametry procesu:
-%		\begin{enumerate}[leftmargin=10mm]
-%			\item $\lambda$ -- intensywność jednorodnego procesu Poissona,
-%			\item $\theta$ -- parametr odpowiedzialny za wysokość premii.
-%		\end{enumerate}
-%		\item Oszacowaliśmy prawdopodobieństwo ruiny dla czasu:
-%		\begin{enumerate}[leftmargin=10mm]
-%			\item skończonego przy pomocy metody Monte Carlo,
-%			\item nieskończonego przy pomocy algorytmu Pollaczka-Chinczyna.
-%		\end{enumerate}
-%	\end{itemize}
-%	\noindent Drugie zadanie polegało natomiast na oszacowaniu średniego czasu wyjścia ruchu Browna z zadanego przedziału w zależności od punktu startowego. Dodatkowo mieliśmy oszacować prawdopodobieństwo wyjścia przez dany koniec odcinka. Na koniec, przy pomocy pakietów matematycznych, dopasowaliśmy funkcję do wygenerowanych metodą Monte Carlo danych.
 
-	
-	\section{Zadanie 2}
-	\subsection{Proces Wienera}
-	\noindent Procesem Wienera (Ruchem Browna) nazywamy proces $\{W_t\}_{t\geqslant0}$, który spełnia następujące własności:
-	\begin{itemize}[leftmargin=10mm, label=\small$\bullet$]%label=$\boldsymbol{\cdot}$]
-		\item $W_0=0$,
-		\item $W_t$ ma niezależne przyrosty,
-		\item $W_t$ ma stacjonarne przyrosty,
-		\item $W_t \sim \mathcal{N}(0, t)$,
-		\item $W_t$ ma ciągłe trajektorie.
-	\end{itemize}	
-	\noindent \textbf{Algorytm}\\
-	\noindent Naszym celem jest wygenerowanie wektora $\left[W_{t_0}, W_{t_1}, \dots, W_{t_n}\right]$, gdzie
-%	\begin{equation*}
-%		t_i=ih, \quad i=0,1,\dots,n, \quad h=T/n
-%	\end{equation*}
-	\begin{equation*}
-		t_i=ih, \quad i\in\left[n\right]=\left\{0, 1, \dots, n\right\}, \quad h=T/n.
-	\end{equation*}
-%	\begin{equation*}
-%		t_i=ih, \quad i\in\mathbb{N}_0^{\leqslant n}, \quad h=T/n.
-%	\end{equation*}
-	W tym celu stosujemy poniższy algorytm
-	\begin{enumerate}[leftmargin=10mm]
-		\item Generuj realizację zmiennych $\xi_i\text{ iid. }\mathcal{N}(0,1), \,i\in\left[n-1\right]$,
-		\item $W_{t_0}=W\left(0\right)=0$,
-		\item $W_{t_{i+1}} = W_{t_{i}}+\sqrt{h}\xi_i,\quad i\in\left[n-1\right].$%\in\mathbb{N}^{n}$.
-	\end{enumerate}
-
-	\subsection{Czas wyjścia}
-	\noindent Czasem wyjścia tego procesu z ustalonego przedziału $[a, b]$ nazywamy zmienną
-	\begin{equation*}
-		\tau=\inf\left\{t\geqslant0:W_t\notin[a, b]\right\}.
-	\end{equation*}
-	Niech $\left\{B^x_t\right\}_{t\geqslant0}$ będzie ruchem Browna startującym z $x\in\mathbb{R}$. Zdefiniujmy teraz zmienną 
-	\begin{equation*}
-		\tau^x=\inf\left\{t\geqslant0:B^x_t\notin[a, b]\right\}.
-	\end{equation*}
-%	dla $x$ z przedziału $[a,b]$.
-	 Łatwo można pokazać, że $B^{x+y}_t\in[a ,b] \iff B^x_t\in[a-y, b-y]$.
-%	\\Ponieważ $W_t+x\in[a, b] \iff W_t\in[a-x, b-x]$ \\
-%	$B^x_t\in[a,b]\iff B^y_t\in[a-x+y, b-x+y]$\\widzimy, że czas wyjścia nie zależy bezpośrednio od wyboru punktów $a$ oraz $b$, a od punktu początkowego oraz długości przedziału.
-	Dodatkowo, ponieważ ruch Browna jest $\frac{1}{2}$-samopodobny ($W_t\overset{d}{=}\sqrt{\Delta}W_{t/\Delta}$), zachodzi równość
-	\begin{equation*}
-		B^x_t=W_t+x\overset{d}{=}\Delta W_{t/\Delta^2}+x = \Delta\left(W_{t/\Delta}-\frac{x}{\Delta}\right)=\Delta B^{x/\Delta}_{t/\Delta^2}.
-	\end{equation*}
-	Korzystając z tych dwóch własności można udowodnić, że
-	\begin{equation*}
-		\begin{split}
-			\tau^x&\overset{d}{=}\inf\left\{\Delta^2\frac{t}{\Delta^2}\geqslant0:\Delta B^{x/\Delta}_{t/\Delta^2}\notin[a, b]\right\} =\Delta^2\inf\left\{t^*\geqslant0:B^{x/\Delta}_{t^*}\notin\left[\frac{a}{\Delta},\frac{b}{\Delta}\right]\right\}\\
-			&=\Delta^2\inf\left\{t^*\geqslant0:B^{(x-s)/\Delta}_{t^*}\notin\left[\frac{a-s}{\Delta},\frac{b-s}{\Delta}\right]\right\}.
-		\end{split}
-	\end{equation*}
-	Wybierając teraz $\Delta=(b-a)$ oraz $s=a$ otrzymujemy
-	\begin{equation}\label{eq:tau_przeskalowane}
-		\tau^x\overset{d}{=}(b-a)^2\inf\left\{t\geqslant0:B^y_t\in[0,1]\right\}=(b-a)^2\widetilde\tau^y,
-	\end{equation}
-	gdzie $\widetilde\tau^y$ jest czasem wyjścia z przedziału $[0, 1]$, jeśli zaczniemy z punktu $y=\frac{x-a}{b-a}$, czyli z punktu dzielącego ten odcinek w stosunku takim samym jak $x$ dzieli odcinek $[a, b]$.\vspace{1.5mm}\\
-	\noindent Dzięki tym przekształceniom widzimy, że $\mathbb{E}\tau^x$ zwiększa się z kwadratem długości przedziału jaki rozważamy oraz zależy ona od odległości $x$ od jednego końca przedziału względem drugiego. Z tego powodu później będziemy rozważać jedynie czas wyjścia z przedziału $[0, 1]$.
-	
-	
-%	\subsection{Średni czas wyjścia procesu Wienera}
-%%	\noindent Interesuje nasz średni czas wyjścia procesu w zależności od wybranego $x$. Można pokazać, że $\mathbb{E}\tau^x<\infty$\textsuperscript{\cite{art}}. Wiemy dodatkowo, że średnia w próbie jest dobrym estymatorem wartości oczekiwanej. Dlatego posłużyliśmy się tą metodą do oszacowania szukanej wartości. W wyniku otrzymaliśmy poniższy wykres
-%	\noindent Interesuje nasz średni czas wyjścia procesu Wienera w zależności od wybranego punktu startowego $x$. Tą wielkość oszacowaliśmy poprzez obliczenie średniej w wygenerowanej przez nas próbie. Metoda jest poprawna, ponieważ średnia w próbie jest dobrym estymatorem wartości oczekiwanej oraz można udowodnić, że $\mathbb{E}\tau^x<\infty$\textsuperscript{\cite{art}}. W wyniku symulacji otrzymaliśmy poniższy wykres.
-%%	 W wyniku otrzymaliśmy poniższy wykres
-%	\begin{figure}[H]
-%		\includegraphics[width=\columnwidth]{fig/plot/expect_val.pdf}
-%		\caption{Oszacowanie wartości oczekiwanej czasu wyjścia w zależności od punktu początkowego.}
-%	\end{figure}
-%%	\noindent Patrząc na wykres podejrzewaliśmy, że jest on wielomianem. Z pomocą pakietów matematycznych udało nam się dopasować funkcję $-1,0012y^2+1,0012y+0,0016$, która jak widzimy, dobrze przybliża otrzymaną krzywą.\\
-%	\noindent Kształt wykresu mógł sugerować, że funkcja $f(y)=\mathbb{E}\widetilde\tau^y$ jest wielomianem. Z pomocą pakietów matematycznych udało nam się dopasować funkcję 
-%	\begin{equation}\label{eq:oszac}
-%		f(y)=-1,0012y^2+1,0012y+0,0016,
-%	\end{equation}
-%	która jak widzimy na wykresie, dobrze przybliża otrzymaną krzywą.\vspace{1.5mm}\\
-%	Wartość oczekiwana czasu wyjścia dla standardowego procesu Wienera jest znana\textsuperscript{\cite{art}}
-%%	Znana jest dokłada wartość wyjścia dla procesu Wienera\textsuperscript{\cite{art}}
-%	\begin{equation*}
-%		\mathbb{E}\mathbb{\tau}=ab,
-%	\end{equation*}
-%	gdzie $\tau$ jest czasem wyjścia z przedziału $[-a, b]$. Stąd, uwzględniając przesunięcie początkowe naszego procesu, otrzymujemy
-%	\begin{equation*}
-%		\mathbb{E}\widetilde\tau^y=y(1-y).
-%	\end{equation*}
-%	Stosując niewielkie przybliżenie (do 2-giego miejsca po przecinku) do funkcji \eqref{eq:oszac}, otrzymujemy wartość teoretyczną. Dodatkowo, korzystając teraz z \eqref{eq:tau_przeskalowane} oraz $y=(x-a)/(b-a)$ możemy uogólnić wzór na dowolny przedział $[a, b]$, otrzymując
-%	\begin{equation*}
-%		\mathbb{E}\tau^x=(b-a)^2\frac{x-a}{b-a}\left(1-\frac{x-a}{b-a}\right)=-(x-b)(x-a).
-%	\end{equation*}
-%
-%%	Wynik otrzymany przez nasz nie różni się bardzo od wyniku analitycznego 
-%	
-%	\subsection{Prawdopodobieństwo wyjścia przez b}
-%	\noindent Chcieliśmy jeszcze sprawdzić, jak często wyjście nastąpi przez większy z końców przedziału, czyli%większą z wartości końców przedziału, czyli
-%	\begin{equation*}
-%		\mathbb{P}\left(B^x_{\tau^x}=b\right).
-%	\end{equation*}
-%%	Korzystając z własności udowodnionych wcześniej oraz wykorzystując, że zmienna $B^x_{\tau^x}$ ma rozkład dwupunktowy skupiona na $\{a, b\}$, możemy prosto przekształcić to prawdopodobieństwo do postaci
-%	Korzystając z własności udowodnionych wcześniej, przekształciliśmy powyższy wzór do postaci%możemy prosto przekształcić to prawdopodobieństwo do postaci
-%	\begin{equation*}
-%		\mathbb{P}\left(B^y_{\widetilde\tau^y}=1\right),
-%	\end{equation*}
-%	gdzie $\widetilde\tau^y$ jest czasem wyjścia procesu z przedziału $[0, 1]$. By oszacować to prawdopodobieństwo, ponownie skorzystaliśmy z metody Monte Carlo. Niestety generując trajektorię procesu generujemy punkty dyskretne, sprawdzając czy w danym momencie $B^x_t\geqslant b$. Prawdopodobieństwo, że trafimy dokładnie w punkt $b$ jest zatem znikome. Ponieważ $B^x_{\tau^x}$ może przyjmować jedynie dwie wartości, $a$ oraz $b$ ($b>a$), możemy przekształcić to prawdopodobieństwo, otrzymując
-%	\begin{equation}\label{eq:dyskretyzaction}
-%		\mathbb{P}\left(B^x_{\tau^x}=b\right)=\mathbb{P}\left(B^y_{\widetilde{\tau}^y}\geqslant1\right).
-%	\end{equation}
-%	 Wykorzystując powyższy wzór, byliśmy w stanie wygenerować poniższy wykres.
-%	\begin{figure}[H]
-%		\includegraphics[width=\columnwidth]{fig/plot/prob.pdf}
-%		\caption{Prawdopodobieństwo wyjścia przez punkt 1.}
-%	\end{figure}
-%	\noindent Na wykresie widoczna jest zależność liniowa $\mathbb{P}\left(B^y_{\widetilde{\tau}^y}\geqslant1\right) = y$ dla $y\in[0, 1]$. Korzystając z równości \eqref{eq:dyskretyzaction} oraz $y=(x-a)/(b-a)$ , szukane prawdopodobieństwo możemy przybliżać funkcją
-%	\begin{equation}\label{eq:zad2_res}
-%		\mathbb{P}\left(B^x_{{\tau}^x}= b\right)=\frac{x-a}{b-a}.
-%	\end{equation}
-%	Podobnie jak przy wyznaczaniu wartości oczekiwanej, znany jest nam wynik analityczny\textsuperscript{\cite{art}} dla procesu Wienera startującego w 0
-%	\begin{equation*}
-%		\mathbb{P}\left(W_{\tau}=b\right)=\frac{a}{b+a},
-%	\end{equation*}
-%	gdzie $\tau$ to czas wyjścia tego procesu z przedziału $[-a, b]$. Uwzględniając przesunięcie punktu początkowego szukane przez nas prawdopodobieństwo wynosi dokładnie
-%	\begin{equation*}
-%			\mathbb{P}\left(B^x_{\tau^x}=b\right)=\mathbb{P}\left(W_{\tau}=b-x\right)=\frac{x-a}{(b-x)+(x-a)}=\frac{x-a}{b-a}.
-%	\end{equation*}
-%	Powyższy wzór pokrywa ze wzorem \eqref{eq:zad2_res} uzyskanym przy pomocy symulacji.
-%	\begin{equation*}
-%		\mathbb{P}\left(B^x_{\tau^x}=b\right)=\mathbb{P}\left(B^y_{\widetilde\tau^y}=1\right)=\frac{y}{1-y+y}=y,
-%	\end{equation*}
-%	więc wyniki naszej symulacji pokrywają się z rozwiązaniami analitycznymi.
+	\section{Wstęp}
+	\noindent Celem tego raportu jest oszacowanie średniego czasu wyjścia $\alpha$-stabilnego procesu L\'evy'ego z zadanego przedziału w zależności od punktu początkowego. Dodatkowo oszacowane zostało prawdopodobieństwo wyjścia przez dany koniec odcinka. Na koniec, przy pomocy pakietów matematycznych, dopasowaliśmy do oszacowanych wartości funkcję w zależności od punktu startowego $x$ oraz parametru $\alpha$.
 
 
-
-	\section{Zadanie 2 $\alpha$-stabilnych procesów L\'evy'ego}
-	\noindent Procesem L\'evy'ego nazywamy proces $\{X_t: t\geqslant 0\}$, który\textsuperscript{\cite{Levy_def}}
+	\section{$\alpha$-stabilny proces L\'evy'ego}
+	\noindent Procesem L\'evy'ego nazywamy proces $\{X_t: t\geq 0\}$, który spełnia następujące własności\textsuperscript{\cite{Levy_def}}
 	\begin{enumerate}[label=\textbf{(\roman*)}, leftmargin=10mm]
 		\item trajektorie $X_t$ są $\mathbb{P}$- prawie na pewno prawostronnie ciągłe z lewostronnymi granicami,
 		\item $\mathbb{P}\left(X_0=0\right)=1$,
 		\item $X_t$ ma niezależna przyrosty,
 		\item $X_t$ ma stacjonarne przyrosty.
 	\end{enumerate}
-	W tym raporcie będziemy badali czas wyjścia procesu L\'evy'ego $X_t^x=X_t+x$, takiego, że 
+	W raporcie tym będziemy badali czas wyjścia procesu L\'evy'ego $X_t^x=X_t+x$, takiego, że 
 	\begin{equation}\label{X_dist}
-		X_t\sim S_\alpha(t^{1/\alpha},0,0).
+		X_t\sim S_\alpha(t^{1/\alpha},0,0),
 	\end{equation}
-	Dla zadanego przedziału $[a, b]$ zdefiniujmy jeszcze zmienną
-	\begin{equation}
-		\tau^x=\inf\left\{t\geqslant0: X_t^x\notin[a,b]\right\},
+	z zadanego przedziału $[a, b]$. Zdefiniujmy zmienną
+	\begin{equation}\label{eq:tau}
+		\tau^x=\inf\left\{t\geq0: X_t^x\notin[a,b]\right\},
 	\end{equation}
-	Oznaczającą czas wyjścia z zadanego przedziału w zależności od punktu startowego.\vspace{1.5mm}\\
-	Łatwo można pokazać, że $X^{x+y}_t\in[a ,b] \iff X^x_t\in[a-y, b-y]$. Dodatkowo, ponieważ $X_t$ ma rozkład \eqref{X_dist}, to dla $a>0$ zachodzi
+	oznaczającą wyżej wspomniany czas wyjścia w zależności od punktu startowego.
+	Łatwo można pokazać, że $X^{x+y}_t\in[a ,b] \iff X^x_t\in[a-y, b-y]$. Dodatkowo, ponieważ $X_t$ ma rozkład zadany \eqref{X_dist}, to dla $a>0$ zachodzi
 	\begin{equation}
 		X_{at} \overset{d}{=} S_\alpha\left(\left(at\right)^{1/\alpha},0,0\right)\overset{d}{=}a^{1/\alpha}S_\alpha\left(t^{1/\alpha},0,0\right)
 		\overset{d}{=}a^{1/\alpha}X_t,
 	\end{equation}
-	zatem proces $X_t$ jest procesem $1/\alpha$ podobnym. Teraz możemy pokazać poniższą równość.
+	zatem proces $X_t$ jest procesem $1/\alpha$ podobnym. Z tego faktu wynika, że
 	\begin{equation}
 		X^x_t=X_t+x\overset{d}{=}\Delta X_{t/\Delta^{\alpha}}+x = \Delta\left(X_{t/\Delta^{\alpha}}-\frac{x}{\Delta}\right)=\Delta X^{x/\Delta}_{t/\Delta^\alpha}.
 	\end{equation}
-	 Korzystając z tych własności można pokazać, że
+	 Korzystając z tych własności możemy przekształcić \eqref{eq:tau} do postaci
 	\begin{equation}
 		\begin{split}
-		\tau^x&\overset{d}{=}\inf\left\{\Delta^\alpha\frac{t}{\Delta^\alpha}\geqslant0:\Delta X^{x/\Delta}_{t/\Delta^\alpha}\notin[a, b]\right\} 	=\Delta^\alpha\inf\left\{t^*\geqslant0:X^{x/\Delta}_{t^*}\notin\left[\frac{a}{\Delta},\frac{b}{\Delta}\right]\right\}\\
-		&=\Delta^\alpha\inf\left\{t^*\geqslant0:X^{(x-s)/\Delta}_{t^*}\notin\left[\frac{a-s}{\Delta},\frac{b-s}{\Delta}\right]\right\}.
+		\tau^x&\overset{d}{=}\inf\left\{\Delta^\alpha\frac{t}{\Delta^\alpha}\geq0:\Delta X^{x/\Delta}_{t/\Delta^\alpha}\notin[a, b]\right\} 	=\Delta^\alpha\inf\left\{t^*\geq0:X^{x/\Delta}_{t^*}\notin\left[\frac{a}{\Delta},\frac{b}{\Delta}\right]\right\}\\
+		&=\Delta^\alpha\inf\left\{t^*\geq0:X^{(x-s)/\Delta}_{t^*}\notin\left[\frac{a-s}{\Delta},\frac{b-s}{\Delta}\right]\right\}.
 		\end{split}
 	\end{equation}
 	Wybierając teraz $\Delta=(b-a)$ oraz $s=a$ otrzymujemy
 	\begin{equation}\label{eq:tau_przeskalowane}
-		\tau^x\overset{d}{=}(b-a)^\alpha\inf\left\{t\geqslant0:B^y_t\in[0,1]\right\}=(b-a)^\alpha\widetilde\tau^y,
+		\tau^x\overset{d}{=}(b-a)^\alpha\inf\left\{t\geq0:X^y_t\in[0,1]\right\}=(b-a)^\alpha\,\widetilde\tau^y,
 	\end{equation}
 	gdzie $\widetilde\tau^y$ jest czasem wyjścia z przedziału $[0, 1]$, jeśli zaczniemy z punktu $y=\frac{x-a}{b-a}$, czyli z punktu dzielącego ten odcinek w stosunku takim samym jak $x$ dzieli odcinek~$[a, b]$.\vspace{1.5mm}\\
-	\noindent Dzięki tym przekształceniom widzimy, że $\mathbb{E}\tau^x$ zależy od odległości $x$ od jednego końca przedziału względem drugiego oraz długości rozważanego odcinka. Ponieważ wiemy już jak wpływa ta długość na szukaną wartość oczekiwaną, będziemy rozważać jedynie czas wyjścia z przedziału $[0, 1]$.
+	\noindent Dzięki tym przekształceniom widzimy, że $\mathbb{E}\tau^x$ zależy od odległości $x$ od jednego końca przedziału względem drugiego oraz długości rozważanego odcinka. Ponieważ wiemy już jak wpływa ta długość na średni czas wyjścia, będziemy rozważać jedynie przedział $[0, 1]$.
+	\section{Generowania trajektorii}	
+	\noindent By móc wygenerować trajektorię procesu musimy umieć generować realizację zmiennej $Y\sim S_\alpha(\sigma,\beta,\mu)$. Cały algorytm został przedstawiona w \cite{art}. Na nasze potrzeby wystarczy algorytm generowania $Y\sim S_\alpha(t^{1/\alpha},0,0)$.\\
 	
+	\noindent\textbf{Algorytm}\\
+	Celem jest wygenerowanie wektora $\left[ X_{t_0},X_{t_1},\dots,X_{t_n} \right]$, gdzie
+	\begin{equation}
+		t_i=ih, \quad\quad i\in[n]=\{0,1,\dots,n\},\quad h=T/n.
+	\end{equation}
+	W tym celu stosujemy poniższy algorytm.\\
+	\begin{itemize}
+		\item $\boldsymbol{\alpha\neq 1}$
 
+		\begin{enumerate}
+			\item Generuj realizację zmiennych $V_i$ iid. $\mathcal{U}\left(-\frac{\pi}{2},\frac{\pi}{2}\right)$, $i\in[n-1]$.
+			\item Generuj realizację zmiennych $W_i$ iid. $\mathcal{E}xp(1)$, $i\in[n-1]$.
+			\item $X_{t_0}=0$.
+			\item Wstaw
+			\begin{equation}
+				X_{t_{i+1}}=X_{t_i} + h^{1/\alpha}\frac{\sin(\alpha V_i)}{(\cos V_i)^{1-\alpha}} \left[\frac{\cos\left(\left(1-\alpha\right) V_i\vphantom{\frac{1}{1}}\right)}{W_i}\right]^{(1/\alpha)/\alpha}.
+			\end{equation}
+		\end{enumerate}
+		\item $\boldsymbol{\alpha= 1}$
+		\begin{enumerate}
+			\item Generuj realizację zmiennych $V_i$ iid. $\mathcal{U}\left(-\frac{\pi}{2},\frac{\pi}{2}\right)$, $i\in[n-1]$.
+			\item $X_{t_0}=0$.
+			\item Wstaw
+			\begin{equation}
+				X_{t_{i+1}}=X_{t_i} + h^{1/\alpha}\tan V_i
+			\end{equation}
+	\end{enumerate}
+	\end{itemize}
 
-
-
-
+	\section{Średni czas wyjścia procesu}
+		
+	\noindent Do oszacowania średniego czasu wyjścia posłużyłem się metodą Monte Carlo. Czas ten zależy od parametru $\alpha$, dlatego na animacji \ref{anim:time} przedstawiłem otrzymane wykresy dla kolejnych wartości $\alpha$ w zależności od punktu startowego. Dla każdej wartości została dopasowana krzywa.
+	\begin{figure}
+		\includegraphics[width=\textwidth]{fig/plot/A_B.pdf}
+		\caption{Zależność $B$ od $\alpha$ w równaniu $f(x)=A\left[x(1-x)\right]^B$.}
+		\label{eq:A_B}
+	\end{figure}
+	Ponieważ w skrajnych punktach, czyli dla $x=0$ oraz $x=1$ czas wyjścia musi być zerowy, a największa wartość jest przyjmowana w połowie przedziału, rozpatrywałem początkowo krzywe w postaci $f(x)=A\left[x(1-x)\right]^B$. Parametry $A$ oraz $B$ zostały dopasowane przy pomocy pakietów matematycznych. Na rysunku \ref{eq:A_B} widać liniową zależność $B=\alpha/2$. 
+%	\begin{wrapfigure}{l}{0.45\textwidth}
+%		\includegraphics[width=0.43\textwidth]{fig/plot/A_B.pdf}
+%		\caption{Zależność $B$ od $\alpha$ w równaniu $f(x)=A\left[x(1-x)\right]^B$.}
+%		\label{eq:A_B}
+%	\end{wrapfigure}
+	\begin{figure}[H]
+		\animategraphics[controls,loop,width=\columnwidth]{8}{anim/time/anim}{1}{40}\caption{Animacja czasu wyjścia w zależności od $\alpha$ oraz punktu początkowego.}\label{anim:time}
+	\end{figure}
+	\noindent Z animacji możemy odczytać, że dopasowana funkcja rzeczywiście dobrze przybliża wygenerowaną krzywą. Dodatkowo dla $\alpha=2$ otrzymujemy wzór, który otrzymaliśmy w naszym poprzednim raporcie\textsuperscript{\cite{rap}}.
+	
+	
+	\section{Prawdopodobieństwo wyjścia przez dany koniec}
+	\noindent Dodatkowo oszacowaliśmy prawdopodobieństwo wyjścia przez dany z końców. Z symetrii procesu, wystarczy wyznaczyć prawdopodobieństwo wyjścia przez jeden z końców. W naszym przypadku obliczamy prawdopodobieństwo
+	\begin{equation}\label{eq:out}
+		\mathbb{P}\left(X^y_{\widetilde\tau^y}=1\right).
+	\end{equation}
+	Do oszacowania ponownie skorzystaliśmy z metody Monte Carlo. Z powodu dyskretyzacji generowanej trajektorii, musieliśmy przekształcić wzór \eqref{eq:out} do postaci
+	\begin{equation}
+		\mathbb{P}\left(X^y_{\widetilde\tau^y}\geq1\right).
+	\end{equation}
+	Podobnie, jak w przypadku szukania wartości oczekiwanej, wynik ten będzie zależał od wartości $\alpha$. Dlatego wynik symulacji przedstawiliśmy w postaci animacji.
+	\begin{figure}[H]
+		\animategraphics[controls,loop,width=\columnwidth]{8}{anim/out/anim}{1}{40}\caption{Animacja prawdopodobieństwa wyjścia przez dany koniec w zależności od $\alpha$ oraz punktu początkowego. Legenda przedstawia równanie krzywych, gdzie, dla czytelności, zastosowano notację $(y-0.5)^a=\text{sign}(y-0.5)\cdot|y-0.5|^a$.}\label{anim:out}
+	\end{figure}
+	\noindent Co ciekawe, z animacji możemy odczytać, że dla małych wartości $\alpha$, prawdopodobieństwo wyjścia przez dany koniec w małym stopniu zależy od punktu startowego $y$. Dopasowanie krzywej, do wygenerowanych danych, nie było już tak proste, jak w poprzednich przypadkach. Na animacji \ref{anim:out} zostały dopasowane dwie krzywe do wykresów. Czerwona krzywa (równanie postaci $A\tan\left(\frac{\pi}{2}\left(x-0.5\right)^B\right)+0.5$) lepiej przybliża wynik symulacji dla nie dużych ($<1.3$) wartości $\alpha$. Natomiast z pozostałymi wartościami lepiej sobie radzie krzywa zielona (równanie postaci $A\left(x-0.5\right)^B+1/2$), która dla $\alpha=2$ przyjmuje taką samą postać, jaką otrzymaliśmy w poprzednim raporcie\textsuperscript{\cite{rap}}. Dodatkowo porównując wartości $\alpha$ z $B$ otrzymujemy poniższy wykres.
+	\begin{figure}[H]
+		\includegraphics[width=\columnwidth]{fig/plot/A_B_out.pdf}\caption{Zależność $B$ od $\alpha$ w równaniu $f(x)=A\left(x-0.5\right)^B+0.5$.}
+	\end{figure}
 
 
 
@@ -279,16 +201,22 @@
 %	\noindent Dodatkowo podczas symulacji zauważyliśmy, jak ważne jest generowanie procesu Wienera z odpowiednio małym krokiem czasowym. Wraz ze wzrostem wielkości kroku, rósł średni czas wyjścia procesu. By uzyskać dokładne dane, generowaliśmy proces z krokiem $h=10^{-4}$.
 %	
 %	
-	
-	
-	
+
+	\section{Podsumowanie}
+	\noindent Udało nam się dopasować funkcję do szukanej wartości oczekiwane. Po uwzględnieniu zależności \eqref{eq:tau_przeskalowane} otrzymaliśmy wynik
+	\begin{equation}
+		\mathbb{E}\tau^x=A\left(b-a\right)^\alpha\left[y(1-y)\right]^{(\alpha/2)},
+	\end{equation}
+	gdzie $y=(x-a)/(b-a)$ oraz $A\in[1, 1.5]$ jest wartością zależną od $\alpha$. Oszacowaliśmy jeszcze prawdopodobieństwo wyjścia przez dany koniec przedziału. Wynik może wydawać się lekko zaskakujący, gdyż dla małych wartości $\alpha$, zależy on w niewielki stopniu od punktu początkowego procesu.
 	
 	\newpage
 	\begin{thebibliography}{1}
 		\bibitem{Levy_def}
 		\url{https://people.bath.ac.uk/ak257/LCSB/part1.pdf}
 		\bibitem{art}
-		\url{https://galton.uchicago.edu/~lalley/Courses/313/BrownianMotionCurrent.pdf}
+		\url{http://prac.im.pwr.edu.pl/~hugo/publ/SFB2005-008_Borak_Haerdle_Weron.pdf}
+		\bibitem{rap}
+		\url{https://drive.google.com/file/d/1Mutv7S7TcRbvwD8fzdeqaEdPUFSPHPcf/view?usp=sharing}
 	\end{thebibliography}
 
 
